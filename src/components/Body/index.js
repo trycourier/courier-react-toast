@@ -22,7 +22,7 @@ function Wrapper({
 }) {
   if (clickAction) {
     return (
-      <AnchorContainer href={clickAction} onClick={onClick} >
+      <AnchorContainer target="__blank" href={clickAction} onClick={onClick} >
         <Body {...props} />
       </AnchorContainer>
     );
