@@ -7,13 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "rimraf dist && yarn babel && yarn webpack",
-    "babel": "babel src -d dist --extensions '.js,.ts,.tsx' --ignore '**/node_modules, **__tests__'"
+    "build": "rimraf dist && yarn webpack"
   },
   "private": true,
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
     "@storybook/addon-actions": "^6.1.14",
