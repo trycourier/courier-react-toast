@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "rimraf dist && yarn babel",
-    "babel": "babel src -d dist --extensions '.js,.ts' --ignore '**/node_modules, **__tests__'"
+    "build": "rimraf dist && yarn babel && yarn webpack",
+    "babel": "babel src -d dist --extensions '.js,.ts,.tsx' --ignore '**/node_modules, **__tests__'"
   },
   "private": true,
   "license": "ISC",
@@ -31,17 +31,22 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.2",
     "rimraf": "^3.0.2",
-    "typescript": "^4.1.3"
+    "typescript": "^4.1.3",
+    "webpack-cli": "^4.3.1"
   },
   "dependencies": {
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@material-ui/core": "^4.11.2",
+    "css-loader": "^5.0.1",
     "firebase": "^8.2.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-toastify": "^6.2.0",
-    "styled-components": "^5.2.1"
+    "style-loader": "^2.0.0",
+    "styled-components": "^5.2.1",
+    "ts-loader": "^8.0.14",
+    "webpack": "^5.15.0"
   },
   "files": [
     "/dist"

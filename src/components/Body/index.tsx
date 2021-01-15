@@ -2,7 +2,7 @@ import React from 'react';
 import {
   AnchorContainer, Container, Title, Icon, ContentContainer, BodyText,
 } from './styled';
-import { WrapperProps, BodyProps } from './types';
+import { WrapperProps, BodyProps } from './types.d';
 
 function Body({
   title, body, icon,

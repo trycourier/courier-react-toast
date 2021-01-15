@@ -48,5 +48,5 @@ function ToastProvider(_ref) {
   };
   return /*#__PURE__*/_react["default"].createElement(ToastContext.Provider, {
     value: state
-  }, /*#__PURE__*/_react["default"].createElement(_components.Toast, null), children);
+  }, /*#__PURE__*/_react["default"].createElement(_components.Toast, null));
 }

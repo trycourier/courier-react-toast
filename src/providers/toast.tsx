@@ -22,7 +22,7 @@ export function ToastProvider({
   return (
     <ToastContext.Provider value={state}>
       <Toast />
-      {children}
+      {}
     </ToastContext.Provider>
   );
 }
