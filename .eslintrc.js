@@ -28,7 +28,9 @@ module.exports = {
   'rules': {
     'array-callback-return': 'error',
     'no-await-in-loop': 'error',
-    'object-curly-newline': ['error', { 'multiline': true, 'minProperties': 3 }],
+    'object-curly-newline': ['error', {
+      'multiline': true, 'minProperties': 3, 'consistent': true,
+    }],
     'brace-style': ['error', '1tbs', { 'allowSingleLine': false }],
     'no-return-await': 'error',
     'quote-props': ['error', 'consistent'],
@@ -47,7 +49,7 @@ module.exports = {
     'no-undef': 'error',
     'no-unused-vars': 'error',
     'no-debugger': 'warn',
-    'react/prop-types': 'error',
+    'react/prop-types': 0,
     'curly': 'error',
     'semi': ['error', 'always', { 'omitLastInOneLineBlock': true }],
     'semi-style': ['error', 'last'],
@@ -88,6 +90,7 @@ module.exports = {
     'guard-for-in': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'react/jsx-max-props-per-line': [2, { maximum: 3 }],
   },
   'settings': {
     'react': {

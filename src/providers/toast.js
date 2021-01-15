@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import Body from '../components/Body';
 import { Toast } from '../components';
@@ -12,7 +11,8 @@ export function ToastProvider({
     title, body, icon,
     clickAction,
   }) => {
-    toast(<Body onClick={config.onClick} title={title} body={body} icon={icon} clickAction={clickAction} />);
+    toast(<Body onClick={config.onClick} title={title} body={body}
+      icon={icon} clickAction={clickAction} />);
   };
 
   const state = {
@@ -26,5 +26,3 @@ export function ToastProvider({
     </ToastContext.Provider>
   );
 }
-
-ToastProvider.propTypes = { children: PropTypes.array };

@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-import { makeStyles } from '@material-ui/core';
 import React from 'react';
 
 import {
@@ -70,7 +68,7 @@ export function MoreComplex({
 }) {
   const config = {
     position, hideProgressBar,
-    transition, theme:complexTheme,
+    transition, theme: complexTheme,
   };
   return (
     <ToastProvider config={config}>
