@@ -1,21 +1,38 @@
 import React from 'react';
 import {
-  ButtonContainer, DefaultContainer, Title, Icon, ContentContainer, BodyText,
+  AnchorContainer, Container, Title, Icon, ContentContainer, BodyText,
 } from './styled';
 
 function Body({
-  title, body, icon, clickAction,
+  title, body, icon,
 }) {
-  const Container = clickAction ? ButtonContainer : DefaultContainer;
   return (
-    <Container>
+    <>
       <Icon style={{ marginRight: 10 }} src={icon} />
       <ContentContainer>
         <Title>{title}</Title>
         <BodyText style={{ marginTop: 10 }}>{body}</BodyText>
       </ContentContainer>
+    </>
+  );
+}
+
+function Wrapper({
+  clickAction, onClick, ...props
+}) {
+  if (clickAction) {
+    return (
+      <AnchorContainer href={clickAction} onClick={onClick} >
+        <Body {...props} />
+      </AnchorContainer>
+    );
+  }
+
+  return (
+    <Container>
+      <Body {...props} />
     </Container>
   );
 }
 
-export default Body;
+export default Wrapper;

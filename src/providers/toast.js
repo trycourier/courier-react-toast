@@ -12,7 +12,7 @@ export function ToastProvider({
     title, body, icon,
     clickAction,
   }) => {
-    toast(<Body title={title} body={body} icon={icon} clickAction={clickAction} />);
+    toast(<Body onClick={config.onClick} title={title} body={body} icon={icon} clickAction={clickAction} />);
   };
 
   const state = {

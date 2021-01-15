@@ -42,7 +42,7 @@ function WrappedComponent() {
     title: 'Snowman529 went live!',
     body: '14 seconds ago',
     icon: 'https://www.flaticon.com/svg/vstatic/svg/149/149071.svg?token=exp=1610653848~hmac=19da6d95f62d8cd2c7122a66fd03af0c',
-    clickAction: 'https//app.courier.com',
+    clickAction: 'https://app.courier.com',
   };
   return <Button onClick={() => toast(notification)}>Show Toast</Button>;
 }
@@ -55,6 +55,42 @@ export function Default({
   const config = {
     position, hideProgressBar,
     transition, theme,
+  };
+  return (
+    <ToastProvider config={config}>
+      <WrappedComponent />
+    </ToastProvider>
+  );
+}
+
+const complexTheme = { toast: { backgroundColor: 'red', borderRadius: 5 } };
+
+export function MoreComplex({
+  position, hideProgressBar, transition,
+}) {
+  const config = {
+    position, hideProgressBar,
+    transition, theme:complexTheme,
+  };
+  return (
+    <ToastProvider config={config}>
+      <WrappedComponent />
+    </ToastProvider>
+  );
+}
+
+export function OnClick({
+  position, hideProgressBar, transition,
+}) {
+  const onClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    alert(e.currentTarget.getAttribute('href'));
+  };
+
+  const config = {
+    position, hideProgressBar,
+    transition, theme, onClick,
   };
   return (
     <ToastProvider config={config}>

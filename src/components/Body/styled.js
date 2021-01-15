@@ -1,21 +1,19 @@
 import styled from 'styled-components';
 
-export const DefaultContainer = styled.div`
+export const Container = styled.div`
   background-color: black;
   height: 50px;
   width: 100%;
-  font-family: "Nunito Sans", sans-serif;
   color: white;
   display: flex;
   outline: none;
   border: none;
 `;
 
-export const ButtonContainer = styled.button`
+export const AnchorContainer = styled.a`
   background-color: black;
   height: 50px;
   width: 100%;
-  font-family: "Nunito Sans", sans-serif;
   color: white;
   display: flex;
   outline: none;
