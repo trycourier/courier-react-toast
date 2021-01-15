@@ -49,6 +49,6 @@
     "webpack": "^5.15.0"
   },
   "files": [
-    "/dist"
+    "/dist/main.js"
   ]
 }
