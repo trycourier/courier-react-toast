@@ -1,6 +1,6 @@
-export interface WrapperProps {
+export interface BodyWrapperProps {
   clickAction: string;
-  onClick: () => {};
+  onClick: Function;
   title: string;
   body: string;
   icon: string;
