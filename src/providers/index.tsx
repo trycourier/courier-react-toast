@@ -9,7 +9,7 @@ import { createGlobalStyle } from "styled-components";
 import { ToastProviderProps, ProviderConfig } from "./types";
 import toastCss from "react-toastify/dist/ReactToastify.css";
 
-createGlobalStyle(toastCss);
+const GlobalStyle = createGlobalStyle`${toastCss}`;
 
 interface IToastContext {
   toast?: Function;
@@ -32,6 +32,7 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
 
   return (
     <ToastContext.Provider value={state}>
+      <GlobalStyle />
       <Toast />
       {children}
     </ToastContext.Provider>

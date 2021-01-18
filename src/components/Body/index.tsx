@@ -12,7 +12,7 @@ import { BodyWrapperProps, BodyProps } from "./types";
 const Body: React.FunctionComponent<BodyProps> = ({ title, body, icon }) => {
   return (
     <>
-      <Icon style={{ marginRight: 10 }} src={icon} />
+      {icon && <Icon style={{ marginRight: 10 }} src={icon} />}
       <ContentContainer>
         <Title>{title}</Title>
         <BodyText style={{ marginTop: 10 }}>{body}</BodyText>

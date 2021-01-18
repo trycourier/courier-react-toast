@@ -19,7 +19,7 @@ var Body = function Body(_ref) {
   var title = _ref.title,
       body = _ref.body,
       icon = _ref.icon;
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_styled.Icon, {
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, icon && /*#__PURE__*/_react["default"].createElement(_styled.Icon, {
     style: {
       marginRight: 10
     },
