@@ -1,16 +1,15 @@
 import {
-  CSSProperties, MouseEventHandler, ReactChildren,
+  CSSProperties, MouseEventHandler,
 } from 'react';
-import { ClassesObject } from '../types';
+import { ToastPosition } from 'react-toastify';
 
 export interface ToastProviderProps {
-  children: ReactChildren;
-  theme: {[key:string]: CSSProperties};
-  classes: ClassesObject;
-  config: ProviderConfig;
+  theme?: {[key:string]: CSSProperties};
+  config?: ProviderConfig;
 }
 
 export interface ProviderConfig {
   onClick: MouseEventHandler<Element>;
   transition: string;
+  position: ToastPosition;
 }

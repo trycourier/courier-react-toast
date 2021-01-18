@@ -1,22 +1,19 @@
-import React, { useContext } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContext } from '../../providers';
-import { getTransition } from './helpers';
-import { ToastStyled } from './styled';
-import { ToastProps } from './types';
+import React, { useContext } from "react";
+import { ToastContext } from "../../providers";
+import { getTransition } from "./helpers";
+import { ToastStyled } from "./styled";
 
-function Toast({ style }: ToastProps) {
-  const { config } = useContext(ToastContext);
+const Toast: React.FunctionComponent = () => {
+  const {
+    config = {
+      position: "top-right",
+      theme: {},
+      transition: "slide",
+    },
+  } = useContext(ToastContext);
+
   const transition = getTransition(config.transition);
-  return (
-    <ToastStyled
-      {...config}
-      transition={transition}
-      style={style}
-    />
-  );
-}
+  return <ToastStyled {...config} transition={transition} />;
+};
 
 export default Toast;
-
-Toast.defaultProps = { position: 'top-right' };

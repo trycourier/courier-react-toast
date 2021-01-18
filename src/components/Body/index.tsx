@@ -1,12 +1,15 @@
-import React from 'react';
+import React from "react";
 import {
-  AnchorContainer, Container, Title, Icon, ContentContainer, BodyText,
-} from './styled';
-import { BodyWrapperProps, BodyProps } from './types';
+  AnchorContainer,
+  Container,
+  Title,
+  Icon,
+  ContentContainer,
+  BodyText,
+} from "./styled";
+import { BodyWrapperProps, BodyProps } from "./types";
 
-function Body({
-  title, body, icon,
-}: BodyProps) {
+const Body: React.FunctionComponent<BodyProps> = ({ title, body, icon }) => {
   return (
     <>
       <Icon style={{ marginRight: 10 }} src={icon} />
@@ -16,14 +19,16 @@ function Body({
       </ContentContainer>
     </>
   );
-}
+};
 
-function BodyWrapper({
-  clickAction, onClick, ...props
-}: BodyWrapperProps) {
+const BodyWrapper: React.FunctionComponent<BodyWrapperProps> = ({
+  clickAction,
+  onClick,
+  ...props
+}) => {
   if (clickAction) {
     return (
-      <AnchorContainer target="__blank" href={clickAction} onClick={onClick} >
+      <AnchorContainer target="__blank" href={clickAction} onClick={onClick}>
         <Body {...props} />
       </AnchorContainer>
     );
@@ -34,6 +39,6 @@ function BodyWrapper({
       <Body {...props} />
     </Container>
   );
-}
+};
 
 export default BodyWrapper;

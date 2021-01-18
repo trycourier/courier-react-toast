@@ -1,6 +1,6 @@
 export interface BodyWrapperProps {
   clickAction: string;
-  onClick: Function;
+  onClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   title: string;
   body: string;
   icon: string;
