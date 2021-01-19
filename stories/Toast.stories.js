@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   Toast, ToastProvider, useToast,
-} from "..";
+} from "../src";
 import { Button } from "./styled";
 
 
@@ -39,7 +39,7 @@ function WrappedComponent() {
   const notification = {
     title: "Snowman529 went live!",
     body: "14 seconds ago",
-    icon: "https://www.flaticon.com/svg/vstatic/svg/149/149071.svg?token=exp=1610653848~hmac=19da6d95f62d8cd2c7122a66fd03af0c",
+    icon: "https://app.courier.com/static/favicon/favicon-32x32.png",
     clickAction: "https://app.courier.com",
   };
   return <Button onClick={() => toast(notification)}>Show Toast</Button>;
