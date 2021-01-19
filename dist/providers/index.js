@@ -9,11 +9,11 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactToastify = require("react-toastify");
 
+var _styledComponents = require("styled-components");
+
 var _Body = _interopRequireDefault(require("../components/Body"));
 
 var _components = require("../components");
-
-var _styledComponents = require("styled-components");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 

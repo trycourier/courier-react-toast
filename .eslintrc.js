@@ -59,7 +59,7 @@ module.exports = {
     'no-prototype-builtins': 'off',
     'react/no-unescaped-entities': 'off',
     'object-curly-spacing': ['error', 'always'],
-    'quotes': ['error', 'single', { 'allowTemplateLiterals': true }],
+    'quotes': ['error', 'double', { 'allowTemplateLiterals': true }],
     'comma-dangle': ['error', 'always-multiline'],
     'keyword-spacing': 'error',
     'no-multi-spaces': 'error',

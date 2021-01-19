@@ -1,13 +1,13 @@
 import React from "react";
 import { toast } from "react-toastify";
+import { createGlobalStyle } from "styled-components";
+import toastCss from "react-toastify/dist/ReactToastify.css";
 import Body from "../components/Body";
 import { Toast } from "../components";
 import { BodyWrapperProps } from "../components/Body/types";
 import { ClassesObject } from "../types";
-import { createGlobalStyle } from "styled-components";
 
 import { ToastProviderProps, ProviderConfig } from "./types";
-import toastCss from "react-toastify/dist/ReactToastify.css";
 
 const GlobalStyle = createGlobalStyle`${toastCss}`;
 
