@@ -23,16 +23,11 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 var Toast = function Toast() {
   var _useContext = (0, _react.useContext)(_providers.ToastContext),
-      _useContext$config = _useContext.config,
-      config = _useContext$config === void 0 ? {
-    position: "top-right",
-    theme: {},
-    transition: "slide"
-  } : _useContext$config;
+      config = _useContext.config;
 
-  var transition = (0, _helpers.getTransition)(config.transition);
+  var Transition = (0, _helpers.getTransition)(config.transition);
   return /*#__PURE__*/_react["default"].createElement(_styled.ToastStyled, _extends({}, config, {
-    transition: transition
+    transition: Transition
   }));
 };
 

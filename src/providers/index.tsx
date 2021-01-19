@@ -7,7 +7,6 @@ import merge from "lodash.merge";
 import Body from "../components/Body";
 import { Toast } from "../components";
 import { BodyWrapperProps } from "../components/Body/types";
-import { ClassesObject } from "../types";
 import { ToastProviderProps, ProviderConfig } from "./types";
 import { defaultConfig } from "./defaults";
 
@@ -15,7 +14,6 @@ const GlobalStyle = createGlobalStyle`${toastCss}`;
 
 interface IToastContext {
   toast?: Function;
-  classes?: ClassesObject;
   config?: ProviderConfig;
 }
 
