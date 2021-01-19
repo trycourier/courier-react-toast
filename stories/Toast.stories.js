@@ -37,8 +37,8 @@ export default {
 function WrappedComponent() {
   const [ toast ] = useToast();
   const notification = {
-    title: "Snowman529 went live!",
-    body: "14 seconds ago",
+    title: "Your notification has been sent!",
+    body: "Click here to view more details",
     icon: "https://app.courier.com/static/favicon/favicon-32x32.png",
     clickAction: "https://app.courier.com",
   };
