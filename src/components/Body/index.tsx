@@ -13,10 +13,10 @@ const Body: React.FunctionComponent<BodyProps> = ({
   title, body, icon, theme,
 }) => (
   <>
-    {icon && <Icon style={{ marginRight: 10 }} src={icon} />}
+    {icon && <Icon theme={theme} style={{ marginRight: 10 }} src={icon} />}
     <ContentContainer>
       <Title theme={theme}>{title}</Title>
-      <BodyText theme={theme} style={{ marginTop: 10 }}>{body}</BodyText>
+      <BodyText theme={theme} style={{ marginTop: 5 }}>{body}</BodyText>
     </ContentContainer>
   </>
 );

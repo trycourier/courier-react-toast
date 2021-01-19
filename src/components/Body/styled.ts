@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div(() => ({
-  height: 50,
+  height: "100%",
   width: "100%",
   display: "flex",
   outline: "none",
@@ -11,7 +11,7 @@ export const Container = styled.div(() => ({
 }));
 
 export const AnchorContainer = styled.a(() => ({
-  height: 50,
+  height: "100%",
   width: "100%",
   display: "flex",
   outline: "none",
@@ -20,21 +20,11 @@ export const AnchorContainer = styled.a(() => ({
   backgroundColor: "inherit",
 }));
 
-export const Icon = styled.img(({ theme }) => ({
-  height: 30,
-  width: 30,
-  ...theme.icon,
-}));
+export const Icon = styled.img(({ theme }) => theme.icon);
 
-export const BodyText = styled.div(({ theme }) => ({
-  fontSize: 14,
-  ...theme.body,
-}));
+export const BodyText = styled.div(({ theme }) => theme.body);
 
-export const Title = styled.div(({ theme }) => ({
-  fontWeight: "bold",
-  ...theme.title,
-}));
+export const Title = styled.div(({ theme }) => theme.title);
 
 //@ts-ignore
 export const ContentContainer = styled.div(() => ({

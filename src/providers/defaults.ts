@@ -9,16 +9,25 @@ export const defaultConfig: ProviderConfig = {
       fontFamily: `"Nunito Sans", sans-serif`,
     },
     toast: {
+      height: 50,
       backgroundColor: "white",
       boxShadow: "rgba(157, 55, 137, 0.2) 0px 4px 12px",
       borderRadius: 5,
       color: "black",
+      padding: 10,
     },
     title:{
+      fontWeight: "bold",
       color: "rgb(36, 50, 75)",
     },
     body: {
+      fontSize: 14,
       color: "rgb(115, 129, 155)",
+      margin: 0,
+    },
+    icon: {
+      height: 30,
+      width: 30,
     },
   },
   transition: "slide",
