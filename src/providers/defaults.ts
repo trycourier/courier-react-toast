@@ -14,7 +14,7 @@ export const defaultConfig: ProviderConfig = {
       boxShadow: "rgba(157, 55, 137, 0.2) 0px 4px 12px",
       borderRadius: 5,
       color: "black",
-      padding: 10,
+      margin: 10,
     },
     title:{
       fontWeight: "bold",

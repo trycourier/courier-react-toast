@@ -13,7 +13,7 @@ import { defaultConfig } from "./defaults";
 const GlobalStyle = createGlobalStyle`${toastCss}`;
 
 interface IToastContext {
-  toast?: Function;
+  toast?: (props: BodyWrapperProps) => void;
   config?: ProviderConfig;
 }
 

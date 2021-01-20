@@ -33,8 +33,15 @@ export default {
     position: "top-right", hideProgressBar: true, transition: "slide",
   },
 };
+export function Default() {
+  return (
+    <ToastProvider>
+      <DefaultComponent />
+    </ToastProvider>
+  );
+}
 
-function WrappedComponent() {
+function DefaultComponent() {
   const [ toast ] = useToast();
   const notification = {
     title: "Your notification has been sent!",
@@ -45,31 +52,38 @@ function WrappedComponent() {
   return <Button onClick={() => toast(notification)}>Show Toast</Button>;
 }
 
-export function Default() {
-  return (
-    <ToastProvider>
-      <WrappedComponent />
-    </ToastProvider>
-  );
-}
 
 export function WithConfiguration({
   position, hideProgressBar, transition,
 }) {
+  const theme = { toast: { backgroundColor: "red", borderRadius: 5 } };
+  const config = {
+    position, hideProgressBar,
+    transition, theme,
+  };
+  return (
+    <ToastProvider config={config}>
+      <WithConfigurationComponent />
+    </ToastProvider>
+  );
+}
+
+function WithConfigurationComponent() {
+  const [ toast ] = useToast();
+
   const onClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
     alert(e.currentTarget.getAttribute("href"));
   };
 
-  const theme = { toast: { backgroundColor: "red", borderRadius: 5 } };
-  const config = {
-    position, hideProgressBar,
-    transition, theme, onClick,
+  const notification = {
+    title: "Your notification has been sent!",
+    body: "Click here to view more details",
+    icon: "https://app.courier.com/static/favicon/favicon-32x32.png",
+    clickAtion: "https://app.courier.com",
+    onClick,
   };
-  return (
-    <ToastProvider config={config}>
-      <WrappedComponent />
-    </ToastProvider>
-  );
+
+  return <Button onClick={() => toast(notification)}>Show Toast</Button>;
 }
