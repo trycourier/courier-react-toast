@@ -56,7 +56,17 @@ function DefaultComponent() {
 export function WithConfiguration({
   position, hideProgressBar, transition,
 }) {
-  const theme = { toast: { backgroundColor: "red", borderRadius: 5 } };
+  const theme = {
+    toast: {
+      backgroundColor: "black",
+    },
+    title: {
+      color: "white",
+    },
+    body: {
+      color: "white",
+    },
+  };
   const config = {
     position, hideProgressBar,
     transition, theme,
@@ -71,17 +81,14 @@ export function WithConfiguration({
 function WithConfigurationComponent() {
   const [ toast ] = useToast();
 
-  const onClick = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    alert(e.currentTarget.getAttribute("href"));
+  const onClick = () => {
+    alert("You clicked!");
   };
 
   const notification = {
-    title: "Your notification has been sent!",
+    title: "Your notification has been sent",
     body: "Click here to view more details",
     icon: "https://app.courier.com/static/favicon/favicon-32x32.png",
-    clickAtion: "https://app.courier.com",
     onClick,
   };
 
