@@ -46,7 +46,6 @@ function DefaultComponent() {
   const notification = {
     title: "Your notification has been sent!",
     body: "Click here to view more details",
-    icon: "https://app.courier.com/static/favicon/favicon-32x32.png",
     clickAction: "https://app.courier.com",
     options:{
       hideProgressBar: false,

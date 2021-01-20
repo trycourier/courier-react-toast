@@ -8,9 +8,11 @@ import {
   BodyText,
 } from "./styled";
 import { BodyWrapperProps, BodyProps } from "./types";
+//@ts-ignore
+import CourierIcon from "./courier.svg";
 
 const Body: React.FunctionComponent<BodyProps> = ({
-  title, body, icon, theme,
+  title, body, icon = CourierIcon, theme,
 }) => (
   <>
     {icon && <Icon theme={theme} style={{ marginRight: 10 }} src={icon} />}

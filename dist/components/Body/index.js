@@ -9,6 +9,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styled = require("./styled");
 
+var _courier = _interopRequireDefault(require("./courier.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -18,7 +20,8 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 var Body = function Body(_ref) {
   var title = _ref.title,
       body = _ref.body,
-      icon = _ref.icon,
+      _ref$icon = _ref.icon,
+      icon = _ref$icon === void 0 ? _courier["default"] : _ref$icon,
       theme = _ref.theme;
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, icon && /*#__PURE__*/_react["default"].createElement(_styled.Icon, {
     theme: theme,
