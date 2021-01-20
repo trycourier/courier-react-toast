@@ -24,15 +24,6 @@ var ToastStyled = (0, _styledComponents["default"])(_reactToastify.ToastContaine
   var _ref2;
 
   var theme = _ref.theme;
-  return _ref2 = {}, _defineProperty(_ref2, '&.Toastify__toast-container', _objectSpread({
-    a: {
-      textDecoration: 'none'
-    },
-    fontFamily: "\"Nunito Sans\", sans-serif",
-    borderRadius: 5
-  }, theme.container)), _defineProperty(_ref2, '.Toastify__toast', _objectSpread({
-    backgroundColor: 'black',
-    borderRadius: 5
-  }, theme.toast)), _defineProperty(_ref2, '.Toastify__toast--error', _objectSpread({}, theme.error)), _defineProperty(_ref2, '.Toastify__toast--warning', _objectSpread({}, theme.warning)), _defineProperty(_ref2, '.Toastify__toast-body', _objectSpread({}, theme.body)), _defineProperty(_ref2, '.Toastify__progress-bar', _objectSpread({}, theme['progress-bar'])), _ref2;
+  return _ref2 = {}, _defineProperty(_ref2, "&.Toastify__toast-container", _objectSpread({}, theme.container)), _defineProperty(_ref2, ".Toastify__toast", _objectSpread({}, theme.toast)), _defineProperty(_ref2, ".Toastify__toast-body", _objectSpread({}, theme.body)), _defineProperty(_ref2, ".Toastify__toast--error", _objectSpread({}, theme.error)), _defineProperty(_ref2, ".Toastify__toast--warning", _objectSpread({}, theme.warning)), _defineProperty(_ref2, ".Toastify__progress-bar", _objectSpread({}, theme["progress-bar"])), _ref2;
 });
 exports.ToastStyled = ToastStyled;

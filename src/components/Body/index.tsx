@@ -9,24 +9,24 @@ import {
 } from "./styled";
 import { BodyWrapperProps, BodyProps } from "./types";
 
-const Body: React.FunctionComponent<BodyProps> = ({ title, body, icon }) => {
-  return (
-    <>
-      {icon && <Icon style={{ marginRight: 10 }} src={icon} />}
-      <ContentContainer>
-        <Title>{title}</Title>
-        <BodyText style={{ marginTop: 10 }}>{body}</BodyText>
-      </ContentContainer>
-    </>
-  );
-};
+const Body: React.FunctionComponent<BodyProps> = ({
+  title, body, icon, theme,
+}) => (
+  <>
+    {icon && <Icon theme={theme} style={{ marginRight: 10 }} src={icon} />}
+    <ContentContainer>
+      <Title theme={theme}>{title}</Title>
+      <BodyText theme={theme} style={{ marginTop: 5 }}>{body}</BodyText>
+    </ContentContainer>
+  </>
+);
 
 const BodyWrapper: React.FunctionComponent<BodyWrapperProps> = ({
   clickAction,
   onClick,
   ...props
 }) => {
-  if (clickAction) {
+  if (clickAction || onClick) {
     return (
       <AnchorContainer target="__blank" href={clickAction} onClick={onClick}>
         <Body {...props} />

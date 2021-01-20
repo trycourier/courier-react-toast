@@ -1,41 +1,35 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Container = styled.div`
-  background-color: black;
-  height: 50px;
-  width: 100%;
-  color: white;
-  display: flex;
-  outline: none;
-  border: none;
-`;
+export const Container = styled.div(() => ({
+  height: "100%",
+  width: "100%",
+  display: "flex",
+  outline: "none",
+  border: "none",
+  color: "inherit",
+  backgroundColor: "inherit",
+}));
 
-export const AnchorContainer = styled.a`
-  background-color: black;
-  height: 50px;
-  width: 100%;
-  color: white;
-  display: flex;
-  outline: none;
-  border: none;
-`;
+export const AnchorContainer = styled.a(() => ({
+  height: "100%",
+  width: "100%",
+  display: "flex",
+  outline: "none",
+  border: "none",
+  color: "inherit",
+  backgroundColor: "inherit",
+}));
 
-export const Icon = styled.img`
-  height: 30px;
-  width: 30px;
-`;
+export const Icon = styled.img(({ theme }) => theme.icon);
 
-export const BodyText = styled.div`
-  font-size: 14px;
-`;
+export const BodyText = styled.div(({ theme }) => theme.body);
 
-export const Title = styled.div`
-  font-weight: bold;
-`;
+export const Title = styled.div(({ theme }) => theme.title);
 
-export const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: flex-start;
-`;
+//@ts-ignore
+export const ContentContainer = styled.div(() => ({
+  display: "flex",
+  width: "100%",
+  alignItems: "flex-start",
+  flexDirection: "column",
+}));

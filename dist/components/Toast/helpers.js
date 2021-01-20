@@ -9,13 +9,13 @@ var _reactToastify = require("react-toastify");
 
 function getTransition(type) {
   switch (type) {
-    case 'slide':
+    case "slide":
       return _reactToastify.Slide;
 
-    case 'zoom':
+    case "zoom":
       return _reactToastify.Zoom;
 
-    case 'bounce':
+    case "bounce":
       return _reactToastify.Bounce;
   }
 }

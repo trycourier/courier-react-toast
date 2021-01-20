@@ -4,16 +4,10 @@ import { getTransition } from "./helpers";
 import { ToastStyled } from "./styled";
 
 const Toast: React.FunctionComponent = () => {
-  const {
-    config = {
-      position: "top-right",
-      theme: {},
-      transition: "slide",
-    },
-  } = useContext(ToastContext);
+  const { config } = useContext(ToastContext);
 
-  const transition = getTransition(config.transition);
-  return <ToastStyled {...config} transition={transition} />;
+  const Transition = getTransition(config.transition);
+  return <ToastStyled {...config} transition={Transition} />;
 };
 
 export default Toast;

@@ -1,98 +1,96 @@
-import React from 'react';
+import React from "react";
 
 import {
   Toast, ToastProvider, useToast,
-} from '..';
-import { Button } from './styled';
+} from "../src";
+import { Button } from "./styled";
 
 
 export default {
-  title: 'Example/Toast',
+  title: "Example/Toast",
   component: Toast,
   argTypes:{
     position: {
       control: {
-        type:'select',
-        options:['top-right', 'top-left', 'bottom-right', 'bottom-left'],
+        type:"select",
+        options:["top-right", "top-left", "bottom-right", "bottom-left"],
       },
     },
     hideProgressBar: {
       control: {
-        type:'radio',
+        type:"radio",
         options:[true, false],
       },
     },
     transition: {
       control: {
-        type: 'select',
-        options: ['slide', 'zoom', 'bounce'],
+        type: "select",
+        options: ["slide", "zoom", "bounce"],
       },
     },
   },
   args: {
-    position: 'top-right', hideProgressBar: true, transition: 'slide',
+    position: "top-right", hideProgressBar: true, transition: "slide",
   },
 };
+export function Default() {
+  return (
+    <ToastProvider>
+      <DefaultComponent />
+    </ToastProvider>
+  );
+}
 
-function WrappedComponent() {
+function DefaultComponent() {
   const [ toast ] = useToast();
   const notification = {
-    title: 'Snowman529 went live!',
-    body: '14 seconds ago',
-    icon: 'https://www.flaticon.com/svg/vstatic/svg/149/149071.svg?token=exp=1610653848~hmac=19da6d95f62d8cd2c7122a66fd03af0c',
-    clickAction: 'https://app.courier.com',
+    title: "Your notification has been sent!",
+    body: "Click here to view more details",
+    icon: "https://app.courier.com/static/favicon/favicon-32x32.png",
+    clickAction: "https://app.courier.com",
   };
   return <Button onClick={() => toast(notification)}>Show Toast</Button>;
 }
 
-const theme = { toast: { backgroundColor: 'black', borderRadius: 5 } };
 
-export function Default({
+export function WithConfiguration({
   position, hideProgressBar, transition,
 }) {
+  const theme = {
+    toast: {
+      backgroundColor: "black",
+    },
+    title: {
+      color: "white",
+    },
+    body: {
+      color: "white",
+    },
+  };
   const config = {
     position, hideProgressBar,
     transition, theme,
   };
   return (
     <ToastProvider config={config}>
-      <WrappedComponent />
+      <WithConfigurationComponent />
     </ToastProvider>
   );
 }
 
-const complexTheme = { toast: { backgroundColor: 'red', borderRadius: 5 } };
+function WithConfigurationComponent() {
+  const [ toast ] = useToast();
 
-export function MoreComplex({
-  position, hideProgressBar, transition,
-}) {
-  const config = {
-    position, hideProgressBar,
-    transition, theme: complexTheme,
-  };
-  return (
-    <ToastProvider config={config}>
-      <WrappedComponent />
-    </ToastProvider>
-  );
-}
-
-export function OnClick({
-  position, hideProgressBar, transition,
-}) {
-  const onClick = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    alert(e.currentTarget.getAttribute('href'));
+  const onClick = () => {
+    alert("You clicked!");
   };
 
-  const config = {
-    position, hideProgressBar,
-    transition, theme, onClick,
+  const notification = {
+    title: "Your notification has been sent",
+    body: "Click here to view more details",
+    icon: "https://app.courier.com/static/favicon/favicon-32x32.png",
+    onClick,
   };
-  return (
-    <ToastProvider config={config}>
-      <WrappedComponent />
-    </ToastProvider>
-  );
+
+  return <Button onClick={() => toast(notification)}>Show Toast</Button>;
 }

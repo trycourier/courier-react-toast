@@ -18,15 +18,20 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 var Body = function Body(_ref) {
   var title = _ref.title,
       body = _ref.body,
-      icon = _ref.icon;
+      icon = _ref.icon,
+      theme = _ref.theme;
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, icon && /*#__PURE__*/_react["default"].createElement(_styled.Icon, {
+    theme: theme,
     style: {
       marginRight: 10
     },
     src: icon
-  }), /*#__PURE__*/_react["default"].createElement(_styled.ContentContainer, null, /*#__PURE__*/_react["default"].createElement(_styled.Title, null, title), /*#__PURE__*/_react["default"].createElement(_styled.BodyText, {
+  }), /*#__PURE__*/_react["default"].createElement(_styled.ContentContainer, null, /*#__PURE__*/_react["default"].createElement(_styled.Title, {
+    theme: theme
+  }, title), /*#__PURE__*/_react["default"].createElement(_styled.BodyText, {
+    theme: theme,
     style: {
-      marginTop: 10
+      marginTop: 5
     }
   }, body)));
 };
@@ -36,7 +41,7 @@ var BodyWrapper = function BodyWrapper(_ref2) {
       onClick = _ref2.onClick,
       props = _objectWithoutProperties(_ref2, ["clickAction", "onClick"]);
 
-  if (clickAction) {
+  if (clickAction || onClick) {
     return /*#__PURE__*/_react["default"].createElement(_styled.AnchorContainer, {
       target: "__blank",
       href: clickAction,
