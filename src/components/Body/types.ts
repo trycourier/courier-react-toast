@@ -1,4 +1,5 @@
 import { MouseEvent } from "react";
+import { ToastOptions } from "react-toastify";
 import { Theme } from "../../providers/types";
 
 export interface BodyWrapperProps {
@@ -7,7 +8,7 @@ export interface BodyWrapperProps {
   title: string;
   body: string;
   icon: string;
-  theme?: Theme;
+  options: ToastOptions;
 }
 
 export interface BodyProps {

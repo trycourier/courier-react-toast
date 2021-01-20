@@ -23,7 +23,7 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   config: _config,
 }) => {
   const config = merge(defaultConfig, _config);
-  const handleToast = (props: BodyWrapperProps) => toast(<Body {...config} {...props} />);
+  const handleToast = (props: BodyWrapperProps) => toast(<Body {...config} {...props} />, { ...props.options });
   const state = {
     toast: handleToast,
     config,

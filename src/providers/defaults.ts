@@ -4,11 +4,11 @@ export const defaultConfig: ProviderConfig = {
   hideProgressBar: true,
   position: "top-right",
   theme: {
-    container: {
+    "container": {
       a: { textDecoration: "none" },
       fontFamily: `"Nunito Sans", sans-serif`,
     },
-    toast: {
+    "toast": {
       height: 50,
       backgroundColor: "white",
       boxShadow: "rgba(157, 55, 137, 0.2) 0px 4px 12px",
@@ -16,18 +16,22 @@ export const defaultConfig: ProviderConfig = {
       color: "black",
       margin: 10,
     },
-    title:{
+    "title":{
       fontWeight: "bold",
       color: "rgb(36, 50, 75)",
     },
-    body: {
+    "body": {
       fontSize: 14,
       color: "rgb(115, 129, 155)",
       margin: 0,
     },
-    icon: {
+    "icon": {
       height: 30,
       width: 30,
+    },
+    "progress-bar": {
+      background: "rgb(157, 55, 137)",
+      height: 3,
     },
   },
   transition: "slide",
