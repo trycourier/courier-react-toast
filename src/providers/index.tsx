@@ -44,6 +44,12 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
     });
   }, [transport]);
 
+  useEffect(() => {
+    transport.listen((courierEvent) => {
+      handleToast(courierEvent.data);
+    });
+  }, [transport]);
+
   return (
     <ToastContext.Provider
       value={{
