@@ -1,10 +1,12 @@
 import {
   CSSProperties, MouseEventHandler,
-} from "react";
-import { ToastPosition } from "react-toastify";
+} from 'react';
+import { ToastPosition } from 'react-toastify';
+import { Transport } from "../transports"
 
 export interface ToastProviderProps {
   config?: ProviderConfig;
+  transport?: Transport
 }
 
 export interface Theme {
