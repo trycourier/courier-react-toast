@@ -1,6 +1,6 @@
-import { ProviderConfig } from "../providers/types";
+import { IProviderConfig } from "../providers/types";
 
-export const defaultConfig: ProviderConfig = {
+export const defaultConfig: IProviderConfig = {
   hideProgressBar: true,
   position: "top-right",
   theme: {

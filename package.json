@@ -46,6 +46,7 @@
     "lodash.merge": "^4.6.2",
     "react-toastify": "^6.2.0",
     "rimraf": "^3.0.2",
+    "pusher-js": "^7.0.2",
     "styled-components": "^5.2.1"
   },
   "peerDependencies": {

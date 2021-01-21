@@ -1,4 +1,5 @@
 {
+  "sourceType": "unambiguous",
   "presets": [
     "@babel/preset-env",
     "@babel/preset-typescript",
@@ -8,7 +9,7 @@
     [
       "babel-plugin-inline-import",
       {
-        "extensions": [".css"]
+        "extensions": [".css", ".svg"]
       }
     ],
     "@babel/plugin-proposal-class-properties",

@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useToast = useToast;
+exports.useToast = void 0;
 
 var _react = require("react");
 
 var _providers = require("../providers");
 
-function useToast() {
+var useToast = function useToast() {
   var _useContext = (0, _react.useContext)(_providers.ToastContext),
       toast = _useContext.toast,
       config = _useContext.config;
@@ -17,4 +17,6 @@ function useToast() {
   return [toast, {
     config: config
   }];
-}
+};
+
+exports.useToast = useToast;

@@ -1,5 +1,4 @@
-import { CSSProperties } from "react/index";
-
-export interface ToastProps {
-  style?: CSSProperties
+import { IMessage } from "../../transports/types";
+export interface IToastMessage extends IMessage {
+  onClick?: (event: React.MouseEvent) => void;
 }
