@@ -30,7 +30,7 @@ const BodyWrapper: React.FunctionComponent<IToastMessage> = ({
   onClick,
   ...props
 }) => {
-  if (clickAction) {
+  if (clickAction || onClick) {
     return (
       <AnchorContainer target="__blank" href={clickAction} onClick={onClick}>
         <Body {...props} />

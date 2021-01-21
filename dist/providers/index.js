@@ -21,6 +21,8 @@ var _components = require("../components");
 
 var _defaults = require("./defaults");
 
+var _transports = require("../transports");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
@@ -52,6 +54,11 @@ var ToastProvider = function ToastProvider(_ref) {
   var children = _ref.children,
       _config = _ref.config,
       transport = _ref.transport;
+
+  if (!(transport instanceof _transports.Transport)) {
+    throw new Error("Invalid Transport");
+  }
+
   var config = (0, _lodash["default"])(_defaults.defaultConfig, _config);
 
   var handleToast = function handleToast(message) {

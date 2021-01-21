@@ -11,6 +11,7 @@ import { defaultConfig } from "./defaults";
 
 import { IToastMessage } from "../components/toast/types";
 import { ToastProviderProps, IProviderConfig } from "./types";
+import { Transport } from "../transports";
 
 const GlobalStyle = createGlobalStyle`${toastCss}`;
 
@@ -26,8 +27,11 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   config: _config,
   transport,
 }) => {
-  const config = merge(defaultConfig, _config);
+  if (!(transport instanceof Transport)) {
+    throw new Error("Invalid Transport");
+  }
 
+  const config = merge(defaultConfig, _config);
   const handleToast = (message: IToastMessage) => toast(<Body {...message} />);
 
   const state = {

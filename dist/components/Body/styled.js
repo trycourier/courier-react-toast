@@ -93,6 +93,7 @@ var ContentContainer = _styledComponents["default"].div.withConfig({
   return {
     display: "flex",
     width: "100%",
+    alignItems: "flex-start",
     flexDirection: "column"
   };
 });
