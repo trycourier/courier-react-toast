@@ -9,6 +9,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styled = require("./styled");
 
+var _courierIcon = _interopRequireDefault(require("./courier-icon"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -18,11 +20,16 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 var Body = function Body(_ref) {
   var title = _ref.title,
       body = _ref.body,
-      _ref$icon = _ref.icon,
-      icon = _ref$icon === void 0 ? "https://app.courier.com/static/favicon/favicon-32x32.png" : _ref$icon;
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_styled.Icon, {
+      icon = _ref.icon;
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "courier__icon"
+  }, icon ? /*#__PURE__*/_react["default"].createElement("img", {
     src: icon
-  }), /*#__PURE__*/_react["default"].createElement(_styled.ContentContainer, null, /*#__PURE__*/_react["default"].createElement(_styled.Title, null, title), /*#__PURE__*/_react["default"].createElement(_styled.BodyText, null, body)));
+  }) : /*#__PURE__*/_react["default"].createElement(_courierIcon["default"], null)), /*#__PURE__*/_react["default"].createElement(_styled.ContentContainer, null, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "courier__title"
+  }, title), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "courier__body"
+  }, body)));
 };
 
 var BodyWrapper = function BodyWrapper(_ref2) {
