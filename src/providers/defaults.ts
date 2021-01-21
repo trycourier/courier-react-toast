@@ -1,7 +1,7 @@
 import { IProviderConfig } from "../providers/types";
 
 export const defaultConfig: IProviderConfig = {
-  hideProgressBar: true,
+  hideProgressBar: false,
   position: "top-right",
   theme: {
     "container": {
@@ -17,19 +17,21 @@ export const defaultConfig: IProviderConfig = {
       margin: 10,
     },
     "title":{
+      fontSize: 14,
       fontWeight: "bold",
-      color: "rgb(36, 50, 75)",
+      color: "#344563",
     },
     "body": {
-      fontSize: 14,
-      color: "rgb(115, 129, 155)",
-      margin: 0,
+      fontSize: 12,
+      color: "#8F8F8F",
+      marginTop: 4,
     },
     "icon": {
       height: 30,
       width: 30,
+      marginRight: 12,
     },
-    "progress-bar": {
+    "progressBar": {
       background: "rgb(157, 55, 137)",
       height: 3,
     },

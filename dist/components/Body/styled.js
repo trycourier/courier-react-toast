@@ -69,7 +69,9 @@ var BodyText = _styledComponents["default"].div.withConfig({
 })(function (_ref2) {
   var theme = _ref2.theme;
   return _objectSpread({
-    marginTop: 6
+    marginTop: 3,
+    fontSize: 12,
+    color: "#73819B"
   }, theme.body);
 });
 
@@ -81,7 +83,8 @@ var Title = _styledComponents["default"].div.withConfig({
 })(function (_ref3) {
   var theme = _ref3.theme;
   return _objectSpread({
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "#344563"
   }, theme.title);
 }); //@ts-ignore
 

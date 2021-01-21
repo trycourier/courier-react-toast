@@ -40,7 +40,12 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
     }
 
     transport.listen((courierEvent) => {
-      handleToast(courierEvent.data);
+      const clickAction = courierEvent?.data?.clickAction;
+      if (clickAction && window.location.pathname.includes(clickAction)) {
+        return;
+      }
+
+      handleToast(courierEvent?.data);
     });
   }, [transport]);
 

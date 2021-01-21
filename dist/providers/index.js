@@ -71,7 +71,15 @@ var ToastProvider = function ToastProvider(_ref) {
     }
 
     transport.listen(function (courierEvent) {
-      handleToast(courierEvent.data);
+      var _courierEvent$data;
+
+      var clickAction = courierEvent === null || courierEvent === void 0 ? void 0 : (_courierEvent$data = courierEvent.data) === null || _courierEvent$data === void 0 ? void 0 : _courierEvent$data.clickAction;
+
+      if (clickAction && window.location.pathname.includes(clickAction)) {
+        return;
+      }
+
+      handleToast(courierEvent === null || courierEvent === void 0 ? void 0 : courierEvent.data);
     });
   }, [transport]);
   return /*#__PURE__*/_react["default"].createElement(ToastContext.Provider, {
