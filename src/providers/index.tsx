@@ -27,7 +27,7 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   config: _config,
   transport,
 }) => {
-  if (!(transport instanceof Transport)) {
+  if (transport && !(transport instanceof Transport)) {
     throw new Error("Invalid Transport");
   }
 
@@ -35,6 +35,10 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   const handleToast = (message: IToastMessage) => toast(<Body {...message} />);
 
   useEffect(() => {
+    if (!transport) {
+      return;
+    }
+
     transport.listen((courierEvent) => {
       handleToast(courierEvent.data);
     });
