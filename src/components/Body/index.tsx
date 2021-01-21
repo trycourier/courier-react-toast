@@ -19,7 +19,7 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
       <Icon src={icon} />
       <ContentContainer>
         <Title>{title}</Title>
-        <BodyText style={{ marginTop: 10 }}>{body}</BodyText>
+        <BodyText>{body}</BodyText>
       </ContentContainer>
     </>
   );

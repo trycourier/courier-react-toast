@@ -27,7 +27,10 @@ export const Icon = styled.img(({ theme }) => ({
   ...theme.icon
 }));
 
-export const BodyText = styled.div(({ theme }) => theme.body);
+export const BodyText = styled.div(({ theme }) => ({
+  marginTop: 6,
+  ...theme.body
+}));
 
 export const Title = styled.div(({ theme }) => ({
   fontWeight: "bold",
