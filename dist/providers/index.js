@@ -55,7 +55,7 @@ var ToastProvider = function ToastProvider(_ref) {
       _config = _ref.config,
       transport = _ref.transport;
 
-  if (!(transport instanceof _transports.Transport)) {
+  if (transport && !(transport instanceof _transports.Transport)) {
     throw new Error("Invalid Transport");
   }
 
@@ -65,17 +65,20 @@ var ToastProvider = function ToastProvider(_ref) {
     return (0, _reactToastify.toast)( /*#__PURE__*/_react["default"].createElement(_Body["default"], message));
   };
 
-  var state = {
-    toast: handleToast,
-    config: config
-  };
   (0, _react.useEffect)(function () {
+    if (!transport) {
+      return;
+    }
+
     transport.listen(function (courierEvent) {
       handleToast(courierEvent.data);
     });
   }, [transport]);
   return /*#__PURE__*/_react["default"].createElement(ToastContext.Provider, {
-    value: state
+    value: {
+      toast: handleToast,
+      config: config
+    }
   }, /*#__PURE__*/_react["default"].createElement(GlobalStyle, null), /*#__PURE__*/_react["default"].createElement(_components.Toast, null), children);
 };
 
