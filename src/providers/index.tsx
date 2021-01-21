@@ -34,11 +34,6 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   const config = merge(defaultConfig, _config);
   const handleToast = (message: IToastMessage) => toast(<Body {...message} />);
 
-  const state = {
-    toast: handleToast,
-    config,
-  };
-
   useEffect(() => {
     transport.listen((courierEvent) => {
       handleToast(courierEvent.data);
@@ -46,7 +41,12 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   }, [transport]);
 
   return (
-    <ToastContext.Provider value={state}>
+    <ToastContext.Provider
+      value={{
+        toast: handleToast,
+        config,
+      }}
+    >
       <GlobalStyle />
       <Toast />
       {children}
