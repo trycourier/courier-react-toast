@@ -34,7 +34,7 @@ var BodyWrapper = function BodyWrapper(_ref2) {
       onClick = _ref2.onClick,
       props = _objectWithoutProperties(_ref2, ["clickAction", "onClick"]);
 
-  if (clickAction) {
+  if (clickAction || onClick) {
     return /*#__PURE__*/_react["default"].createElement(_styled.AnchorContainer, {
       target: "__blank",
       href: clickAction,
