@@ -41,6 +41,5 @@ export const Title = styled.div(({ theme }) => ({
 export const ContentContainer = styled.div(() => ({
   display: "flex",
   width: "100%",
-  alignItems: "flex-start",
   flexDirection: "column",
 }));
