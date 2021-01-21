@@ -31,9 +31,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var initialized = false;
-;
-
 var PusherTransport = /*#__PURE__*/function (_Transport) {
   _inherits(PusherTransport, _Transport);
 
@@ -69,12 +66,7 @@ var PusherTransport = /*#__PURE__*/function (_Transport) {
       throw new Error("Missing App Key");
     }
 
-    if (initialized) {
-      throw new Error('Pusher already initialized');
-    }
-
     _this.pusher = new _pusherJs["default"](options.appKey, options.options);
-    initialized = true;
     return _this;
   }
 

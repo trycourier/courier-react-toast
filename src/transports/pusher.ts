@@ -10,8 +10,6 @@ interface ITransportOptions {
   options?: Options;
 }
 
-let initialized = false;;
-
 export class PusherTransport extends Transport {
   protected pusher: Pusher;
   protected channel: Channel;
@@ -23,12 +21,7 @@ export class PusherTransport extends Transport {
       throw new Error("Missing App Key");
     }
 
-    if (initialized) {
-      throw new Error('Pusher already initialized');
-    }
-
     this.pusher = new Pusher(options.appKey, options.options);
-    initialized = true;
   }
 
   subscribe = (channel: string, event: string) => {

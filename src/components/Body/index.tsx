@@ -7,28 +7,30 @@ import {
   ContentContainer,
   BodyText,
 } from "./styled";
-import { BodyWrapperProps, BodyProps } from "./types";
-//@ts-ignore
-import CourierIcon from "./courier.svg";
+import { IToastMessage } from "../Toast/types";
 
-const Body: React.FunctionComponent<BodyProps> = ({
-  title, body, icon = CourierIcon, theme,
-}) => (
-  <>
-    {icon && <Icon theme={theme} style={{ marginRight: 10 }} src={icon} />}
-    <ContentContainer>
-      <Title theme={theme}>{title}</Title>
-      <BodyText theme={theme} style={{ marginTop: 5 }}>{body}</BodyText>
-    </ContentContainer>
-  </>
-);
+const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
+  title,
+  body,
+  icon = "https://app.courier.com/static/favicon/favicon-32x32.png",
+}) => {
+  return (
+    <>
+      <Icon src={icon} />
+      <ContentContainer>
+        <Title>{title}</Title>
+        <BodyText style={{ marginTop: 10 }}>{body}</BodyText>
+      </ContentContainer>
+    </>
+  );
+};
 
-const BodyWrapper: React.FunctionComponent<BodyWrapperProps> = ({
+const BodyWrapper: React.FunctionComponent<IToastMessage> = ({
   clickAction,
   onClick,
   ...props
 }) => {
-  if (clickAction || onClick) {
+  if (clickAction) {
     return (
       <AnchorContainer target="__blank" href={clickAction} onClick={onClick}>
         <Body {...props} />
