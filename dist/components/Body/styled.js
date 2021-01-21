@@ -68,7 +68,9 @@ var BodyText = _styledComponents["default"].div.withConfig({
   componentId: "swto7w-3"
 })(function (_ref2) {
   var theme = _ref2.theme;
-  return theme.body;
+  return _objectSpread({
+    marginTop: 6
+  }, theme.body);
 });
 
 exports.BodyText = BodyText;

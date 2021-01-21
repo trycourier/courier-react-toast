@@ -22,11 +22,7 @@ var Body = function Body(_ref) {
       icon = _ref$icon === void 0 ? "https://app.courier.com/static/favicon/favicon-32x32.png" : _ref$icon;
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_styled.Icon, {
     src: icon
-  }), /*#__PURE__*/_react["default"].createElement(_styled.ContentContainer, null, /*#__PURE__*/_react["default"].createElement(_styled.Title, null, title), /*#__PURE__*/_react["default"].createElement(_styled.BodyText, {
-    style: {
-      marginTop: 10
-    }
-  }, body)));
+  }), /*#__PURE__*/_react["default"].createElement(_styled.ContentContainer, null, /*#__PURE__*/_react["default"].createElement(_styled.Title, null, title), /*#__PURE__*/_react["default"].createElement(_styled.BodyText, null, body)));
 };
 
 var BodyWrapper = function BodyWrapper(_ref2) {
