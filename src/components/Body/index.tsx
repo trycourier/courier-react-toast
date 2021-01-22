@@ -1,25 +1,21 @@
 import React from "react";
-import {
-  AnchorContainer,
-  Container,
-  Title,
-  Icon,
-  ContentContainer,
-  BodyText,
-} from "./styled";
+import { AnchorContainer, Container, ContentContainer } from "./styled";
 import { IToastMessage } from "../Toast/types";
+import CourierIcon from "./courier-icon";
 
 const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
   title,
   body,
-  icon = "https://app.courier.com/static/favicon/favicon-32x32.png",
+  icon,
 }) => {
   return (
     <>
-      <Icon src={icon} />
+      <div className="courier__icon">
+        {icon ? <img src={icon} /> : <CourierIcon />}
+      </div>
       <ContentContainer>
-        <Title>{title}</Title>
-        <BodyText>{body}</BodyText>
+        <div className="courier__title">{title}</div>
+        <div className="courier__body">{body}</div>
       </ContentContainer>
     </>
   );
