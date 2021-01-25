@@ -9,7 +9,3 @@ export interface ICourierEvent {
   type: "message",
   data: IMessage,
 }
-export interface IEventHandler {
-  event: "message",
-  pre
-}
