@@ -47,10 +47,24 @@ var PusherTransport = /*#__PURE__*/function (_Transport) {
 
     _defineProperty(_assertThisInitialized(_this), "channel", void 0);
 
+    _defineProperty(_assertThisInitialized(_this), "interceptor", void 0);
+
+    _defineProperty(_assertThisInitialized(_this), "intercept", function (cb) {
+      _this.interceptor = cb;
+    });
+
     _defineProperty(_assertThisInitialized(_this), "subscribe", function (channel, event) {
       _this.channel = _this.pusher.subscribe(channel);
 
       _this.channel.bind(event, function (data) {
+        if (_this.interceptor) {
+          data = _this.interceptor(data);
+        }
+
+        if (!data) {
+          return;
+        }
+
         _this.emit({
           type: "message",
           data: data
