@@ -20,7 +20,7 @@ interface IToastContext {
   config?: IProviderConfig;
 }
 
-export const ToastContext = React.createContext<IToastContext>({});
+export const ToastContext = React.createContext<IToastContext>({config:{}});
 
 export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   children,

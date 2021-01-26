@@ -7,7 +7,7 @@ const Toast: React.FunctionComponent = () => {
   const { config } = useContext(ToastContext);
 
   const Transition = getTransition(config.transition);
-  return <ToastStyled {...config} transition={Transition} />;
+  return <ToastStyled data-test-id="crt-toast-container" {...config} transition={Transition} />;
 };
 
 export default Toast;
