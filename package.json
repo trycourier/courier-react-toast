@@ -9,7 +9,7 @@
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "babel": "babel src -d dist --extensions \".ts,.tsx\" --ignore \"src/**/__tests__/**\"",
+    "babel": "babel src -d dist --extensions \".ts,.tsx\" --ignore \"**/__tests__/**,**/__mocks__/**\"",
     "build": "rimraf dist && yarn babel",
     "start": "yarn storybook",
     "fix": "eslint \"src/**\" --fix"

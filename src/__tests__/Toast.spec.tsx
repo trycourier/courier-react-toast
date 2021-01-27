@@ -34,7 +34,7 @@ function Component({ onClick }) {
 
 
 describe("<ToastProvider />", () => {
-  it("should render toast component", async () => {
+  it("should render toast component on click", async () => {
     const onClick = jest.fn();
     providerRenderer(<Component onClick={onClick} />, {});
     fireEvent.click(screen.getByText("Show Toast"));
