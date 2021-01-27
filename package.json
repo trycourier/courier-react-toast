@@ -44,6 +44,7 @@
     "eslint-plugin-react-hooks": "^4.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
+    "jest-styled-components": "^7.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "rimraf": "^3.0.2",
@@ -52,9 +53,9 @@
   },
   "dependencies": {
     "lodash.merge": "^4.6.2",
+    "pusher-js": "^7.0.2",
     "react-toastify": "^6.2.0",
     "rimraf": "^3.0.2",
-    "pusher-js": "^7.0.2",
     "styled-components": "^5.2.1"
   },
   "peerDependencies": {

@@ -5,7 +5,7 @@ export const defaultConfig: IProviderConfig = {
   position: "top-right",
   theme: {
     "container": {
-      a: { textDecoration: "none" },
+      // a: { textDecoration: "none" },
       fontFamily: `"Nunito Sans", sans-serif`,
     },
     "toast": {

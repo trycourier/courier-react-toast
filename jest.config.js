@@ -14,6 +14,7 @@ module.exports = {
   // extended assertions to Jest
   setupFilesAfterEnv: [
     "@testing-library/jest-dom/extend-expect",
+    "jest-styled-components",
   ],
 
   // Test spec file resolution pattern
