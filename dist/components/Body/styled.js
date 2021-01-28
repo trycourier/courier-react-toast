@@ -1,32 +1,59 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.ContentContainer = exports.AnchorContainer = exports.Container = void 0;
-var styled_components_1 = __importDefault(require("styled-components"));
-exports.Container = styled_components_1.default.div(function () { return ({
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var Container = _styledComponents["default"].div.withConfig({
+  displayName: "styled__Container",
+  componentId: "swto7w-0"
+})(function () {
+  return {
     height: "100%",
     width: "100%",
     display: "flex",
     outline: "none",
     border: "none",
     color: "inherit",
-    backgroundColor: "inherit",
-}); });
-exports.AnchorContainer = styled_components_1.default.a(function () { return ({
+    backgroundColor: "inherit"
+  };
+});
+
+exports.Container = Container;
+
+var AnchorContainer = _styledComponents["default"].a.withConfig({
+  displayName: "styled__AnchorContainer",
+  componentId: "swto7w-1"
+})(function () {
+  return {
     height: "100%",
     width: "100%",
     display: "flex",
     outline: "none",
     border: "none",
     color: "inherit",
-    backgroundColor: "inherit",
-}); });
-//@ts-ignore
-exports.ContentContainer = styled_components_1.default.div(function () { return ({
+    backgroundColor: "inherit"
+  };
+}); //@ts-ignore
+
+
+exports.AnchorContainer = AnchorContainer;
+
+var ContentContainer = _styledComponents["default"].div.withConfig({
+  displayName: "styled__ContentContainer",
+  componentId: "swto7w-2"
+})(function () {
+  return {
     display: "flex",
     width: "100%",
     alignItems: "flex-start",
-    flexDirection: "column",
-}); });
+    flexDirection: "column"
+  };
+});
+
+exports.ContentContainer = ContentContainer;

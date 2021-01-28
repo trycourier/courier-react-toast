@@ -10,9 +10,11 @@ interface ITransportOptions {
   options?: Options;
 }
 
+type Intercept = (message: IMessage) => IMessage | undefined;
 export class PusherTransport extends Transport {
   protected pusher: Pusher;
   protected channel: Channel;
+  private interceptor: Intercept;
 
   constructor (options: ITransportOptions) {
     super();
@@ -24,9 +26,21 @@ export class PusherTransport extends Transport {
     this.pusher = new Pusher(options.appKey, options.options);
   }
 
+  intercept = (cb: Intercept) => {
+    this.interceptor = cb;
+  }
+
   subscribe = (channel: string, event: string) => {
     this.channel = this.pusher.subscribe(channel);
     this.channel.bind(event, (data: IMessage) => {
+      if (this.interceptor) {
+        data = this.interceptor(data);
+      }
+
+      if (!data) {
+        return;
+      }
+
       this.emit({
         type: "message",
         data,

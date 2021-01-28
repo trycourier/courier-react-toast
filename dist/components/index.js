@@ -1,8 +1,15 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Toast = void 0;
-var Toast_1 = require("./Toast");
-Object.defineProperty(exports, "Toast", { enumerable: true, get: function () { return __importDefault(Toast_1).default; } });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Toast", {
+  enumerable: true,
+  get: function get() {
+    return _Toast["default"];
+  }
+});
+
+var _Toast = _interopRequireDefault(require("./Toast"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
