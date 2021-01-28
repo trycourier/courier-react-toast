@@ -26,7 +26,9 @@ var Toast = function Toast() {
       config = _useContext.config;
 
   var Transition = (0, _helpers.getTransition)(config.transition);
-  return /*#__PURE__*/_react["default"].createElement(_styled.ToastStyled, _extends({}, config, {
+  return /*#__PURE__*/_react["default"].createElement(_styled.ToastStyled, _extends({
+    "data-test-id": "crt-toast-container"
+  }, config, {
     transition: Transition
   }));
 };

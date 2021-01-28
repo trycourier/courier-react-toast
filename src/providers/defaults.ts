@@ -5,11 +5,16 @@ export const defaultConfig: IProviderConfig = {
   position: "top-right",
   theme: {
     "container": {
-      a: { textDecoration: "none" },
-      fontFamily: `"Nunito Sans", sans-serif`,
+      "a": {
+        textDecoration: "none",
+        backgroundColor: "white",
+      },
+      "*" :{
+        fontFamily: `"Nunito Sans", sans-serif`,
+      },
     },
     "toast": {
-      height: 50,
+      minHeight: 50,
       backgroundColor: "white",
       boxShadow: "rgba(157, 55, 137, 0.2) 0px 4px 12px",
       borderRadius: 5,
