@@ -44,7 +44,7 @@ var AnchorContainer = _styledComponents["default"].a.withConfig({
 
 exports.AnchorContainer = AnchorContainer;
 
-var ContentContainer = _styledComponents["default"].div.withConfig({
+var ContentContainer = _styledComponents["default"].pre.withConfig({
   displayName: "styled__ContentContainer",
   componentId: "swto7w-2"
 })(function () {
@@ -52,7 +52,9 @@ var ContentContainer = _styledComponents["default"].div.withConfig({
     display: "flex",
     width: "100%",
     alignItems: "flex-start",
-    flexDirection: "column"
+    flexDirection: "column",
+    whiteSpace: "break-spaces",
+    margin: "10px 0"
   };
 });
 

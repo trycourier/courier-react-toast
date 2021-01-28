@@ -21,9 +21,11 @@ export const AnchorContainer = styled.a(() => ({
 }));
 
 //@ts-ignore
-export const ContentContainer = styled.div(() => ({
+export const ContentContainer = styled.pre(() => ({
   display: "flex",
   width: "100%",
   alignItems: "flex-start",
   flexDirection: "column",
+  whiteSpace: "break-spaces",
+  margin: "10px 0",
 }));
