@@ -7,20 +7,21 @@ import { createGlobalStyle } from "styled-components";
 
 import Body from "../components/Body";
 import { Toast } from "../components";
+import { IToastMessage } from "../components/Toast/types";
+import { Transport } from "../";
 import { defaultConfig } from "./defaults";
 
-import { IToastMessage } from "../components/toast/types";
 import { ToastProviderProps, IProviderConfig } from "./types";
-import { Transport } from "../transports";
 
 const GlobalStyle = createGlobalStyle`${toastCss}`;
 
 interface IToastContext {
+  // eslint-disable-next-line no-unused-vars
   toast?: (message: IToastMessage) => void;
   config?: IProviderConfig;
 }
 
-export const ToastContext = React.createContext<IToastContext>({config:{}});
+export const ToastContext = React.createContext<IToastContext>({ config:{} });
 
 export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   children,
@@ -35,18 +36,17 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   const handleToast = (message: IToastMessage) => toast(<Body {...message} />);
 
   useEffect(() => {
-    if (!transport) {
-      return;
+    if (transport) {
+      transport.listen((courierEvent) => {
+        const clickAction = courierEvent?.data?.clickAction;
+
+        if (clickAction && window.location.pathname.includes(clickAction)) {
+          return;
+        }
+
+        handleToast(courierEvent?.data);
+      });
     }
-
-    transport.listen((courierEvent) => {
-      const clickAction = courierEvent?.data?.clickAction;
-      if (clickAction && window.location.pathname.includes(clickAction)) {
-        return;
-      }
-
-      handleToast(courierEvent?.data);
-    });
   }, [transport]);
 
   return (

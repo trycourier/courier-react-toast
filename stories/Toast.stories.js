@@ -1,10 +1,11 @@
-import React from "react";
+import React, {
+  useCallback, useEffect, useState,
+} from "react";
 
 import {
-  Toast, ToastProvider, useToast,
+  Toast, ToastProvider, useToast, CourierTransport,
 } from "../src";
 import { Button } from "./styled";
-
 
 export default {
   title: "Example/Toast",
@@ -100,4 +101,38 @@ function WithConfigurationComponent({ body }) {
   };
 
   return <Button onClick={() => toast(notification)}>Show Toast</Button>;
+}
+
+export function WithCourierTransport() {
+  const [transport, setTransport] = useState(null);
+
+  useEffect(() => {
+    const courierTransport = new CourierTransport({
+      apiKey: "test-api-key",
+      //TenantId
+      clientKey: "test-client-key",
+    });
+
+    courierTransport.subscribe("my-channel");
+    setTransport(courierTransport);
+  }, []);
+
+  const createTestEvent = useCallback(() => {
+    transport.send({
+      channel: "my-channel",
+      data: {
+        title: "Success!",
+        body: "We sent a toast with a websocket",
+      },
+    });
+  }, [transport]);
+  return (
+    <ToastProvider transport={transport}>
+      <CourierTransportExample createTestEvent={createTestEvent} />
+    </ToastProvider>
+  );
+}
+
+function CourierTransportExample({ createTestEvent }) {
+  return <Button onClick={createTestEvent}>Send Event</Button>;
 }

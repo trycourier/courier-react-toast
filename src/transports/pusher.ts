@@ -1,6 +1,6 @@
-import {Transport } from './';
-import Pusher, {Channel, Options} from "pusher-js";
-import { IMessage } from './types';
+import Pusher, { Channel, Options } from "pusher-js";
+import { IMessage } from "./types";
+import { Transport } from "./base";
 
 interface ITransportOptions {
   appKey?: string;
@@ -10,13 +10,14 @@ interface ITransportOptions {
   options?: Options;
 }
 
+// eslint-disable-next-line no-unused-vars
 type Intercept = (message: IMessage) => IMessage | undefined;
 export class PusherTransport extends Transport {
   protected pusher: Pusher;
   protected channel: Channel;
   private interceptor: Intercept;
 
-  constructor (options: ITransportOptions) {
+  constructor(options: ITransportOptions) {
     super();
 
     if (!options.appKey) {
@@ -44,7 +45,7 @@ export class PusherTransport extends Transport {
       this.emit({
         type: "message",
         data,
-      })
+      });
     });
   }
 
