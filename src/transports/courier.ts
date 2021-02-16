@@ -1,5 +1,5 @@
 import { Transport } from "./base";
-const LAMBDA_WS_URL = "wss://bi6uavwq12.execute-api.us-east-1.amazonaws.com/dev";
+const LAMBDA_WS_URL = "wss://zj8xquqj55.execute-api.us-east-1.amazonaws.com/dev";
 
 
 interface ITransportOptions {
@@ -58,6 +58,7 @@ export class WS {
   protected connected;
   protected authorized;
   protected messageCallback;
+  protected clientKey;
   constructor() {
     this.messageCallback = null;
     this.connection = null;
@@ -65,6 +66,7 @@ export class WS {
     this.authorized = false;
   }
   connect = (clientKey) => {
+    this.clientKey = clientKey;
     const url = `${LAMBDA_WS_URL}/?tenantId=${clientKey}`;
     this.connection = new WebSocket(url);
     this.initiateListeners();
@@ -98,8 +100,14 @@ export class WS {
     });
     this.messageCallback = callback;
   }
-  send = (data) => {
-    this.connection.send(JSON.stringify(data));
+  send = (message) => {
+    this.connection.send(JSON.stringify({
+      ...message,
+      data: {
+        ...message.data,
+        tenantId: this.clientKey,
+      },
+    }));
   }
   unsubscribe = (channel, event) => {
     this.send({
