@@ -20,10 +20,11 @@ interface IToastContext {
   config?: IProviderConfig;
 }
 
-export const ToastContext = React.createContext<IToastContext>({config:{}});
+export const ToastContext = React.createContext<IToastContext>({ config: {} });
 
 export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   children,
+  clientKey,
   config: _config,
   transport,
 }) => {
@@ -39,10 +40,20 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
       return;
     }
 
-    transport.listen((courierEvent) => {
-      const clickAction = courierEvent?.data?.clickAction;
+    transport.listen(async (courierEvent) => {
+      const courierData = courierEvent?.data?.data;
+      const clickAction = courierData?.clickAction;
       if (clickAction && window.location.pathname.includes(clickAction)) {
         return;
+      }
+
+      if (courierData?.messageId) {
+        fetch(`https://api.courier.com/m/${courierData?.messageId}/delivered`, {
+          method: "POST", // or 'PUT'
+          headers: {
+            "x-courier-client-key": clientKey,
+          },
+        });
       }
 
       handleToast(courierEvent?.data);

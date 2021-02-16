@@ -6,6 +6,7 @@ import { Transport } from "../transports"
 
 export interface ToastProviderProps {
   config?: IProviderConfig;
+  clientKey?: string;
   transport?: Transport
 }
 

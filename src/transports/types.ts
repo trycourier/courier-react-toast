@@ -1,8 +1,12 @@
 export interface IMessage {
   body: string;
-  clickAction?: string;
   icon: string;
   title: string;
+  data: {
+    clickAction?: string;
+    openedUrl?: string;
+    messageId?: string;
+  }
 }
 
 export interface ICourierEvent {
