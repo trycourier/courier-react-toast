@@ -3,32 +3,44 @@ const LAMBDA_WS_URL = "wss://zj8xquqj55.execute-api.us-east-1.amazonaws.com/dev"
 
 
 interface ITransportOptions {
-  apiKey: string;
   clientKey: string;
+  secretKey: string;
 }
 
 export class CourierTransport extends Transport {
   protected channel: any;
   protected ws: WS;
   protected clientKey;
-  protected apiKey;
   protected secretKey;
   protected tenantId;
   constructor(options: ITransportOptions) {
     super();
 
-    if (!options.apiKey) {
-      throw new Error("Missing Api Key");
+    if (!options.secretKey) {
+      throw new Error("Missing Secret Key");
     }
 
     if (!options.clientKey) {
       throw new Error("Missing Client Key");
     }
     this.clientKey = options.clientKey;
-    this.apiKey = options.apiKey;
+    this.secretKey = options.secretKey;
     this.ws = new WS();
-    this.setTenantId(this.clientKey);
+    this.authenticate();
+    this.setTenantId(options.clientKey);
     this.ws.connect(options.clientKey);
+  }
+
+  authenticate() {
+    /* const options = {
+      headers: {
+        "X-Courier-Key": this.clientKey,
+        "X-Courier-Secret-Key": this.secretKey,
+      },
+    };
+    // throwing on error, no need to verify auth result
+    await fetch("https://api.notifications.dev/auth", options);
+    */
   }
 
   send(message: any){

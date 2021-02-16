@@ -14,12 +14,14 @@ export default {
   component: Toast,
 };
 
-export function WithCourierTransport({ event, channel }) {
+export function WithCourierTransport() {
+  const [subScribeChannel, setSubscribeChannel] = useState();
+  const [subscribeEvent, setSubscribeEvent] = useState();
   const [transport, setTransport] = useState(null);
 
   useEffect(() => {
     const courierTransport = new CourierTransport({
-      apiKey: "test-api-key",
+      secretKey: "test-secret-key",
       clientKey: "test-client-key",
     });
     setTransport(courierTransport);
@@ -29,15 +31,15 @@ export function WithCourierTransport({ event, channel }) {
     transport.send({
       action: "notify",
       data: {
-        channel,
-        event,
+        channel: subScribeChannel,
+        event: subscribeEvent,
         message: {
           title: "Success!",
           body: "We sent a toast with a websocket",
         },
       },
     });
-  }, [channel, event, transport]);
+  }, [subScribeChannel, subscribeEvent, transport]);
   const unsubscribe = useCallback((channel, event) => {
     transport.unsubscribe(channel, event);
   }, [transport]);
@@ -49,8 +51,10 @@ export function WithCourierTransport({ event, channel }) {
       <CourierTransportExample
         subscribe={subscribe}
         unsubscribe={unsubscribe}
-        channel={channel}
-        event={event}
+        channel={subScribeChannel}
+        setSubscribeChannel={setSubscribeChannel}
+        setSubscribeEvent={setSubscribeEvent}
+        event={subscribeEvent}
         createTestEvent={createTestEvent} />
     </ToastProvider>
   );
@@ -58,12 +62,11 @@ export function WithCourierTransport({ event, channel }) {
 
 function CourierTransportExample({
   createTestEvent, subscribe, unsubscribe,
-  channel:_channel, event: _event,
+  channel, event, setSubscribeEvent,
+  setSubscribeChannel,
 }) {
-  const [subScribeChannel, setSubscribeChannel] = useState(_channel);
-  const [subscribeEvent, setSubscribeEvent] = useState(_event);
-  const [unsubscribeChannel, setUnsubscribeChannel] = useState(_channel);
-  const [unsubscribeEvent, setUnsubscribeEvent] = useState(_event);
+  const [unsubscribeChannel, setUnsubscribeChannel] = useState();
+  const [unsubscribeEvent, setUnsubscribeEvent] = useState();
   return (<div>
     <Button onClick={createTestEvent}>Send Event</Button>
     <div style={{ display:"flex" }}>
@@ -75,10 +78,10 @@ function CourierTransportExample({
         marginRight: 20,
       }}>
         <Label>Channel</Label>
-        <Input placeholder="Channel" value={subScribeChannel} onChange={(e) => setSubscribeChannel(e.target.value)}/>
+        <Input placeholder="Channel" value={channel} onChange={(e) => setSubscribeChannel(e.target.value)}/>
         <Label>Event</Label>
-        <Input placeholder="Event" value={subscribeEvent} onChange={(e) => setSubscribeEvent(e.target.value)}/>
-        <Button onClick={() => subscribe(subScribeChannel, subscribeEvent)}>Subscribe</Button>
+        <Input placeholder="Event" value={event} onChange={(e) => setSubscribeEvent(e.target.value)}/>
+        <Button onClick={() => subscribe(channel, event)}>Subscribe</Button>
       </div>
       <div style={{
         display: "flex",
