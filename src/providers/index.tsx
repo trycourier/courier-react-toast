@@ -49,7 +49,7 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
 
       if (courierData?.messageId) {
         fetch(`https://api.courier.com/m/${courierData?.messageId}/delivered`, {
-          method: "POST", // or 'PUT'
+          method: "POST",
           headers: {
             "x-courier-client-key": clientKey,
           },

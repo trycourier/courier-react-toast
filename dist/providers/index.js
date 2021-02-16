@@ -29,6 +29,10 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _templateObject() {
   var data = _taggedTemplateLiteral(["", ""]);
 
@@ -54,6 +58,7 @@ exports.ToastContext = ToastContext;
 
 var ToastProvider = function ToastProvider(_ref) {
   var children = _ref.children,
+      clientKey = _ref.clientKey,
       _config = _ref.config,
       transport = _ref.transport;
 
@@ -72,17 +77,49 @@ var ToastProvider = function ToastProvider(_ref) {
       return;
     }
 
-    transport.listen(function (courierEvent) {
-      var _courierEvent$data;
+    transport.listen( /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(courierEvent) {
+        var _courierEvent$data;
 
-      var clickAction = courierEvent === null || courierEvent === void 0 ? void 0 : (_courierEvent$data = courierEvent.data) === null || _courierEvent$data === void 0 ? void 0 : _courierEvent$data.clickAction;
+        var courierData, clickAction;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                courierData = courierEvent === null || courierEvent === void 0 ? void 0 : (_courierEvent$data = courierEvent.data) === null || _courierEvent$data === void 0 ? void 0 : _courierEvent$data.data;
+                clickAction = courierData === null || courierData === void 0 ? void 0 : courierData.clickAction;
 
-      if (clickAction && window.location.pathname.includes(clickAction)) {
-        return;
-      }
+                if (!(clickAction && window.location.pathname.includes(clickAction))) {
+                  _context.next = 4;
+                  break;
+                }
 
-      handleToast(courierEvent === null || courierEvent === void 0 ? void 0 : courierEvent.data);
-    });
+                return _context.abrupt("return");
+
+              case 4:
+                if (courierData !== null && courierData !== void 0 && courierData.messageId) {
+                  fetch("https://api.courier.com/m/".concat(courierData === null || courierData === void 0 ? void 0 : courierData.messageId, "/delivered"), {
+                    method: "POST",
+                    headers: {
+                      "x-courier-client-key": clientKey
+                    }
+                  });
+                }
+
+                handleToast(courierEvent === null || courierEvent === void 0 ? void 0 : courierEvent.data);
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
   }, [transport]);
   return /*#__PURE__*/_react["default"].createElement(ToastContext.Provider, {
     value: {
