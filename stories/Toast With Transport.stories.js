@@ -38,7 +38,7 @@ export function WithCourierTransport({ event, channel }) {
       apiKey: "test-api-key",
       clientKey: "test-client-key",
     });
-    courierTransport.subscribe(channel, event, "test-client-key");
+    courierTransport.subscribe(channel, event);
     setTransport(courierTransport);
   }, [channel, event]);
 

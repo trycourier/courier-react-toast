@@ -13,6 +13,7 @@ export class CourierTransport extends Transport {
   protected clientKey;
   protected apiKey;
   protected secretKey;
+  protected tenantId;
   constructor(options: ITransportOptions) {
     super();
 
@@ -26,30 +27,30 @@ export class CourierTransport extends Transport {
     this.clientKey = options.clientKey;
     this.apiKey = options.apiKey;
     this.ws = new WS();
+    this.setTenantId(this.clientKey);
     this.ws.connect(options.clientKey);
   }
 
-  send = (data: any) => {
-    this.ws.send(data);
-  };
-
-  subscribe = (channel: string, event: string, tenantId: string) => {
-    this.ws.subscribe(channel, event, tenantId, (data) => {
-      try {
-        data = JSON.parse(data);
-      } catch {
-        //
-      }
-
-      this.emit({
-        type: "message",
-        data,
-      });
+  send(message: any){
+    this.ws.send({
+      ...message,
+      data :{
+        ...message.data,
+        tenantId: this.tenantId,
+      },
     });
   }
 
-  unsubscribe = (channel: string, event: string) => {
-    this.ws.unsubscribe(channel, event);
+  subscribe(channel: string, event: string){
+    this.ws.subscribe(channel, event, this.tenantId, this.emit);
+  }
+
+  unsubscribe(channel: string, event: string){
+    this.ws.unsubscribe(channel, event, this.tenantId);
+  }
+
+  setTenantId(clientKey){
+    this.tenantId = clientKey;
   }
 }
 
@@ -65,30 +66,36 @@ export class WS {
     this.connected = false;
     this.authorized = false;
   }
-  connect = (clientKey) => {
+  connect(clientKey){
     this.clientKey = clientKey;
     const url = `${LAMBDA_WS_URL}/?tenantId=${clientKey}`;
     this.connection = new WebSocket(url);
-    this.initiateListeners();
+    this.initiateListener();
   }
-  onMessage = ({ data }: { data: any }) => {
-    console.log("message received", data);
+  onMessage({ data }){
+    try {
+      data = JSON.parse(data);
+    } catch {
+      //
+    }
 
     if (data && this.messageCallback) {
-      this.messageCallback(data);
+      this.messageCallback({ data });
     }
   }
-  onConnectionOpen = () => {
+  onConnectionOpen(){
     this.connected = true;
   }
-  waitForOpen = (): Promise<any> => new Promise(resolve => {
-    if (this.connected) {
-      resolve(true);
-    } else {
-      this.connection.addEventListener("open", resolve);
-    }
-  })
-  subscribe = async (channel, event, tenantId, callback) => {
+  waitForOpen(): Promise<any> {
+    return new Promise(resolve => {
+      if (this.connected) {
+        resolve(true);
+      } else {
+        this.connection.addEventListener("open", resolve);
+      }
+    });
+  }
+  async subscribe(channel, event, tenantId, callback){
     await this.waitForOpen();
     this.send({
       action: "subscribe",
@@ -100,30 +107,24 @@ export class WS {
     });
     this.messageCallback = callback;
   }
-  send = (message) => {
-    this.connection.send(JSON.stringify({
-      ...message,
-      data: {
-        ...message.data,
-        tenantId: this.clientKey,
-      },
-    }));
+  send(message){
+    this.connection.send(JSON.stringify(message));
   }
-  unsubscribe = (channel, event) => {
+  unsubscribe(channel, event, tenantId){
     this.send({
       action: "unsubscribe",
       data: {
         channel,
         event,
+        tenantId,
       },
     });
-    this.connection.onmessage = null;
   }
-  close = () => {
+  close(){
     this.connection.close();
   }
-  initiateListeners = () => {
-    this.connection.onopen = this.onConnectionOpen;
-    this.connection.onmessage = this.onMessage;
+  initiateListener(){
+    this.connection.onopen = this.onConnectionOpen.bind(this);
+    this.connection.onmessage = this.onMessage.bind(this);
   }
 }
