@@ -99,7 +99,7 @@ var ToastProvider = function ToastProvider(_ref) {
                 return _context.abrupt("return");
 
               case 4:
-                if (courierData !== null && courierData !== void 0 && courierData.messageId) {
+                if (clientKey && courierData !== null && courierData !== void 0 && courierData.messageId) {
                   fetch("".concat(apiUrl, "/m/").concat(courierData === null || courierData === void 0 ? void 0 : courierData.messageId, "/delivered"), {
                     method: "POST",
                     headers: {

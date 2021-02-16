@@ -58,7 +58,7 @@ var BodyWrapper = function BodyWrapper(_ref2) {
         onClick(event);
       }
 
-      if (courierData !== null && courierData !== void 0 && courierData.messageId) {
+      if (clientKey && courierData !== null && courierData !== void 0 && courierData.messageId) {
         fetch("".concat(apiUrl, "/m/").concat(courierData === null || courierData === void 0 ? void 0 : courierData.messageId, "/clicked"), {
           method: "POST",
           headers: {
