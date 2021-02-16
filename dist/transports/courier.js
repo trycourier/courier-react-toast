@@ -59,25 +59,17 @@ var CourierTransport = /*#__PURE__*/function (_Transport) {
 
     _defineProperty(_assertThisInitialized(_this), "clientKey", void 0);
 
-    _defineProperty(_assertThisInitialized(_this), "apiKey", void 0);
-
     _defineProperty(_assertThisInitialized(_this), "secretKey", void 0);
-
-    _defineProperty(_assertThisInitialized(_this), "tenantId", void 0);
-
-    if (!options.apiKey) {
-      throw new Error("Missing Api Key");
-    }
 
     if (!options.clientKey) {
       throw new Error("Missing Client Key");
     }
 
     _this.clientKey = options.clientKey;
-    _this.apiKey = options.apiKey;
+    _this.secretKey = options.secretKey;
     _this.ws = new WS();
 
-    _this.setTenantId(_this.clientKey);
+    _this.authenticate();
 
     _this.ws.connect(options.clientKey);
 
@@ -85,28 +77,36 @@ var CourierTransport = /*#__PURE__*/function (_Transport) {
   }
 
   _createClass(CourierTransport, [{
+    key: "authenticate",
+    value: function authenticate() {
+      /* const options = {
+        headers: {
+          "X-Courier-Key": this.clientKey,
+          "X-Courier-Secret-Key": this.secretKey,
+        },
+      };
+      // throwing on error, no need to verify auth result
+      await fetch("https://api.notifications.dev/auth", options);
+      */
+    }
+  }, {
     key: "send",
     value: function send(message) {
       this.ws.send(_objectSpread(_objectSpread({}, message), {}, {
         data: _objectSpread(_objectSpread({}, message.data), {}, {
-          tenantId: this.tenantId
+          clientKey: this.clientKey
         })
       }));
     }
   }, {
     key: "subscribe",
     value: function subscribe(channel, event) {
-      this.ws.subscribe(channel, event, this.tenantId, this.emit);
+      this.ws.subscribe(channel, event, this.clientKey, this.emit);
     }
   }, {
     key: "unsubscribe",
     value: function unsubscribe(channel, event) {
-      this.ws.unsubscribe(channel, event, this.tenantId);
-    }
-  }, {
-    key: "setTenantId",
-    value: function setTenantId(clientKey) {
-      this.tenantId = clientKey;
+      this.ws.unsubscribe(channel, event, this.clientKey);
     }
   }]);
 
@@ -123,8 +123,6 @@ var WS = /*#__PURE__*/function () {
 
     _defineProperty(this, "connected", void 0);
 
-    _defineProperty(this, "authorized", void 0);
-
     _defineProperty(this, "messageCallback", void 0);
 
     _defineProperty(this, "clientKey", void 0);
@@ -132,14 +130,13 @@ var WS = /*#__PURE__*/function () {
     this.messageCallback = null;
     this.connection = null;
     this.connected = false;
-    this.authorized = false;
   }
 
   _createClass(WS, [{
     key: "connect",
     value: function connect(clientKey) {
       this.clientKey = clientKey;
-      var url = "".concat(LAMBDA_WS_URL, "/?tenantId=").concat(clientKey);
+      var url = "".concat(LAMBDA_WS_URL, "/?clientKey=").concat(clientKey);
       this.connection = new WebSocket(url);
       this.initiateListener();
     }
@@ -180,7 +177,7 @@ var WS = /*#__PURE__*/function () {
   }, {
     key: "subscribe",
     value: function () {
-      var _subscribe = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(channel, event, tenantId, callback) {
+      var _subscribe = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(channel, event, clientKey, callback) {
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -194,7 +191,7 @@ var WS = /*#__PURE__*/function () {
                   data: {
                     channel: channel,
                     event: event,
-                    tenantId: tenantId
+                    clientKey: clientKey
                   }
                 });
                 this.messageCallback = callback;
@@ -220,13 +217,13 @@ var WS = /*#__PURE__*/function () {
     }
   }, {
     key: "unsubscribe",
-    value: function unsubscribe(channel, event, tenantId) {
+    value: function unsubscribe(channel, event, clientKey) {
       this.send({
         action: "unsubscribe",
         data: {
           channel: channel,
           event: event,
-          tenantId: tenantId
+          clientKey: clientKey
         }
       });
     }
