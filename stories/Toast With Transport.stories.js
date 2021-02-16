@@ -21,8 +21,8 @@ export function WithCourierTransport() {
 
   useEffect(() => {
     const courierTransport = new CourierTransport({
-      secretKey: "test-secret-key",
-      clientKey: "test-client-key",
+      secretKey: null,
+      clientKey: tenantIdToClientKey("87c50d2d-b03d-4ce1-bb3f-2ae93ed576f5"),
     });
     setTransport(courierTransport);
   }, []);
@@ -97,4 +97,9 @@ function CourierTransportExample({
       </div>
     </div>
   </div>);
+}
+
+function tenantIdToClientKey(tenantId) {
+  const buffer = Buffer.from(tenantId);
+  return buffer.toString("base64");
 }

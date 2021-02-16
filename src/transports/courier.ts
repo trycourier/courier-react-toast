@@ -1,7 +1,5 @@
 import { Transport } from "./base";
 const LAMBDA_WS_URL = "wss://zj8xquqj55.execute-api.us-east-1.amazonaws.com/dev";
-
-
 interface ITransportOptions {
   clientKey: string;
   secretKey: string;
@@ -12,13 +10,8 @@ export class CourierTransport extends Transport {
   protected ws: WS;
   protected clientKey;
   protected secretKey;
-  protected tenantId;
   constructor(options: ITransportOptions) {
     super();
-
-    if (!options.secretKey) {
-      throw new Error("Missing Secret Key");
-    }
 
     if (!options.clientKey) {
       throw new Error("Missing Client Key");
@@ -27,7 +20,6 @@ export class CourierTransport extends Transport {
     this.secretKey = options.secretKey;
     this.ws = new WS();
     this.authenticate();
-    this.setTenantId(options.clientKey);
     this.ws.connect(options.clientKey);
   }
 
@@ -48,39 +40,33 @@ export class CourierTransport extends Transport {
       ...message,
       data :{
         ...message.data,
-        tenantId: this.tenantId,
+        clientKey: this.clientKey,
       },
     });
   }
 
   subscribe(channel: string, event: string){
-    this.ws.subscribe(channel, event, this.tenantId, this.emit);
+    this.ws.subscribe(channel, event, this.clientKey, this.emit);
   }
 
   unsubscribe(channel: string, event: string){
-    this.ws.unsubscribe(channel, event, this.tenantId);
-  }
-
-  setTenantId(clientKey){
-    this.tenantId = clientKey;
+    this.ws.unsubscribe(channel, event, this.clientKey);
   }
 }
 
 export class WS {
   connection: WebSocket;
   protected connected;
-  protected authorized;
   protected messageCallback;
   protected clientKey;
   constructor() {
     this.messageCallback = null;
     this.connection = null;
     this.connected = false;
-    this.authorized = false;
   }
   connect(clientKey){
     this.clientKey = clientKey;
-    const url = `${LAMBDA_WS_URL}/?tenantId=${clientKey}`;
+    const url = `${LAMBDA_WS_URL}/?clientKey=${clientKey}`;
     this.connection = new WebSocket(url);
     this.initiateListener();
   }
@@ -107,14 +93,14 @@ export class WS {
       }
     });
   }
-  async subscribe(channel, event, tenantId, callback){
+  async subscribe(channel, event, clientKey, callback){
     await this.waitForOpen();
     this.send({
       action: "subscribe",
       data: {
         channel,
         event,
-        tenantId,
+        clientKey,
       },
     });
     this.messageCallback = callback;
@@ -122,13 +108,13 @@ export class WS {
   send(message){
     this.connection.send(JSON.stringify(message));
   }
-  unsubscribe(channel, event, tenantId){
+  unsubscribe(channel, event, clientKey){
     this.send({
       action: "unsubscribe",
       data: {
         channel,
         event,
-        tenantId,
+        clientKey,
       },
     });
   }
