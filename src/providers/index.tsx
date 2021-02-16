@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`${toastCss}`;
 interface IToastContext {
   toast?: (message: IToastMessage) => void;
   config?: IProviderConfig;
+  clientKey?: string;
 }
 
 export const ToastContext = React.createContext<IToastContext>({ config: {} });
@@ -63,8 +64,9 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   return (
     <ToastContext.Provider
       value={{
-        toast: handleToast,
+        clientKey,
         config,
+        toast: handleToast,
       }}
     >
       <GlobalStyle />

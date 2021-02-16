@@ -123,8 +123,9 @@ var ToastProvider = function ToastProvider(_ref) {
   }, [transport]);
   return /*#__PURE__*/_react["default"].createElement(ToastContext.Provider, {
     value: {
-      toast: handleToast,
-      config: config
+      clientKey: clientKey,
+      config: config,
+      toast: handleToast
     }
   }, /*#__PURE__*/_react["default"].createElement(GlobalStyle, null), /*#__PURE__*/_react["default"].createElement(_components.Toast, null), children);
 };
