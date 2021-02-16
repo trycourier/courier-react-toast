@@ -57,7 +57,9 @@ var ToastContext = /*#__PURE__*/_react["default"].createContext({
 exports.ToastContext = ToastContext;
 
 var ToastProvider = function ToastProvider(_ref) {
-  var children = _ref.children,
+  var _ref$apiUrl = _ref.apiUrl,
+      apiUrl = _ref$apiUrl === void 0 ? "https://api.courier.com" : _ref$apiUrl,
+      children = _ref.children,
       clientKey = _ref.clientKey,
       _config = _ref.config,
       transport = _ref.transport;
@@ -98,7 +100,7 @@ var ToastProvider = function ToastProvider(_ref) {
 
               case 4:
                 if (courierData !== null && courierData !== void 0 && courierData.messageId) {
-                  fetch("https://api.courier.com/m/".concat(courierData === null || courierData === void 0 ? void 0 : courierData.messageId, "/delivered"), {
+                  fetch("".concat(apiUrl, "/m/").concat(courierData === null || courierData === void 0 ? void 0 : courierData.messageId, "/delivered"), {
                     method: "POST",
                     headers: {
                       "x-courier-client-key": clientKey
@@ -123,6 +125,7 @@ var ToastProvider = function ToastProvider(_ref) {
   }, [transport]);
   return /*#__PURE__*/_react["default"].createElement(ToastContext.Provider, {
     value: {
+      apiUrl: apiUrl,
       clientKey: clientKey,
       config: config,
       toast: handleToast

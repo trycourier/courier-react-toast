@@ -5,8 +5,9 @@ import { ToastPosition } from 'react-toastify';
 import { Transport } from "../transports"
 
 export interface ToastProviderProps {
-  config?: IProviderConfig;
+  apiUrl?: string;
   clientKey?: string;
+  config?: IProviderConfig;
   transport?: Transport
 }
 

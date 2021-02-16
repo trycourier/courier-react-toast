@@ -16,14 +16,16 @@ import { Transport } from "../transports";
 const GlobalStyle = createGlobalStyle`${toastCss}`;
 
 interface IToastContext {
-  toast?: (message: IToastMessage) => void;
-  config?: IProviderConfig;
+  apiUrl?: string;
   clientKey?: string;
+  config?: IProviderConfig;
+  toast?: (message: IToastMessage) => void;
 }
 
 export const ToastContext = React.createContext<IToastContext>({ config: {} });
 
 export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
+  apiUrl = "https://api.courier.com",
   children,
   clientKey,
   config: _config,
@@ -49,7 +51,7 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
       }
 
       if (courierData?.messageId) {
-        fetch(`https://api.courier.com/m/${courierData?.messageId}/delivered`, {
+        fetch(`${apiUrl}/m/${courierData?.messageId}/delivered`, {
           method: "POST",
           headers: {
             "x-courier-client-key": clientKey,
@@ -64,6 +66,7 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   return (
     <ToastContext.Provider
       value={{
+        apiUrl,
         clientKey,
         config,
         toast: handleToast,
