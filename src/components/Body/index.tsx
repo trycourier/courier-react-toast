@@ -33,7 +33,7 @@ const BodyWrapper: React.FunctionComponent<IToastMessage> = ({
         onClick(event);
       }
 
-      if (courierData?.messageId) {
+      if (clientKey && courierData?.messageId) {
         fetch(`${apiUrl}/m/${courierData?.messageId}/clicked`, {
           method: "POST",
           headers: {

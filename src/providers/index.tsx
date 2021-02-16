@@ -50,7 +50,7 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
         return;
       }
 
-      if (courierData?.messageId) {
+      if (clientKey && courierData?.messageId) {
         fetch(`${apiUrl}/m/${courierData?.messageId}/delivered`, {
           method: "POST",
           headers: {
