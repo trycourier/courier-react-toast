@@ -19,9 +19,9 @@ var _Body = _interopRequireDefault(require("../components/Body"));
 
 var _components = require("../components");
 
-var _defaults = require("./defaults");
+var _ = require("../");
 
-var _transports = require("../transports");
+var _defaults = require("./defaults");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -57,7 +57,7 @@ var ToastProvider = function ToastProvider(_ref) {
       _config = _ref.config,
       transport = _ref.transport;
 
-  if (transport && !(transport instanceof _transports.Transport)) {
+  if (transport && !(transport instanceof _.Transport)) {
     throw new Error("Invalid Transport");
   }
 
@@ -68,21 +68,19 @@ var ToastProvider = function ToastProvider(_ref) {
   };
 
   (0, _react.useEffect)(function () {
-    if (!transport) {
-      return;
+    if (transport) {
+      transport.listen(function (courierEvent) {
+        var _courierEvent$data;
+
+        var clickAction = courierEvent === null || courierEvent === void 0 ? void 0 : (_courierEvent$data = courierEvent.data) === null || _courierEvent$data === void 0 ? void 0 : _courierEvent$data.clickAction;
+
+        if (clickAction && window.location.pathname.includes(clickAction)) {
+          return;
+        }
+
+        handleToast(courierEvent === null || courierEvent === void 0 ? void 0 : courierEvent.data);
+      });
     }
-
-    transport.listen(function (courierEvent) {
-      var _courierEvent$data;
-
-      var clickAction = courierEvent === null || courierEvent === void 0 ? void 0 : (_courierEvent$data = courierEvent.data) === null || _courierEvent$data === void 0 ? void 0 : _courierEvent$data.clickAction;
-
-      if (clickAction && window.location.pathname.includes(clickAction)) {
-        return;
-      }
-
-      handleToast(courierEvent === null || courierEvent === void 0 ? void 0 : courierEvent.data);
-    });
   }, [transport]);
   return /*#__PURE__*/_react["default"].createElement(ToastContext.Provider, {
     value: {

@@ -42,3 +42,16 @@ Object.keys(_components).forEach(function (key) {
     }
   });
 });
+
+var _transports = require("./transports");
+
+Object.keys(_transports).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _transports[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _transports[key];
+    }
+  });
+});
