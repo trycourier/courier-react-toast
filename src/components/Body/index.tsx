@@ -24,7 +24,7 @@ const BodyWrapper: React.FunctionComponent<IToastMessage> = ({
   onClick,
   ...props
 }) => {
-  const { clientKey, apiUrl } = useContext(ToastContext);
+  const { clientKey } = useContext(ToastContext);
   const courierData = props?.data ?? {};
 
   if (courierData?.clickAction || onClick) {
@@ -33,8 +33,8 @@ const BodyWrapper: React.FunctionComponent<IToastMessage> = ({
         onClick(event);
       }
 
-      if (clientKey && courierData?.messageId) {
-        fetch(`${apiUrl}/m/${courierData?.messageId}/clicked`, {
+      if (clientKey && courierData.clickedUrl) {
+        fetch(`${courierData.clickedUrl}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

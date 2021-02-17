@@ -4,8 +4,8 @@ export interface IMessage {
   title: string;
   data: {
     clickAction?: string;
-    openedUrl?: string;
-    messageId?: string;
+    clickedUrl?: string;
+    deliveredUrl?: string;
   }
 }
 

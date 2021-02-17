@@ -47,8 +47,7 @@ var BodyWrapper = function BodyWrapper(_ref2) {
       props = _objectWithoutProperties(_ref2, ["onClick"]);
 
   var _useContext = (0, _react.useContext)(_providers.ToastContext),
-      clientKey = _useContext.clientKey,
-      apiUrl = _useContext.apiUrl;
+      clientKey = _useContext.clientKey;
 
   var courierData = (_props$data = props === null || props === void 0 ? void 0 : props.data) !== null && _props$data !== void 0 ? _props$data : {};
 
@@ -58,8 +57,8 @@ var BodyWrapper = function BodyWrapper(_ref2) {
         onClick(event);
       }
 
-      if (clientKey && courierData !== null && courierData !== void 0 && courierData.messageId) {
-        fetch("".concat(apiUrl, "/m/").concat(courierData === null || courierData === void 0 ? void 0 : courierData.messageId, "/clicked"), {
+      if (clientKey && courierData.clickedUrl) {
+        fetch("".concat(courierData.clickedUrl), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
