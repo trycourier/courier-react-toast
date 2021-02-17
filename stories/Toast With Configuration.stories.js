@@ -1,6 +1,4 @@
-import React, {
-  useCallback, useEffect, useState,
-} from "react";
+import React from "react";
 
 import {
   Toast, ToastProvider, useToast,
@@ -43,6 +41,9 @@ export function WithConfiguration({
   position, hideProgressBar, transition, bodyText,
 }) {
   const theme = {
+    container: {
+      backgroundColor: "black",
+    },
     toast: {
       backgroundColor: "black",
     },

@@ -20,6 +20,6 @@ var ToastStyled = (0, _styledComponents["default"])(_reactToastify.ToastContaine
   var _ref2;
 
   var theme = _ref.theme;
-  return _ref2 = {}, _defineProperty(_ref2, "&.Toastify__toast-container", theme.container), _defineProperty(_ref2, ".Toastify__toast", theme.toast), _defineProperty(_ref2, ".Toastify__toast-body .courier__body", theme.body), _defineProperty(_ref2, ".Toastify__toast-body .courier__title", theme.title), _defineProperty(_ref2, ".Toastify__toast-body .courier__icon", theme.icon), _defineProperty(_ref2, ".Toastify__toast--error", theme.error), _defineProperty(_ref2, ".Toastify__toast--warning", theme.warning), _defineProperty(_ref2, ".Toastify__progress-bar", theme.progressBar), _ref2;
+  return _ref2 = {}, _defineProperty(_ref2, "&.Toastify__toast-container .courier__container", theme.container), _defineProperty(_ref2, ".Toastify__toast", theme.toast), _defineProperty(_ref2, ".Toastify__toast-body .courier__body", theme.body), _defineProperty(_ref2, ".Toastify__toast-body .courier__title", theme.title), _defineProperty(_ref2, ".Toastify__toast-body .courier__icon", theme.icon), _defineProperty(_ref2, ".Toastify__toast--error", theme.error), _defineProperty(_ref2, ".Toastify__toast--warning", theme.warning), _defineProperty(_ref2, ".Toastify__progress-bar", theme.progressBar), _ref2;
 });
 exports.ToastStyled = ToastStyled;
