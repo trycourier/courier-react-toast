@@ -4,9 +4,8 @@ export interface IMessage {
   icon: string;
   title: string;
 }
-
 export interface ICourierEvent {
-  type: "message",
+  type?: "message",
   data: IMessage,
 }
 
