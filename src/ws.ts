@@ -1,3 +1,5 @@
+import { ICourierEvent } from "./transports/types";
+
 export class WS {
   connection: WebSocket;
   protected connected;
@@ -37,7 +39,7 @@ export class WS {
       }
     });
   }
-  async subscribe(channel: string, event: string, clientKey: string, callback: () => void): Promise<void>{
+  async subscribe(channel: string, event: string, clientKey: string, callback: ICourierEvent): Promise<void>{
     await this.waitForOpen();
     this.send({
       action: "subscribe",
