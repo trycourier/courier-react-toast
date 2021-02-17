@@ -37,12 +37,8 @@ const BodyWrapper: React.FunctionComponent<IToastMessage> = ({
         fetch(`${courierData.clickedUrl}`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
             "x-courier-client-key": clientKey,
           },
-          body: JSON.stringify({
-            clickAction: courierData?.clickAction,
-          }),
         });
       }
     };

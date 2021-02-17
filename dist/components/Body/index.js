@@ -61,12 +61,8 @@ var BodyWrapper = function BodyWrapper(_ref2) {
         fetch("".concat(courierData.clickedUrl), {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
             "x-courier-client-key": clientKey
-          },
-          body: JSON.stringify({
-            clickAction: courierData === null || courierData === void 0 ? void 0 : courierData.clickAction
-          })
+          }
         });
       }
     };
