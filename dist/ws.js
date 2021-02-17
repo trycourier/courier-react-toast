@@ -29,8 +29,6 @@ var WS = /*#__PURE__*/function () {
 
     _defineProperty(this, "messageCallback", void 0);
 
-    _defineProperty(this, "clientKey", void 0);
-
     _defineProperty(this, "url", void 0);
 
     this.messageCallback = null;
@@ -42,7 +40,6 @@ var WS = /*#__PURE__*/function () {
   _createClass(WS, [{
     key: "connect",
     value: function connect(clientKey) {
-      this.clientKey = clientKey;
       var url = "".concat(this.url, "/?clientKey=").concat(clientKey);
       this.connection = new WebSocket(url);
       this.initiateListener();
