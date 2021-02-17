@@ -1,5 +1,5 @@
 import Pusher, { Channel, Options } from "pusher-js";
-import { IMessage } from "./types";
+import { IMessage, Intercept } from "./types";
 import { Transport } from "./base";
 
 interface ITransportOptions {
@@ -9,9 +9,6 @@ interface ITransportOptions {
   instance?: Pusher;
   options?: Options;
 }
-
-// eslint-disable-next-line no-unused-vars
-type Intercept = (message: IMessage) => IMessage | undefined;
 export class PusherTransport extends Transport {
   protected pusher: Pusher;
   protected channel: Channel;

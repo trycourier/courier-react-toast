@@ -5,13 +5,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.WS = exports.CourierTransport = void 0;
+exports.CourierTransport = void 0;
+
+var _ws = require("../ws");
 
 var _base = require("./base");
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -61,13 +59,17 @@ var CourierTransport = /*#__PURE__*/function (_Transport) {
 
     _defineProperty(_assertThisInitialized(_this), "secretKey", void 0);
 
+    _defineProperty(_assertThisInitialized(_this), "interceptor", void 0);
+
     if (!options.clientKey) {
       throw new Error("Missing Client Key");
     }
 
     _this.clientKey = options.clientKey;
     _this.secretKey = options.secretKey;
-    _this.ws = new WS();
+    _this.ws = new _ws.WS({
+      url: LAMBDA_WS_URL
+    });
 
     _this.authenticate();
 
@@ -108,139 +110,14 @@ var CourierTransport = /*#__PURE__*/function (_Transport) {
     value: function unsubscribe(channel, event) {
       this.ws.unsubscribe(channel, event, this.clientKey);
     }
+  }, {
+    key: "intercept",
+    value: function intercept(cb) {
+      this.interceptor = cb;
+    }
   }]);
 
   return CourierTransport;
 }(_base.Transport);
 
 exports.CourierTransport = CourierTransport;
-
-var WS = /*#__PURE__*/function () {
-  function WS() {
-    _classCallCheck(this, WS);
-
-    _defineProperty(this, "connection", void 0);
-
-    _defineProperty(this, "connected", void 0);
-
-    _defineProperty(this, "messageCallback", void 0);
-
-    _defineProperty(this, "clientKey", void 0);
-
-    this.messageCallback = null;
-    this.connection = null;
-    this.connected = false;
-  }
-
-  _createClass(WS, [{
-    key: "connect",
-    value: function connect(clientKey) {
-      this.clientKey = clientKey;
-      var url = "".concat(LAMBDA_WS_URL, "/?clientKey=").concat(clientKey);
-      this.connection = new WebSocket(url);
-      this.initiateListener();
-    }
-  }, {
-    key: "onMessage",
-    value: function onMessage(_ref) {
-      var data = _ref.data;
-
-      try {
-        data = JSON.parse(data);
-      } catch (_unused) {//
-      }
-
-      if (data && this.messageCallback) {
-        this.messageCallback({
-          data: data
-        });
-      }
-    }
-  }, {
-    key: "onConnectionOpen",
-    value: function onConnectionOpen() {
-      this.connected = true;
-    }
-  }, {
-    key: "waitForOpen",
-    value: function waitForOpen() {
-      var _this2 = this;
-
-      return new Promise(function (resolve) {
-        if (_this2.connected) {
-          resolve(true);
-        } else {
-          _this2.connection.addEventListener("open", resolve);
-        }
-      });
-    }
-  }, {
-    key: "subscribe",
-    value: function () {
-      var _subscribe = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(channel, event, clientKey, callback) {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return this.waitForOpen();
-
-              case 2:
-                this.send({
-                  action: "subscribe",
-                  data: {
-                    channel: channel,
-                    event: event,
-                    clientKey: clientKey
-                  }
-                });
-                this.messageCallback = callback;
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function subscribe(_x, _x2, _x3, _x4) {
-        return _subscribe.apply(this, arguments);
-      }
-
-      return subscribe;
-    }()
-  }, {
-    key: "send",
-    value: function send(message) {
-      this.connection.send(JSON.stringify(message));
-    }
-  }, {
-    key: "unsubscribe",
-    value: function unsubscribe(channel, event, clientKey) {
-      this.send({
-        action: "unsubscribe",
-        data: {
-          channel: channel,
-          event: event,
-          clientKey: clientKey
-        }
-      });
-    }
-  }, {
-    key: "close",
-    value: function close() {
-      this.connection.close();
-    }
-  }, {
-    key: "initiateListener",
-    value: function initiateListener() {
-      this.connection.onopen = this.onConnectionOpen.bind(this);
-      this.connection.onmessage = this.onMessage.bind(this);
-    }
-  }]);
-
-  return WS;
-}();
-
-exports.WS = WS;
