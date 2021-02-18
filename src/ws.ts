@@ -1,8 +1,9 @@
+import { ICourierEvent } from "./transports/types";
+
 export class WS {
   connection: WebSocket;
   protected connected;
   protected messageCallback;
-  protected clientKey;
   private url: string;
   constructor({ url }) {
     this.messageCallback = null;
@@ -10,13 +11,12 @@ export class WS {
     this.connected = false;
     this.url = url;
   }
-  connect(clientKey){
-    this.clientKey = clientKey;
+  connect(clientKey: string): void {
     const url = `${this.url}/?clientKey=${clientKey}`;
     this.connection = new WebSocket(url);
     this.initiateListener();
   }
-  onMessage({ data }){
+  onMessage({ data }: { data: string }): void {
     try {
       data = JSON.parse(data);
     } catch {
@@ -27,7 +27,7 @@ export class WS {
       this.messageCallback({ data });
     }
   }
-  onConnectionOpen(){
+  onConnectionOpen(): void{
     this.connected = true;
   }
   waitForOpen(): Promise<any> {
@@ -39,7 +39,7 @@ export class WS {
       }
     });
   }
-  async subscribe(channel, event, clientKey, callback){
+  async subscribe(channel: string, event: string, clientKey: string, callback: ICourierEvent): Promise<void>{
     await this.waitForOpen();
     this.send({
       action: "subscribe",
@@ -51,10 +51,10 @@ export class WS {
     });
     this.messageCallback = callback;
   }
-  send(message){
+  send(message: {[key: string]: any}): void{
     this.connection.send(JSON.stringify(message));
   }
-  unsubscribe(channel, event, clientKey){
+  unsubscribe(channel: string, event: string, clientKey: string): void {
     this.send({
       action: "unsubscribe",
       data: {
@@ -64,10 +64,10 @@ export class WS {
       },
     });
   }
-  close(){
+  close(): void {
     this.connection.close();
   }
-  initiateListener(){
+  initiateListener(): void {
     this.connection.onopen = this.onConnectionOpen.bind(this);
     this.connection.onmessage = this.onMessage.bind(this);
   }

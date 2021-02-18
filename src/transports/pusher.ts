@@ -24,11 +24,11 @@ export class PusherTransport extends Transport {
     this.pusher = new Pusher(options.appKey, options.options);
   }
 
-  intercept = (cb: Intercept) => {
+  intercept = (cb: Intercept): void => {
     this.interceptor = cb;
   }
 
-  subscribe = (channel: string, event: string) => {
+  subscribe = (channel: string, event: string): void => {
     this.channel = this.pusher.subscribe(channel);
     this.channel.bind(event, (data: IMessage) => {
       if (this.interceptor) {
@@ -46,7 +46,7 @@ export class PusherTransport extends Transport {
     });
   }
 
-  unsubscribe = (channel: string) => {
+  unsubscribe = (channel: string): void => {
     this.pusher.unsubscribe(channel);
   }
 }

@@ -14,7 +14,7 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
     <div className="courier__icon">
       {icon ? <img src={icon} /> : <CourierIcon />}
     </div>
-    <ContentContainer>
+    <ContentContainer className="courier__container">
       <div className="courier__title">{title}</div>
       <div className="courier__body">{body}</div>
     </ContentContainer>

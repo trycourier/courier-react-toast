@@ -10,9 +10,10 @@ interface ITransportOptions {
 export class CourierTransport extends Transport {
   protected channel: any;
   protected ws: WS;
-  protected clientKey;
-  protected secretKey;
-  protected interceptor;
+  protected clientKey: string;
+  protected secretKey: string;
+  // eslint-disable-next-line no-unused-vars
+  protected interceptor: Intercept;
   constructor(options: ITransportOptions) {
     super();
 
@@ -26,7 +27,7 @@ export class CourierTransport extends Transport {
     this.ws.connect(options.clientKey);
   }
 
-  authenticate() {
+  authenticate(): void {
     /* const options = {
       headers: {
         "X-Courier-Key": this.clientKey,
@@ -38,7 +39,7 @@ export class CourierTransport extends Transport {
     */
   }
 
-  send(message: any){
+  send(message: any): void{
     this.ws.send({
       ...message,
       data :{
@@ -48,15 +49,15 @@ export class CourierTransport extends Transport {
     });
   }
 
-  subscribe(channel: string, event: string){
+  subscribe(channel: string, event: string): void{
     this.ws.subscribe(channel, event, this.clientKey, this.emit);
   }
 
-  unsubscribe(channel: string, event: string){
+  unsubscribe(channel: string, event: string): void{
     this.ws.unsubscribe(channel, event, this.clientKey);
   }
 
-  intercept(cb: Intercept){
+  intercept(cb: Intercept): void{
     this.interceptor = cb;
   }
 }

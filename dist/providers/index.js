@@ -56,6 +56,7 @@ var ToastProvider = function ToastProvider(_ref) {
   var children = _ref.children,
       _config = _ref.config,
       transport = _ref.transport;
+  console.log("_config", _config);
 
   if (transport && !(transport instanceof _.Transport)) {
     throw new Error("Invalid Transport");

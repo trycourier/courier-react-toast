@@ -44,6 +44,7 @@ var CourierTransport = /*#__PURE__*/function (_Transport) {
 
   var _super = _createSuper(CourierTransport);
 
+  // eslint-disable-next-line no-unused-vars
   function CourierTransport(options) {
     var _this;
 
