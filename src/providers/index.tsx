@@ -28,8 +28,6 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   config: _config,
   transport,
 }) => {
-  console.log("_config", _config);
-
   if (transport && !(transport instanceof Transport)) {
     throw new Error("Invalid Transport");
   }
