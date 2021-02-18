@@ -29,13 +29,15 @@ function SideActionsComponent({ body }) {
     options:{
       hideProgressBar: false,
     },
-    primaryAction: {
-      text: "Docs",
-      onClick: () => {window.open("https://docs.courier.com");}
-    },
-    secondaryAction: {
-      text: "Blog",
-      onClick: () => {window.open("https://www.courier.com/blog");}
+    data: {
+      sideBarPrimaryClickAction: {
+        href: "https://docs.courier.com",
+        text: "Docs"
+      },
+      sideBarSecondaryClickAction: {
+        href: "https://www.courier.com/blog",
+        text: "Blog"
+      }
     }
   };
   return <Button onClick={() => toast(notification)}>Show Toast</Button>;

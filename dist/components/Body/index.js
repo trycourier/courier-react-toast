@@ -29,8 +29,10 @@ var Body = function Body(_ref) {
   var title = _ref.title,
       body = _ref.body,
       icon = _ref.icon,
-      primaryAction = _ref.primaryAction,
-      secondaryAction = _ref.secondaryAction;
+      _ref$data = _ref.data,
+      data = _ref$data === void 0 ? {} : _ref$data;
+  var sideBarPrimaryClickAction = data.sideBarPrimaryClickAction,
+      sideBarSecondaryClickAction = data.sideBarSecondaryClickAction;
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
     className: "courier__icon"
   }, icon ? /*#__PURE__*/_react["default"].createElement("img", {
@@ -41,13 +43,15 @@ var Body = function Body(_ref) {
     className: "courier__title"
   }, title), /*#__PURE__*/_react["default"].createElement("div", {
     className: "courier__body"
-  }, body)), primaryAction || secondaryAction ? /*#__PURE__*/_react["default"].createElement(_styled.ActionsContainer, null, primaryAction && /*#__PURE__*/_react["default"].createElement("div", {
-    className: "courier__primary-action",
-    onClick: primaryAction.onClick
-  }, primaryAction.text), secondaryAction && /*#__PURE__*/_react["default"].createElement("div", {
-    className: "courier__secondary-action",
-    onClick: secondaryAction.onClick
-  }, secondaryAction.text)) : null);
+  }, body)), sideBarPrimaryClickAction || sideBarSecondaryClickAction ? /*#__PURE__*/_react["default"].createElement(_styled.ActionsContainer, null, sideBarPrimaryClickAction && /*#__PURE__*/_react["default"].createElement("div", {
+    className: "courier__primary-action"
+  }, /*#__PURE__*/_react["default"].createElement("a", {
+    href: sideBarPrimaryClickAction.href
+  }, sideBarPrimaryClickAction.text)), sideBarSecondaryClickAction && /*#__PURE__*/_react["default"].createElement("div", {
+    className: "courier__secondary-action"
+  }, /*#__PURE__*/_react["default"].createElement("a", {
+    href: sideBarSecondaryClickAction.href
+  }, sideBarSecondaryClickAction.text))) : null);
 };
 
 var BodyWrapper = function BodyWrapper(_ref2) {
