@@ -28,7 +28,9 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 var Body = function Body(_ref) {
   var title = _ref.title,
       body = _ref.body,
-      icon = _ref.icon;
+      icon = _ref.icon,
+      primaryAction = _ref.primaryAction,
+      secondaryAction = _ref.secondaryAction;
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
     className: "courier__icon"
   }, icon ? /*#__PURE__*/_react["default"].createElement("img", {
@@ -39,7 +41,13 @@ var Body = function Body(_ref) {
     className: "courier__title"
   }, title), /*#__PURE__*/_react["default"].createElement("div", {
     className: "courier__body"
-  }, body)));
+  }, body)), primaryAction || secondaryAction ? /*#__PURE__*/_react["default"].createElement(_styled.ActionsContainer, null, primaryAction && /*#__PURE__*/_react["default"].createElement("div", {
+    className: "courier__primary-action",
+    onClick: primaryAction.onClick
+  }, primaryAction.text), secondaryAction && /*#__PURE__*/_react["default"].createElement("div", {
+    className: "courier__secondary-action",
+    onClick: secondaryAction.onClick
+  }, secondaryAction.text)) : null);
 };
 
 var BodyWrapper = function BodyWrapper(_ref2) {

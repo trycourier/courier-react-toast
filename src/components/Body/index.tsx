@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
 import { ToastContext } from "../../providers";
 import { IToastMessage } from "../Toast/types";
-import { AnchorContainer, Container, ContentContainer } from "./styled";
+import {
+  AnchorContainer,
+  Container,
+  ContentContainer,
+  ActionsContainer,
+} from "./styled";
 import CourierIcon from "./courier-icon";
 
 const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
   title,
   body,
   icon,
+  primaryAction,
+  secondaryAction,
 }) => (
   <>
     <div className="courier__icon">
@@ -17,6 +24,26 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
       <div className="courier__title">{title}</div>
       <div className="courier__body">{body}</div>
     </ContentContainer>
+    {primaryAction || secondaryAction ? (
+      <ActionsContainer>
+        {primaryAction && (
+          <div
+            className="courier__primary-action"
+            onClick={primaryAction.onClick}
+          >
+            {primaryAction.text}
+          </div>
+        )}
+        {secondaryAction && (
+          <div
+            className="courier__secondary-action"
+            onClick={secondaryAction.onClick}
+          >
+            {secondaryAction.text}
+          </div>
+        )}
+      </ActionsContainer>
+    ) : null}
   </>
 );
 

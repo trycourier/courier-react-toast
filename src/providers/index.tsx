@@ -41,7 +41,7 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
       return;
     }
 
-    transport.listen(async (courierEvent) => {
+    transport.listen(async courierEvent => {
       const courierData = courierEvent?.data?.data;
 
       if (clientKey && courierData?.deliveredUrl) {

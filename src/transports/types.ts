@@ -6,11 +6,18 @@ export interface IMessage {
     clickAction?: string;
     clickedUrl?: string;
     deliveredUrl?: string;
-  }
+  };
+  primaryAction?: IAction;
+  secondaryAction?: IAction;
 }
 export interface ICourierEvent {
-  type?: "message",
-  data: IMessage,
+  type?: "message";
+  data: IMessage;
+}
+
+export interface IAction {
+  text: string;
+  onClick(): void;
 }
 
 // eslint-disable-next-line no-unused-vars

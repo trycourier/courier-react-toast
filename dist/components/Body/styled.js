@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ContentContainer = exports.AnchorContainer = exports.Container = void 0;
+exports.ActionsContainer = exports.ContentContainer = exports.AnchorContainer = exports.Container = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -59,3 +59,14 @@ var ContentContainer = _styledComponents["default"].pre.withConfig({
 });
 
 exports.ContentContainer = ContentContainer;
+
+var ActionsContainer = _styledComponents["default"].div.withConfig({
+  displayName: "styled__ActionsContainer",
+  componentId: "swto7w-3"
+})(function () {
+  return {
+    borderLeft: "1px solid #CBD5E0"
+  };
+});
+
+exports.ActionsContainer = ActionsContainer;

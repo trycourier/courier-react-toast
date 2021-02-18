@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ToastContainer } from "react-toastify";
 
-export const ToastStyled = styled(ToastContainer)(({ theme })=> ({
+export const ToastStyled = styled(ToastContainer)(({ theme }) => ({
   ["&.Toastify__toast-container .courier__container"]: theme.container,
   [".Toastify__toast"]: theme.toast,
   [".Toastify__toast-body .courier__body"]: theme.body,
@@ -10,4 +10,6 @@ export const ToastStyled = styled(ToastContainer)(({ theme })=> ({
   [".Toastify__toast--error"]: theme.error,
   [".Toastify__toast--warning"]: theme.warning,
   [".Toastify__progress-bar"]: theme.progressBar,
+  [".Toastify__toast-body .courier__primary-action"]: theme.primaryAction,
+  [".Toastify__toast-body .courier__secondary-action"]: theme.secondaryAction,
 }));

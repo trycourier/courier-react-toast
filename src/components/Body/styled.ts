@@ -29,3 +29,7 @@ export const ContentContainer = styled.pre(() => ({
   whiteSpace: "break-spaces",
   margin: "10px 0",
 }));
+
+export const ActionsContainer = styled.div(() => ({
+  borderLeft: "1px solid #CBD5E0",
+}));
