@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "Toast", {
   enumerable: true,
   get: function get() {
-    return _Toast["default"];
+    return _Toast.default;
   }
 });
 
 var _Toast = _interopRequireDefault(require("./Toast"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
