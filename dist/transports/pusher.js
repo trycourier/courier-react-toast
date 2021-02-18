@@ -7,9 +7,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.PusherTransport = void 0;
 
-var _ = require("./");
-
 var _pusherJs = _interopRequireDefault(require("pusher-js"));
+
+var _base = require("./base");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -85,6 +85,6 @@ var PusherTransport = /*#__PURE__*/function (_Transport) {
   }
 
   return PusherTransport;
-}(_.Transport);
+}(_base.Transport);
 
 exports.PusherTransport = PusherTransport;

@@ -8,8 +8,10 @@ export interface IMessage {
     deliveredUrl?: string;
   }
 }
-
 export interface ICourierEvent {
-  type: "message",
+  type?: "message",
   data: IMessage,
 }
+
+// eslint-disable-next-line no-unused-vars
+export type Intercept = (message: IMessage) => IMessage | undefined;

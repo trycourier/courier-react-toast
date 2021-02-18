@@ -7,11 +7,11 @@ import { createGlobalStyle } from "styled-components";
 
 import Body from "../components/Body";
 import { Toast } from "../components";
+import { IToastMessage } from "../components/Toast/types";
+import { Transport } from "../";
 import { defaultConfig } from "./defaults";
 
-import { IToastMessage } from "../components/toast/types";
 import { ToastProviderProps, IProviderConfig } from "./types";
-import { Transport } from "../transports";
 
 const GlobalStyle = createGlobalStyle`${toastCss}`;
 
@@ -43,10 +43,6 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
 
     transport.listen(async (courierEvent) => {
       const courierData = courierEvent?.data?.data;
-      const clickAction = courierData?.clickAction;
-      if (clickAction && window.location.pathname.includes(clickAction)) {
-        return;
-      }
 
       if (clientKey && courierData?.deliveredUrl) {
         fetch(`${courierData?.deliveredUrl}`, {

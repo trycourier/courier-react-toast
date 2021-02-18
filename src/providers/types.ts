@@ -1,8 +1,8 @@
 import {
   CSSProperties, MouseEventHandler,
-} from 'react';
-import { ToastPosition } from 'react-toastify';
-import { Transport } from "../transports"
+} from "react";
+import { ToastPosition } from "react-toastify";
+import { Transport } from "../transports";
 
 export interface ToastProviderProps {
   apiUrl?: string;

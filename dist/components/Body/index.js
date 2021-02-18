@@ -33,7 +33,9 @@ var Body = function Body(_ref) {
     className: "courier__icon"
   }, icon ? /*#__PURE__*/_react["default"].createElement("img", {
     src: icon
-  }) : /*#__PURE__*/_react["default"].createElement(_courierIcon["default"], null)), /*#__PURE__*/_react["default"].createElement(_styled.ContentContainer, null, /*#__PURE__*/_react["default"].createElement("div", {
+  }) : /*#__PURE__*/_react["default"].createElement(_courierIcon["default"], null)), /*#__PURE__*/_react["default"].createElement(_styled.ContentContainer, {
+    className: "courier__container"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "courier__title"
   }, title), /*#__PURE__*/_react["default"].createElement("div", {
     className: "courier__body"

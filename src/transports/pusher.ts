@@ -1,6 +1,6 @@
-import {Transport } from './';
-import Pusher, {Channel, Options} from "pusher-js";
-import { IMessage } from './types';
+import Pusher, { Channel, Options } from "pusher-js";
+import { IMessage, Intercept } from "./types";
+import { Transport } from "./base";
 
 interface ITransportOptions {
   appKey?: string;
@@ -9,14 +9,12 @@ interface ITransportOptions {
   instance?: Pusher;
   options?: Options;
 }
-
-type Intercept = (message: IMessage) => IMessage | undefined;
 export class PusherTransport extends Transport {
   protected pusher: Pusher;
   protected channel: Channel;
   private interceptor: Intercept;
 
-  constructor (options: ITransportOptions) {
+  constructor(options: ITransportOptions) {
     super();
 
     if (!options.appKey) {
@@ -26,11 +24,11 @@ export class PusherTransport extends Transport {
     this.pusher = new Pusher(options.appKey, options.options);
   }
 
-  intercept = (cb: Intercept) => {
+  intercept = (cb: Intercept): void => {
     this.interceptor = cb;
   }
 
-  subscribe = (channel: string, event: string) => {
+  subscribe = (channel: string, event: string): void => {
     this.channel = this.pusher.subscribe(channel);
     this.channel.bind(event, (data: IMessage) => {
       if (this.interceptor) {
@@ -44,11 +42,11 @@ export class PusherTransport extends Transport {
       this.emit({
         type: "message",
         data,
-      })
+      });
     });
   }
 
-  unsubscribe = (channel: string) => {
+  unsubscribe = (channel: string): void => {
     this.pusher.unsubscribe(channel);
   }
 }

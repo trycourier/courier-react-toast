@@ -19,9 +19,9 @@ var _Body = _interopRequireDefault(require("../components/Body"));
 
 var _components = require("../components");
 
-var _defaults = require("./defaults");
+var _ = require("../");
 
-var _transports = require("../transports");
+var _defaults = require("./defaults");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -62,7 +62,7 @@ var ToastProvider = function ToastProvider(_ref) {
       _config = _ref.config,
       transport = _ref.transport;
 
-  if (transport && !(transport instanceof _transports.Transport)) {
+  if (transport && !(transport instanceof _.Transport)) {
     throw new Error("Invalid Transport");
   }
 
@@ -81,22 +81,13 @@ var ToastProvider = function ToastProvider(_ref) {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(courierEvent) {
         var _courierEvent$data;
 
-        var courierData, clickAction;
+        var courierData;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 courierData = courierEvent === null || courierEvent === void 0 ? void 0 : (_courierEvent$data = courierEvent.data) === null || _courierEvent$data === void 0 ? void 0 : _courierEvent$data.data;
-                clickAction = courierData === null || courierData === void 0 ? void 0 : courierData.clickAction;
 
-                if (!(clickAction && window.location.pathname.includes(clickAction))) {
-                  _context.next = 4;
-                  break;
-                }
-
-                return _context.abrupt("return");
-
-              case 4:
                 if (clientKey && courierData !== null && courierData !== void 0 && courierData.deliveredUrl) {
                   fetch("".concat(courierData === null || courierData === void 0 ? void 0 : courierData.deliveredUrl), {
                     method: "POST",
@@ -108,7 +99,7 @@ var ToastProvider = function ToastProvider(_ref) {
 
                 handleToast(courierEvent === null || courierEvent === void 0 ? void 0 : courierEvent.data);
 
-              case 6:
+              case 3:
               case "end":
                 return _context.stop();
             }
