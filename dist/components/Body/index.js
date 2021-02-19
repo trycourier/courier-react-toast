@@ -9,6 +9,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _providers = require("../../providers");
 
+var _reactToastify = require("react-toastify");
+
 var _styled = require("./styled");
 
 var _courierIcon = _interopRequireDefault(require("./courier-icon"));
@@ -39,7 +41,7 @@ var Body = (_ref) => {
     className: "courier__title"
   }, title), /*#__PURE__*/_react.default.createElement("div", {
     className: "courier__body"
-  }, body)));
+  }, body)), sideBar);
 };
 
 var BodyWrapper = (_ref2) => {

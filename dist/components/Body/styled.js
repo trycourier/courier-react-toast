@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ContentContainer = exports.AnchorContainer = exports.Container = void 0;
+exports.Dismiss = exports.Details = exports.SideBarContainer = exports.ContentContainer = exports.Container = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -38,7 +38,7 @@ var AnchorContainer = _styledComponents.default.a.withConfig({
 })); //@ts-ignore
 
 
-exports.AnchorContainer = AnchorContainer;
+exports.ContentContainer = ContentContainer;
 
 var ContentContainer = _styledComponents.default.pre.withConfig({
   displayName: "styled__ContentContainer",
@@ -52,4 +52,4 @@ var ContentContainer = _styledComponents.default.pre.withConfig({
   margin: "10px 0"
 }));
 
-exports.ContentContainer = ContentContainer;
+exports.Dismiss = Dismiss;

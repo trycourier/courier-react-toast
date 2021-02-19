@@ -27,7 +27,9 @@ var Toast = () => {
   return /*#__PURE__*/_react.default.createElement(_styled.ToastStyled, _extends({
     "data-test-id": "crt-toast-container"
   }, config, {
-    transition: Transition
+    transition: Transition,
+    closeButton: false,
+    closeOnClick: false
   }));
 };
 

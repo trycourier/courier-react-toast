@@ -9,12 +9,12 @@ export default {
   title: "Example/Toast",
   component: Toast,
   args: {
-    bodyText: "Click here to view more details",
+    bodyText: "One API for notifications!",
   },
 };
 export function Default({ bodyText }) {
   return (
-    <ToastProvider>
+    <ToastProvider clientKey="client-key">
       <DefaultComponent body={bodyText} />
     </ToastProvider>
   );
@@ -23,9 +23,12 @@ export function Default({ bodyText }) {
 function DefaultComponent({ body }) {
   const [ toast ] = useToast();
   const notification = {
-    title: "Your notification has been sent!",
+    title: "Courier",
     body,
-    clickAction: "https://app.courier.com",
+    data: {
+      clickAction: "https://app.courier.com",
+      clickedUrl: "https://api.courier.com/something/send",
+    },
     options:{
       hideProgressBar: false,
     },
