@@ -27,6 +27,10 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _templateObject() {
   var data = _taggedTemplateLiteral(["", ""]);
 
@@ -53,6 +57,7 @@ exports.ToastContext = ToastContext;
 var ToastProvider = (_ref) => {
   var {
     children,
+    clientKey,
     config: _config,
     transport
   } = _ref;
@@ -66,24 +71,38 @@ var ToastProvider = (_ref) => {
   var handleToast = message => (0, _reactToastify.toast)( /*#__PURE__*/_react.default.createElement(_Body.default, message));
 
   (0, _react.useEffect)(() => {
-    if (transport) {
-      transport.listen(courierEvent => {
+    if (!transport) {
+      return;
+    }
+
+    transport.listen( /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator(function* (courierEvent) {
         var _courierEvent$data;
 
-        var clickAction = courierEvent === null || courierEvent === void 0 ? void 0 : (_courierEvent$data = courierEvent.data) === null || _courierEvent$data === void 0 ? void 0 : _courierEvent$data.clickAction;
+        var courierData = courierEvent === null || courierEvent === void 0 ? void 0 : (_courierEvent$data = courierEvent.data) === null || _courierEvent$data === void 0 ? void 0 : _courierEvent$data.data;
 
-        if (clickAction && window.location.pathname.includes(clickAction)) {
-          return;
+        if (clientKey && courierData !== null && courierData !== void 0 && courierData.deliveredUrl) {
+          fetch("".concat(courierData === null || courierData === void 0 ? void 0 : courierData.deliveredUrl), {
+            method: "POST",
+            headers: {
+              "x-courier-client-key": clientKey
+            }
+          });
         }
 
         handleToast(courierEvent === null || courierEvent === void 0 ? void 0 : courierEvent.data);
       });
-    }
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
   }, [transport]);
   return /*#__PURE__*/_react.default.createElement(ToastContext.Provider, {
     value: {
-      toast: handleToast,
-      config
+      clientKey,
+      config,
+      toast: handleToast
     }
   }, /*#__PURE__*/_react.default.createElement(GlobalStyle, null), /*#__PURE__*/_react.default.createElement(_components.Toast, null), children);
 };

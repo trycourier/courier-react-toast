@@ -16,15 +16,16 @@ import { ToastProviderProps, IProviderConfig } from "./types";
 const GlobalStyle = createGlobalStyle`${toastCss}`;
 
 interface IToastContext {
-  // eslint-disable-next-line no-unused-vars
-  toast?: (message: IToastMessage) => void;
+  clientKey?: string;
   config?: IProviderConfig;
+  toast?: (message: IToastMessage) => void;
 }
 
-export const ToastContext = React.createContext<IToastContext>({ config:{} });
+export const ToastContext = React.createContext<IToastContext>({ config: {} });
 
 export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   children,
+  clientKey,
   config: _config,
   transport,
 }) => {
@@ -36,24 +37,32 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   const handleToast = (message: IToastMessage) => toast(<Body {...message} />);
 
   useEffect(() => {
-    if (transport) {
-      transport.listen((courierEvent) => {
-        const clickAction = courierEvent?.data?.clickAction;
-
-        if (clickAction && window.location.pathname.includes(clickAction)) {
-          return;
-        }
-
-        handleToast(courierEvent?.data);
-      });
+    if (!transport) {
+      return;
     }
+
+    transport.listen(async (courierEvent) => {
+      const courierData = courierEvent?.data?.data;
+
+      if (clientKey && courierData?.deliveredUrl) {
+        fetch(`${courierData?.deliveredUrl}`, {
+          method: "POST",
+          headers: {
+            "x-courier-client-key": clientKey,
+          },
+        });
+      }
+
+      handleToast(courierEvent?.data);
+    });
   }, [transport]);
 
   return (
     <ToastContext.Provider
       value={{
-        toast: handleToast,
+        clientKey,
         config,
+        toast: handleToast,
       }}
     >
       <GlobalStyle />
