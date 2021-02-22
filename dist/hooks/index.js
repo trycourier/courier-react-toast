@@ -9,13 +9,13 @@ var _react = require("react");
 
 var _providers = require("../providers");
 
-var useToast = function useToast() {
-  var _useContext = (0, _react.useContext)(_providers.ToastContext),
-      toast = _useContext.toast,
-      config = _useContext.config;
-
+var useToast = () => {
+  var {
+    toast,
+    config
+  } = (0, _react.useContext)(_providers.ToastContext);
   return [toast, {
-    config: config
+    config
   }];
 };
 
