@@ -29,8 +29,41 @@ var Body = (_ref) => {
   var {
     title,
     body,
-    icon
+    icon,
+    data
   } = _ref;
+  var sideBar;
+  var {
+    clientKey
+  } = (0, _react.useContext)(_providers.ToastContext);
+
+  if (data !== null && data !== void 0 && data.clickAction) {
+    var handleClickAction = () => {
+      if (clientKey && data !== null && data !== void 0 && data.clickedUrl) {
+        fetch("".concat(data.clickedUrl), {
+          method: "POST",
+          headers: {
+            "x-courier-client-key": clientKey
+          }
+        });
+      }
+    };
+
+    sideBar = /*#__PURE__*/_react.default.createElement(_styled.SideBarContainer, null, /*#__PURE__*/_react.default.createElement(_styled.Details, {
+      onClick: handleClickAction
+    }, "Details"), /*#__PURE__*/_react.default.createElement(_styled.Dismiss, {
+      onClick: () => {
+        _reactToastify.toast.dismiss();
+      }
+    }, "Dismiss"));
+  } else {
+    sideBar = /*#__PURE__*/_react.default.createElement(_styled.SideBarContainer, null, /*#__PURE__*/_react.default.createElement(_styled.Dismiss, {
+      onClick: () => {
+        _reactToastify.toast.dismiss();
+      }
+    }, "Dismiss"));
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "courier__icon"
   }, icon ? /*#__PURE__*/_react.default.createElement("img", {
@@ -45,40 +78,10 @@ var Body = (_ref) => {
 };
 
 var BodyWrapper = (_ref2) => {
-  var _props$data;
-
   var {
     onClick
   } = _ref2,
       props = _objectWithoutProperties(_ref2, ["onClick"]);
-
-  var {
-    clientKey
-  } = (0, _react.useContext)(_providers.ToastContext);
-  var courierData = (_props$data = props === null || props === void 0 ? void 0 : props.data) !== null && _props$data !== void 0 ? _props$data : {};
-
-  if (courierData !== null && courierData !== void 0 && courierData.clickAction || onClick) {
-    var handleOnClick = event => {
-      if (onClick) {
-        onClick(event);
-      }
-
-      if (clientKey && courierData.clickedUrl) {
-        fetch("".concat(courierData.clickedUrl), {
-          method: "POST",
-          headers: {
-            "x-courier-client-key": clientKey
-          }
-        });
-      }
-    };
-
-    return /*#__PURE__*/_react.default.createElement(_styled.AnchorContainer, {
-      target: "__blank",
-      href: courierData === null || courierData === void 0 ? void 0 : courierData.clickAction,
-      onClick: handleOnClick
-    }, /*#__PURE__*/_react.default.createElement(Body, props));
-  }
 
   return /*#__PURE__*/_react.default.createElement(_styled.Container, null, /*#__PURE__*/_react.default.createElement(Body, props));
 };
