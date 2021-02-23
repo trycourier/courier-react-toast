@@ -56,15 +56,22 @@ var Body = (_ref) => {
       }
     };
 
-    sideBar = /*#__PURE__*/_react.default.createElement(_styled.SideBarContainer, null, /*#__PURE__*/_react.default.createElement(_styled.Details, {
+    sideBar = /*#__PURE__*/_react.default.createElement(_styled.SideBarContainer, {
+      className: "courier__sidebar-container"
+    }, /*#__PURE__*/_react.default.createElement(_styled.Details, {
+      className: "courier__sidebar-details",
       onClick: handleClickAction
     }, "Details"), /*#__PURE__*/_react.default.createElement(_styled.Dismiss, {
+      className: "courier__sidebar-dismiss",
       onClick: () => {
         _reactToastify.toast.dismiss();
       }
     }, "Dismiss"));
   } else {
-    sideBar = /*#__PURE__*/_react.default.createElement(_styled.SideBarContainer, null, /*#__PURE__*/_react.default.createElement(_styled.Dismiss, {
+    sideBar = /*#__PURE__*/_react.default.createElement(_styled.SideBarContainer, {
+      className: "courier__sidebar-container"
+    }, /*#__PURE__*/_react.default.createElement(_styled.Dismiss, {
+      className: "courier__sidebar-dismiss",
       onClick: () => {
         _reactToastify.toast.dismiss();
       }

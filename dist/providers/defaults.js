@@ -26,19 +26,26 @@ var defaultConfig = {
       margin: 10
     },
     title: {
+      color: "#344563",
       fontSize: 14,
       fontWeight: "bold",
-      color: "#344563"
+      maxHeight: 50,
+      maxWidth: 160,
+      overflow: "hidden",
+      overflowWrap: "break-word"
     },
     body: {
-      fontSize: 12,
       color: "#8F8F8F",
-      marginTop: 4
+      fontSize: 12,
+      marginTop: 4,
+      maxHeight: 40,
+      maxWidth: 160,
+      overflow: "hidden",
+      overflowWrap: "break-word"
     },
     icon: {
       height: 30,
-      width: 30,
-      marginRight: 16,
+      width: 60,
       alignSelf: "center"
     },
     progressBar: {

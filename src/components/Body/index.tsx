@@ -38,9 +38,15 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
     };
 
     sideBar = (
-      <SideBarContainer>
-        <Details onClick={handleClickAction}>Details</Details>
+      <SideBarContainer className="courier__sidebar-container">
+        <Details
+          className="courier__sidebar-details"
+          onClick={handleClickAction}
+        >
+          Details
+        </Details>
         <Dismiss
+          className="courier__sidebar-dismiss"
           onClick={() => {
             toast.dismiss();
           }}
@@ -51,8 +57,9 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
     );
   } else {
     sideBar = (
-      <SideBarContainer>
+      <SideBarContainer className="courier__sidebar-container">
         <Dismiss
+          className="courier__sidebar-dismiss"
           onClick={() => {
             toast.dismiss();
           }}
