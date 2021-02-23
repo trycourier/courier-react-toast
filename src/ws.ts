@@ -1,4 +1,4 @@
-import { ICourierEvent } from "./transports/types";
+import { ICourierEventCallback } from "./transports/types";
 
 export class WS {
   connection: WebSocket;
@@ -39,7 +39,7 @@ export class WS {
       }
     });
   }
-  async subscribe(channel: string, event: string, clientKey: string, callback: ICourierEvent): Promise<void>{
+  async subscribe(channel: string, event: string, clientKey: string, callback: ICourierEventCallback): Promise<void>{
     await this.waitForOpen();
     this.send({
       action: "subscribe",

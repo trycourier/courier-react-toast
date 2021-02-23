@@ -51,7 +51,20 @@ export class CourierTransport extends Transport {
   }
 
   subscribe(channel: string, event: string): void{
-    this.ws.subscribe(channel, event, this.clientKey, this.emit);
+    this.ws.subscribe(channel, event, this.clientKey, ({ data }) => {
+      if (this.interceptor) {
+        data = this.interceptor(data);
+      }
+
+      if (!data) {
+        return;
+      }
+
+      this.emit({
+        type: "message",
+        data,
+      });
+    });
   }
 
   unsubscribe(channel: string, event: string): void{
