@@ -15,11 +15,13 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var LAMBDA_WS_URL = "wss://zj8xquqj55.execute-api.us-east-1.amazonaws.com/dev";
+var LAMBDA_WS_URL = "wss://1x60p1o3h8.execute-api.us-east-1.amazonaws.com/production";
 
 class CourierTransport extends _base.Transport {
   // eslint-disable-next-line no-unused-vars
   constructor(options) {
+    var _options$wsUrl;
+
     super();
 
     _defineProperty(this, "channel", void 0);
@@ -39,7 +41,7 @@ class CourierTransport extends _base.Transport {
     this.clientKey = options.clientKey;
     this.secretKey = options.secretKey;
     this.ws = new _ws.WS({
-      url: LAMBDA_WS_URL
+      url: (_options$wsUrl = options.wsUrl) !== null && _options$wsUrl !== void 0 ? _options$wsUrl : LAMBDA_WS_URL
     });
     this.authenticate();
     this.ws.connect(options.clientKey);
