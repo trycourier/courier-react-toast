@@ -16,12 +16,17 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
   body,
   icon,
   data,
+  onClick,
 }) => {
   let sideBar;
   const { clientKey } = useContext(ToastContext);
 
-  if (data?.clickAction) {
-    const handleClickAction = () => {
+  if (data?.clickAction || onClick) {
+    const handleClickAction = (event: React.MouseEvent) => {
+      if (onClick) {
+        onClick(event);
+      }
+
       if (clientKey && data?.clickedUrl) {
         fetch(`${data.clickedUrl}`, {
           method: "POST",
@@ -78,7 +83,7 @@ const BodyWrapper: React.FunctionComponent<IToastMessage> = ({
 }) => {
   return (
     <Container>
-      <Body {...props} />
+      <Body {...props} onClick={onClick} />
     </Container>
   );
 };
