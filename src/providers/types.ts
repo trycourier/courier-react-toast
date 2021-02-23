@@ -12,7 +12,7 @@ export interface ToastProviderProps {
 }
 
 export interface Theme {
-  [key:string]: CSSProperties | {[key:string]: CSSProperties}
+  [key: string]: CSSProperties | {[key: string]: CSSProperties}
 }
 
 export interface IProviderConfig {

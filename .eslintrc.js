@@ -1,6 +1,5 @@
 module.exports = {
   "extends": [
-    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
@@ -106,7 +105,8 @@ module.exports = {
       "error",
     ],
     "semi": "off",
-    "@typescript-eslint/semi": ["error"]
+    "@typescript-eslint/semi": ["error"],
+    "@typescript-eslint/type-annotation-spacing": ["error"],
   },
   "settings": {
     "react": {

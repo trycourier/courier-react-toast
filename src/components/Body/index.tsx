@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 import { ToastContext } from "../../providers";
 import { IToastMessage } from "../Toast/types";
-import { toast } from "react-toastify";
 import {
   Container,
   ContentContainer,
@@ -89,12 +89,10 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
 const BodyWrapper: React.FunctionComponent<IToastMessage> = ({
   onClick,
   ...props
-}) => {
-  return (
-    <Container>
-      <Body {...props} onClick={onClick} />
-    </Container>
-  );
-};
+}) => (
+  <Container>
+    <Body {...props} onClick={onClick} />
+  </Container>
+);
 
 export default BodyWrapper;

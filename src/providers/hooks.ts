@@ -7,7 +7,7 @@ export function useListenForTransportEvent(transport, clientKey, handleToast) {
       return;
     }
 
-    transport.listen(async (courierEvent) => {
+    transport.listen((courierEvent) => {
       const courierData = courierEvent?.data?.data;
 
       if (clientKey && courierData?.deliveredUrl) {
@@ -21,5 +21,5 @@ export function useListenForTransportEvent(transport, clientKey, handleToast) {
 
       handleToast(courierEvent?.data);
     });
-  }, [transport]);
+  }, [clientKey, handleToast, transport]);
 }

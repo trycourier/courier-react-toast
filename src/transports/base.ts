@@ -10,15 +10,15 @@ export class Transport {
       return;
     }
     this.listener(courierEvent);
-  }
+  };
 
   /** Setter method for a listener */
   listen = (listener: (courierEvent: ICourierEvent) => void): void => {
     this.listener = listener;
-  }
+  };
 
   intercept = (cb: Interceptor): void => {
     this.interceptor = cb;
-  }
+  };
 }
 

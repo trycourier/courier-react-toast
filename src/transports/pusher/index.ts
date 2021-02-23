@@ -8,6 +8,7 @@ export class PusherTransport extends Transport {
   protected channel: Channel;
   constructor(options: ITransportOptions) {
     super();
+
     if (!options.appKey) {
       throw new Error("Missing App Key");
     }
@@ -21,19 +22,21 @@ export class PusherTransport extends Transport {
       data = this.getDataFromInterceptor(data);
       this.emit({ data });
     });
-  }
+  };
 
   unsubscribe = (channel: string): void => {
     this.pusher.unsubscribe(channel);
-  }
+  };
 
-  getDataFromInterceptor = (data) => {
+  getDataFromInterceptor = (data: IMessage) => {
+    let interceptorResult;
+
     if (this.interceptor) {
-      data = this.interceptor(data);
+      interceptorResult = this.interceptor(data);
     }
 
-    if (typeof data !== 'undefined' && data !== false) {
-      return data;
+    if (typeof interceptorResult !== "undefined" && interceptorResult !== false) {
+      return interceptorResult;
     }
-  }
+  };
 }

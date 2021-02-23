@@ -35,7 +35,7 @@ export class CourierTransport extends Transport {
     */
   }
 
-  send(message: any): void{
+  send(message: any): void {
     this.ws.send({
       ...message,
       data :{
@@ -45,14 +45,14 @@ export class CourierTransport extends Transport {
     });
   }
 
-  subscribe(channel: string, event: string): void{
+  subscribe(channel: string, event: string): void {
     this.ws.subscribe(channel, event, this.clientKey, ({ data }) => {
       data = this.getDataFromInterceptor(data);
       this.emit({ data });
     });
   }
 
-  unsubscribe(channel: string, event: string): void{
+  unsubscribe(channel: string, event: string): void {
     this.ws.unsubscribe(channel, event, this.clientKey);
   }
 
@@ -61,8 +61,8 @@ export class CourierTransport extends Transport {
       data = this.interceptor(data);
     }
 
-    if (typeof data !== 'undefined' && data !== false) {
+    if (typeof data !== "undefined" && data !== false) {
       return data;
     }
-  }
+  };
 }

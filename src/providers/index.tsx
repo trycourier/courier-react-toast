@@ -24,7 +24,7 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   config: _config,
   transport,
 }) => {
-  throwOnNoTransport(transport)
+  throwOnNoTransport(transport);
 
   const config = merge(defaultConfig, _config);
   const handleToast = (message: IToastMessage) => toast(<Body {...message} />);
