@@ -1,0 +1,1 @@
+export const LAMBDA_WS_URL = process.env.LAMBDA_WS_URL;

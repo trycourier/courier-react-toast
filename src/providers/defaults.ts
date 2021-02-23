@@ -5,7 +5,7 @@ export const defaultConfig: IProviderConfig = {
   position: "top-right",
   theme: {
     container: {
-      a: {
+      "a": {
         textDecoration: "none",
         backgroundColor: "white",
       },

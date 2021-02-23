@@ -2,6 +2,7 @@ import {
   CSSProperties, MouseEventHandler,
 } from "react";
 import { ToastPosition } from "react-toastify";
+import { ToastCaller } from "../hooks/types";
 import { Transport } from "../transports";
 
 export interface ToastProviderProps {
@@ -20,4 +21,9 @@ export interface IProviderConfig {
   transition?: string;
   position?: ToastPosition;
   theme?: Theme;
+}
+export interface IToastContext {
+  clientKey?: string;
+  config?: IProviderConfig;
+  toast?: ToastCaller;
 }

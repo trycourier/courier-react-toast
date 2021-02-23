@@ -7,7 +7,7 @@ exports.PusherTransport = void 0;
 
 var _pusherJs = _interopRequireDefault(require("pusher-js"));
 
-var _base = require("./base");
+var _base = require("../base");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21,25 +21,11 @@ class PusherTransport extends _base.Transport {
 
     _defineProperty(this, "channel", void 0);
 
-    _defineProperty(this, "interceptor", void 0);
-
-    _defineProperty(this, "intercept", cb => {
-      this.interceptor = cb;
-    });
-
     _defineProperty(this, "subscribe", (channel, event) => {
       this.channel = this.pusher.subscribe(channel);
       this.channel.bind(event, data => {
-        if (this.interceptor) {
-          data = this.interceptor(data);
-        }
-
-        if (!data) {
-          return;
-        }
-
+        data = this.getDataFromInterceptor(data);
         this.emit({
-          type: "message",
           data
         });
       });
@@ -47,6 +33,16 @@ class PusherTransport extends _base.Transport {
 
     _defineProperty(this, "unsubscribe", channel => {
       this.pusher.unsubscribe(channel);
+    });
+
+    _defineProperty(this, "getDataFromInterceptor", data => {
+      if (this.interceptor) {
+        data = this.interceptor(data);
+      }
+
+      if (typeof data !== 'undefined' && data !== false) {
+        return data;
+      }
     });
 
     if (!options.appKey) {

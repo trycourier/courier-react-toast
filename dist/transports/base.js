@@ -11,6 +11,8 @@ class Transport {
   constructor() {
     _defineProperty(this, "listener", void 0);
 
+    _defineProperty(this, "interceptor", void 0);
+
     _defineProperty(this, "emit", courierEvent => {
       if (!this.listener) {
         console.warn("No Listener Registered");
@@ -22,6 +24,10 @@ class Transport {
 
     _defineProperty(this, "listen", listener => {
       this.listener = listener;
+    });
+
+    _defineProperty(this, "intercept", cb => {
+      this.interceptor = cb;
     });
   }
 

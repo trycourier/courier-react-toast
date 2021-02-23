@@ -1,20 +1,15 @@
-import { WS } from "../ws";
-import { Transport } from "./base";
-import { Intercept } from "./types";
-const LAMBDA_WS_URL = "wss://1x60p1o3h8.execute-api.us-east-1.amazonaws.com/production";
-interface ITransportOptions {
-  clientKey: string;
-  secretKey?: string;
-  wsUrl?: string;
-}
+import { WS } from "../../ws";
+import { Transport } from "../base";
+import { Interceptor } from "../types";
+import { LAMBDA_WS_URL } from "./constants";
+import { ITransportOptions } from "./types";
 
 export class CourierTransport extends Transport {
   protected channel: any;
   protected ws: WS;
   protected clientKey: string;
   protected secretKey: string;
-  // eslint-disable-next-line no-unused-vars
-  protected interceptor: Intercept;
+  protected interceptor: Interceptor;
   constructor(options: ITransportOptions) {
     super();
 
@@ -52,18 +47,8 @@ export class CourierTransport extends Transport {
 
   subscribe(channel: string, event: string): void{
     this.ws.subscribe(channel, event, this.clientKey, ({ data }) => {
-      if (this.interceptor) {
-        data = this.interceptor(data);
-      }
-
-      if (!data) {
-        return;
-      }
-
-      this.emit({
-        type: "message",
-        data,
-      });
+      data = this.getDataFromInterceptor(data);
+      this.emit({ data });
     });
   }
 
@@ -71,7 +56,13 @@ export class CourierTransport extends Transport {
     this.ws.unsubscribe(channel, event, this.clientKey);
   }
 
-  intercept(cb: Intercept): void{
-    this.interceptor = cb;
+  getDataFromInterceptor = (data) => {
+    if (this.interceptor) {
+      data = this.interceptor(data);
+    }
+
+    if (typeof data !== 'undefined' && data !== false) {
+      return data;
+    }
   }
 }

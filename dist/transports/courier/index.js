@@ -5,9 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.CourierTransport = void 0;
 
-var _ws = require("../ws");
+var _ws = require("../../ws");
 
-var _base = require("./base");
+var _base = require("../base");
+
+var _constants = require("./constants");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -15,10 +17,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var LAMBDA_WS_URL = "wss://1x60p1o3h8.execute-api.us-east-1.amazonaws.com/production";
-
 class CourierTransport extends _base.Transport {
-  // eslint-disable-next-line no-unused-vars
   constructor(options) {
     var _options$wsUrl;
 
@@ -34,6 +33,16 @@ class CourierTransport extends _base.Transport {
 
     _defineProperty(this, "interceptor", void 0);
 
+    _defineProperty(this, "getDataFromInterceptor", data => {
+      if (this.interceptor) {
+        data = this.interceptor(data);
+      }
+
+      if (typeof data !== 'undefined' && data !== false) {
+        return data;
+      }
+    });
+
     if (!options.clientKey) {
       throw new Error("Missing Client Key");
     }
@@ -41,7 +50,7 @@ class CourierTransport extends _base.Transport {
     this.clientKey = options.clientKey;
     this.secretKey = options.secretKey;
     this.ws = new _ws.WS({
-      url: (_options$wsUrl = options.wsUrl) !== null && _options$wsUrl !== void 0 ? _options$wsUrl : LAMBDA_WS_URL
+      url: (_options$wsUrl = options.wsUrl) !== null && _options$wsUrl !== void 0 ? _options$wsUrl : _constants.LAMBDA_WS_URL
     });
     this.authenticate();
     this.ws.connect(options.clientKey);
@@ -72,17 +81,8 @@ class CourierTransport extends _base.Transport {
       var {
         data
       } = _ref;
-
-      if (this.interceptor) {
-        data = this.interceptor(data);
-      }
-
-      if (!data) {
-        return;
-      }
-
+      data = this.getDataFromInterceptor(data);
       this.emit({
-        type: "message",
         data
       });
     });
@@ -90,10 +90,6 @@ class CourierTransport extends _base.Transport {
 
   unsubscribe(channel, event) {
     this.ws.unsubscribe(channel, event, this.clientKey);
-  }
-
-  intercept(cb) {
-    this.interceptor = cb;
   }
 
 }

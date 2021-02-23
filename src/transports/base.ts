@@ -1,9 +1,9 @@
-import { ICourierEvent } from "./types";
-
+import { ICourierEvent, Interceptor } from "./types";
 export class Transport {
-  // eslint-disable-next-line no-unused-vars
+  /** Callback for emitted events  */
   protected listener: (courierEvent: ICourierEvent) => void;
-
+  protected interceptor: Interceptor;
+  /** Wrapper method for emitted events  */
   protected emit = (courierEvent: ICourierEvent): void => {
     if (!this.listener) {
       console.warn("No Listener Registered");
@@ -12,8 +12,13 @@ export class Transport {
     this.listener(courierEvent);
   }
 
-  // eslint-disable-next-line no-unused-vars
+  /** Setter method for a listener */
   listen = (listener: (courierEvent: ICourierEvent) => void): void => {
     this.listener = listener;
   }
+
+  intercept = (cb: Interceptor): void => {
+    this.interceptor = cb;
+  }
 }
+
