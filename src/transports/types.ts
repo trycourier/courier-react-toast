@@ -13,5 +13,6 @@ export interface ICourierEvent {
   data: IMessage,
 }
 
-// eslint-disable-next-line no-unused-vars
+export type ICourierEventCallback = (params: ICourierEvent) => void
+
 export type Intercept = (message: IMessage) => IMessage | undefined;
