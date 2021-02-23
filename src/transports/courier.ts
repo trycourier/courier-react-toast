@@ -1,10 +1,11 @@
 import { WS } from "../ws";
 import { Transport } from "./base";
 import { Intercept } from "./types";
-const LAMBDA_WS_URL = "wss://zj8xquqj55.execute-api.us-east-1.amazonaws.com/dev";
+const LAMBDA_WS_URL = "wss://1x60p1o3h8.execute-api.us-east-1.amazonaws.com/production";
 interface ITransportOptions {
   clientKey: string;
-  secretKey: string;
+  secretKey?: string;
+  wsUrl?: string;
 }
 
 export class CourierTransport extends Transport {
@@ -22,7 +23,7 @@ export class CourierTransport extends Transport {
     }
     this.clientKey = options.clientKey;
     this.secretKey = options.secretKey;
-    this.ws = new WS({ url: LAMBDA_WS_URL });
+    this.ws = new WS({ url: options.wsUrl ?? LAMBDA_WS_URL });
     this.authenticate();
     this.ws.connect(options.clientKey);
   }
