@@ -25,17 +25,20 @@ export const SideBarContainer = styled.div(() => ({
   display: "flex",
   flexDirection: "column",
   marginLeft: 5,
+  paddingLeft: 5,
+  borderLeft: "1px solid #CBD5E0",
 }));
 
 export const Details = styled.a(() => ({
   backgroundColor: "white",
   border: "none",
+  borderBottom: "1px solid #CBD5E0",
   color: "#9D3789",
   fontFamily: `"Nunito Sans", sans-serif`,
   fontSize: 12,
   textAlign: "center",
   margin: 5,
-  paddingBottom: 5,
+  paddingBottom: 10,
 }));
 
 export const Dismiss = styled.a(() => ({

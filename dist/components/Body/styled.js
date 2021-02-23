@@ -46,7 +46,9 @@ var SideBarContainer = _styledComponents.default.div.withConfig({
   alignSelf: "center",
   display: "flex",
   flexDirection: "column",
-  marginLeft: 5
+  marginLeft: 5,
+  paddingLeft: 5,
+  borderLeft: "1px solid #CBD5E0"
 }));
 
 exports.SideBarContainer = SideBarContainer;
@@ -57,12 +59,13 @@ var Details = _styledComponents.default.a.withConfig({
 })(() => ({
   backgroundColor: "white",
   border: "none",
+  borderBottom: "1px solid #CBD5E0",
   color: "#9D3789",
   fontFamily: "\"Nunito Sans\", sans-serif",
   fontSize: 12,
   textAlign: "center",
   margin: 5,
-  paddingBottom: 5
+  paddingBottom: 10
 }));
 
 exports.Details = Details;
