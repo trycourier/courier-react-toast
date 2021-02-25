@@ -10,10 +10,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "12.X"
-          # scope: '@trycourier'
       - run: yarn
       - name: Test
         run: yarn test
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
