@@ -4,7 +4,7 @@ export const defaultConfig: IProviderConfig = {
   hideProgressBar: false,
   position: "top-right",
   theme: {
-    container: {
+    root: {
     },
     toast: {
       "*": {
