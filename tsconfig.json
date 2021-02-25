@@ -5,7 +5,7 @@
     "module": "commonjs",
     "declaration": true,
     "outDir": "./dist/",
-    "jsx": "react",
+    "jsx": "preserve",
     "esModuleInterop": true
   },
   "include": ["src/**/*", "__tests__"],
