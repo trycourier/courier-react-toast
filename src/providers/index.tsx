@@ -27,7 +27,13 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   throwOnNoTransport(transport);
 
   const config = merge(defaultConfig, _config);
-  const handleToast = (message: IToastMessage) => toast(<Body {...message} />);
+
+  const handleToast = (message: IToastMessage | string) => {
+    let notification: IToastMessage = typeof message === "string" ? {
+      body: message,
+    } : message;
+    toast(<Body {...notification} />);
+  };
   useListenForTransportEvent(transport, clientKey, handleToast);
   return (
     <ToastContext.Provider
