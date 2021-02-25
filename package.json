@@ -1,7 +1,7 @@
 {
   "name": "courier-react-toast",
-  "version": "0.1.3",
-  "description": "",
+  "version": "0.1.4",
+  "description": "Beautiful, easy React toast notifications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
