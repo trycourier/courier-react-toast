@@ -5,12 +5,12 @@
 ## Install
 
 ```js
-yarn  add  courier-react-toast
+yarn add courier-react-toast
 ```
 
 ## Usage
 
-`courier-react-toast` uses a context provider in order to inject the `Toast` component in the dom and to expose a function to show it. `ToastProvider` relies on the context feature of React to pass things down to the components, so you need to make sure that `ToastProvider` is a parent of the components you are trying to show the toast in. You can learn more about this [here](https://reactjs.org/docs/context.html#contextprovider)
+`courier-react-toast` uses a context provider in order to inject the `Toast` component in the dom and to expose a function to show this component. `ToastProvider` relies on the context feature of React to pass things down to the components, so you need to make sure that `ToastProvider` is a parent of the components you are trying to show the toast in. You can learn more about this [here](https://reactjs.org/docs/context.html#contextprovider)
 
 ### Basic Example
 
@@ -34,6 +34,8 @@ function App() {
 
 ```js
 // Child component of App.js
+import { useToast } from "react-courier-toast";
+
 function MyComponent() {
   const [show] = useToast();
 
@@ -41,7 +43,7 @@ function MyComponent() {
 }
 ```
 
-Once the application is wrapped using the Provider the Toast component is injected into the dom. But it will not be show unless invoked from the `show()` function.
+Once the application is wrapped using the Provider, the Toast component is injected into the dom. But it will not be show unless invoked from the `show()` function.
 
 A configuration object is passed to the `ToastProvider` to set options such as styles, positioning, and transitions for the `Toast` component. See below for a list of available configurations.
 
@@ -49,26 +51,29 @@ A configuration object is passed to the `ToastProvider` to set options such as s
 
 ## Provider Config Options
 
+All `ToastProvider` configurations are optional.
+
 **position**:
 The location of where the toast component will show
-`top-right` | `top-center` | `top-left` | `bottom-right` | `bottom-center` | `bottom-left`
+`top-right`(default) | `top-center` | `top-left` | `bottom-right` | `bottom-center` | `bottom-left`
 
 **hideProgressBar**:
 Optionally show or hide the progress bar
-`true` | `false`
+`true` | `false`(default)
 
 **transition**:
 Set the transition effect for the toast coming into the window and going out.
-`slide` | `zoom` | `bounce`
+`slide`(default) | `zoom` | `bounce`
 
 **theme**:
 Set the styling of the toast by using one of the provided themes or use your own.
-`dark` | `light` | `StyleObject`
+`dark` | `light`(default) | `StyleObject`
 
 ### Custom Styling
 
-You can optionally provide custom styling to each component of the `Toast`. The available components for styling are: `root`, `toast`, `body`, `title`, `content`, `icon`, `progressBar`, `dismiss`, `dismissButton`. The style configuration objects should be definied with JSS Objects. This is the same pattern as popular libraries such as `material-ui`, and `styled-components`.
-An example usage of custom styling is show below. Because there are no high level components exposed there is no need for interpolation with props, just a simple object. Keep in mind JSS Objects can accept CSS Pseudo selectors for more advanced styling. See [here](https://cssinjs.org/jss-syntax?v=v10.5.1) for more info.
+You can optionally provide custom styling to each component of the `Toast` when it is shown. Pass a `theme` object to the `ToastProvider` to use your own custom styling. The components available for styling are: `root`, `toast`, `body`, `title`, `content`, `icon`, `progressBar`, `dismiss`, `dismissButton`. The style configuration objects should be defined with JSS Objects.  Keep in mind JSS Objects can accept CSS Pseudo selectors for more advanced styling. See [here](https://cssinjs.org/jss-syntax?v=v10.5.1) for more info.
+
+An example usage of custom styling is show below:
 
 ```js
 //App.js
