@@ -1,7 +1,4 @@
 .gitignore
-<<<<<<< HEAD
-jest.config.js
 tsconfig.json
-=======
 jest.config.js
->>>>>>> updated npm ignore
+__tests__
