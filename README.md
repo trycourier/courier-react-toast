@@ -111,4 +111,4 @@ function App() {
 }
 ```
 ### Demo
-[![Edit CRT](https://user-images.githubusercontent.com/16184018/109214326-8ebc3280-7766-11eb-8641-30d080439400.png)](https://codesandbox.io/s/crt-vty71?fontsize=14&hidenavigation=1&theme=dark)
+[<img src="https://user-images.githubusercontent.com/16184018/109214515-c9be6600-7766-11eb-99d3-7c279dd8fdfd.png" width="500">](https://codesandbox.io/s/crt-vty71?fontsize=14&hidenavigation=1&theme=dark)
