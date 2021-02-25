@@ -11,8 +11,6 @@ yarn add courier-react-toast
 ## Usage
 
 `courier-react-toast` uses a context provider in order to inject the `Toast` component in the dom and to expose a function to show this component. `ToastProvider` relies on the context feature of React to pass things down to the components, so you need to make sure that `ToastProvider` is a parent of the components you are trying to show the toast in. You can learn more about this [here](https://reactjs.org/docs/context.html#contextprovider)
-### Demo
-https://codesandbox.io/s/crt-vty71
 
 ### Basic Example
 
@@ -112,5 +110,5 @@ function App() {
   );
 }
 ```
-
-## useToast
+### Demo
+[![Edit CRT](https://user-images.githubusercontent.com/16184018/109214326-8ebc3280-7766-11eb-8641-30d080439400.png)](https://codesandbox.io/s/crt-vty71?fontsize=14&hidenavigation=1&theme=dark)
