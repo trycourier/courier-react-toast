@@ -1,4 +1,4 @@
-[![Test](https://github.com/trycourier/courier-react-toast/actions/workflows/test.yml/badge.svg)](https://github.com/trycourier/courier-react-toast/actions/workflows/test.yml)
+[![Tests](https://github.com/trycourier/courier-react-toast/actions/workflows/test.yml/badge.svg)](https://github.com/trycourier/courier-react-toast/actions/workflows/test.yml)
 
 # Courier React Toast
 
@@ -11,6 +11,8 @@ yarn add courier-react-toast
 ## Usage
 
 `courier-react-toast` uses a context provider in order to inject the `Toast` component in the dom and to expose a function to show this component. `ToastProvider` relies on the context feature of React to pass things down to the components, so you need to make sure that `ToastProvider` is a parent of the components you are trying to show the toast in. You can learn more about this [here](https://reactjs.org/docs/context.html#contextprovider)
+### Demo
+https://codesandbox.io/s/crt-vty71
 
 ### Basic Example
 
@@ -71,9 +73,9 @@ Set the styling of the toast by using one of the provided themes or use your own
 
 ### Custom Styling
 
-You can optionally provide custom styling to each component of the `Toast` when it is shown. Pass a `theme` object to the `ToastProvider` to use your own custom styling. The components available for styling are: `root`, `toast`, `body`, `title`, `content`, `icon`, `progressBar`, `dismiss`, `dismissButton`. The style configuration objects should be defined with JSS Objects.  Keep in mind JSS Objects can accept CSS Pseudo selectors for more advanced styling. See [here](https://cssinjs.org/jss-syntax?v=v10.5.1) for more info.
+You can optionally provide custom styling to each component of the `Toast` when it is shown. Pass a `theme` object to the `ToastProvider` to use your own custom styling. The components available for styling are: `root`, `toast`, `body`, `title`, `content`, `icon`, `progressBar`, `dismiss`, `dismissButton`. The style configuration objects should be defined with JSS Objects. Keep in mind JSS Objects can accept CSS Pseudo selectors for more advanced styling. See [here](https://cssinjs.org/jss-syntax?v=v10.5.1) for more info.
 
-An example usage of custom styling is show below:
+An example usage of custom styling is shown below:
 
 ```js
 //App.js
