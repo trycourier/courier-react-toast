@@ -1,3 +1,5 @@
+[![Test](https://github.com/trycourier/courier-react-toast/actions/workflows/test.yml/badge.svg)](https://github.com/trycourier/courier-react-toast/actions/workflows/test.yml)
+
 # Courier React Toast
 
 ## Install
