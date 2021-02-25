@@ -4,6 +4,12 @@
   "description": "Beautiful, easy React toast notifications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "author": "Courier <support@courier.com>",
+  "homepage": "https://github.com/trycourier/courier-react-toast",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trycourier/courier-react-toast"
+  },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
@@ -13,7 +19,7 @@
     "build": "rimraf dist && yarn webpack",
     "start": "yarn storybook",
     "fix": "eslint \"src/**\" --fix",
-    "postinstall": "yarn build"
+    "prepublishOnly": "yarn test && yarn build"
   },
   "license": "ISC",
   "devDependencies": {
@@ -75,6 +81,6 @@
     "react-dom": ">=17.X.X"
   },
   "files": [
-    "/dist"
+    "dist/"
   ]
 }
