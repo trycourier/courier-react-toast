@@ -1,7 +1,8 @@
+import React from "react";
 import {
   render, fireEvent, screen, waitFor,
 } from "@testing-library/react";
-import React from "react";
+
 import {
   Toast, ToastProvider, useToast,
 } from "..";
@@ -11,7 +12,6 @@ jest.mock("styled-components", () => ({
   ...jest.requireActual("styled-components"),
   createGlobalStyle: () => () => "Global Style",
 }));
-
 
 describe("<Toast />", () => {
   it("should not render toast component", () => {

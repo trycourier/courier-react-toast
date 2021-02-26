@@ -18,9 +18,10 @@ export function sendClickedRequest(clientKey, clickedUrl) {
 
 export function getIcon(icon) {
   if (typeof icon === "string") {
-    return <Icon src={icon} />;
+    // eslint-disable-next-line react/display-name
+    return (props) => <Icon src={icon} {...props} />;
   } else {
-    return styled(icon || courierIcon)( props => ({
+    return styled(icon || courierIcon)(props => ({
       flexShrink: 0,
       marginRight: "12.17px",
       objectFit: "contain",

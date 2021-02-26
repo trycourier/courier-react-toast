@@ -1,1 +1,1 @@
-export const COURIER_CLIENT_HEADER = "X-COURIER-CLIENT-KEY";
+export const COURIER_CLIENT_HEADER = "x-courier-client-key";
