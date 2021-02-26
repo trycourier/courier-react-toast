@@ -11,9 +11,21 @@ export interface ToastProviderProps {
   transport?: Transport
 }
 
-export interface Theme {
-  [key: string]: CSSProperties | {[key: string]: CSSProperties}
-}
+type ThemeKey = CSSProperties | {[key: string]: CSSProperties};
+
+export type Theme = Partial<{
+  root: ThemeKey;
+  toast: ThemeKey;
+  body: ThemeKey;
+  sidebar: {
+    dismiss: ThemeKey;
+    details: ThemeKey;
+  } & ThemeKey;
+  title: ThemeKey;
+  content: ThemeKey;
+  icon: ThemeKey;
+  progressBar: ThemeKey;
+}>;
 
 export interface IProviderConfig {
   hideProgressBar?: boolean;

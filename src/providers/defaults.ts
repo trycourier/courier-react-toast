@@ -4,8 +4,6 @@ export const defaultConfig: IProviderConfig = {
   hideProgressBar: false,
   position: "top-right",
   theme: {
-    root: {
-    },
     toast: {
       "*": {
         fontFamily: `"Nunito Sans", sans-serif`,
@@ -24,12 +22,6 @@ export const defaultConfig: IProviderConfig = {
       "> *" : {
         "padding": "13.3px 0",
       },
-    },
-    title: {
-    },
-    icon: {
-    },
-    content: {
     },
     progressBar: {
       background: "rgb(157, 55, 137)",

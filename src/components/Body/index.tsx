@@ -4,11 +4,10 @@ import { IToastMessage } from "../Toast/types";
 import SideBar from "../SideBar";
 import { ToastContext } from "../../providers";
 import {
-  Icon, Body, Title, Content,
+  Body, Title, Content,
 } from "./styled";
-import { sendClickedRequest } from "./helpers";
-//@ts-ignore
-import CourierIcon from "./courier-icon.svg";
+import { getIcon, sendClickedRequest } from "./helpers";
+
 
 const ToastBody: React.FunctionComponent<Partial<IToastMessage>> = ({
   title,
@@ -28,13 +27,13 @@ const ToastBody: React.FunctionComponent<Partial<IToastMessage>> = ({
     }
     sendClickedRequest(clientKey, data?.clickedUrl);
   }, [clientKey, data?.clickedUrl, onClick]);
-
+  const Icon = getIcon(icon);
   return (
     <>
-      <Icon theme={theme.icon} src={icon || CourierIcon} />
-      <Body theme={theme.body}>
-        <Title theme={theme.title}>{title}</Title>
-        <Content theme={theme.content}>{content}</Content>
+      <Icon theme={theme.icon} data-test-id="toast-icon" />
+      <Body theme={theme.body} data-test-id="toast-body">
+        <Title theme={theme.title} data-test-id="toast-title">{title}</Title>
+        <Content theme={theme.content} data-test-id="toast-content">{content}</Content>
       </Body>
       <SideBar href={data?.clickAction} open={hasAction ? open : null} dismiss={dismiss} />
     </>

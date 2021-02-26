@@ -9,12 +9,12 @@ function SideBar({
 }) {
   const { config: { theme } } = useContext(ToastContext);
   return (
-    <Container theme={theme.dismiss}>
+    <Container theme={theme.sidebar} data-test-id="toast-sidebar">
       {open && (
-        <Button theme={theme.dismissButton} href={href} color="#9D3789"
-          onClick={open}>Details</Button>
+        <Button theme={theme.sidebar?.details} href={href} color="#9D3789"
+          onClick={open} data-test-id="toast-sidebar-button-details">Details</Button>
       )}
-      <Button theme={theme.dismissButton} onClick={dismiss}>Dismiss</Button>
+      <Button theme={theme.sidebar?.dismiss} onClick={dismiss} data-test-id="toast-sidebar-button-dismiss">Dismiss</Button>
     </Container>
   );
 }

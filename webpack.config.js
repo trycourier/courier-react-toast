@@ -8,8 +8,19 @@ module.exports = {
     filename: "index.js",
     libraryTarget: "commonjs2",
   },
+  devtool: "source-map",
   module: {
     rules: [
+      {
+        loader: "babel-loader",
+        test: /\.m?js$/,
+        exclude: /(node_modules)/,
+        options: {
+          plugins: [
+            ["babel-plugin-react-remove-properties", { "properties": ["data-test-id"] }],
+          ],
+        },
+      },
       {
         test: /\.(?:png|jpg|gif|svg)$/i,
         use: [
