@@ -17,6 +17,7 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
   icon,
   data,
   onClick,
+  ...props
 }) => {
   let sideBar;
   const { clientKey } = useContext(ToastContext);
@@ -48,7 +49,7 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
         <Dismiss
           className="courier__sidebar-dismiss"
           onClick={() => {
-            toast.dismiss();
+            toast.dismiss(props.toastProps.toastId);
           }}
         >
           Dismiss
@@ -61,7 +62,7 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
         <Dismiss
           className="courier__sidebar-dismiss"
           onClick={() => {
-            toast.dismiss();
+            toast.dismiss(props.toastProps.toastId);
           }}
         >
           Dismiss
