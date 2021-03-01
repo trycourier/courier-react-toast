@@ -42,13 +42,14 @@ export function WithConfiguration({
 }) {
   const theme = {
     root: {
-      fontFamily: "Arial",
+
     },
   };
   const config = {
     position,
     hideProgressBar,
     transition,
+    defaultIcon: WarningIcon,
     theme,
   };
   return (
@@ -68,7 +69,7 @@ function WithConfigurationComponent() {
   const notification = {
     title: "Warning",
     body: "We’ve noticed an elevated number of errors from your Notifications.",
-    icon: WarningIcon,
+    // icon: WarningIcon,
     onClick,
   };
 

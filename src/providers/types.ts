@@ -33,6 +33,7 @@ export interface IProviderConfig {
   transition?: string;
   position?: ToastPosition;
   theme?: Theme;
+  defaultIcon?: string;
 }
 export interface IToastContext {
   clientKey?: string;

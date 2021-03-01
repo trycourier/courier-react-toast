@@ -19,7 +19,9 @@ const ToastBody: React.FunctionComponent<Partial<IToastMessage>> = ({
 }) => {
   const { toastProps } = props as { toastProps: any };
   const dismiss = useCallback(() => toast.dismiss(toastProps.toastId), [toastProps.toastId]);
-  const { clientKey, config:{ theme } } = useContext(ToastContext);
+  const {
+    clientKey, config:{ theme, defaultIcon },
+  } = useContext(ToastContext);
   const hasAction = data?.clickAction || onClick;
   const open = useCallback((event) => {
     if (onClick) {
@@ -27,7 +29,7 @@ const ToastBody: React.FunctionComponent<Partial<IToastMessage>> = ({
     }
     sendClickedRequest(clientKey, data?.clickedUrl);
   }, [clientKey, data?.clickedUrl, onClick]);
-  const Icon = getIcon(icon);
+  const Icon = getIcon(icon ?? defaultIcon);
   return (
     <>
       <Icon theme={theme.icon} data-test-id="toast-icon" />

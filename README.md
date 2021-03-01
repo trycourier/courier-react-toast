@@ -25,7 +25,7 @@ Courier React Toast aims to be the easiest way to create in-app notifications. W
 
 A toast is just a buzz word for a notification that happens in app. The appearance is usually that of a small rectangle which is where the toast name comes from.
 
-### How does courier-react-toast work?
+### How does @trycourier/react-toast work?
 
 There are two ways to use this library:
 
@@ -38,13 +38,13 @@ A channel/event combination is simply a stream on which a particular client is l
 
 If you do not need a push provider such as Courier you can skip ahead to instructions on how to use the standalone toast [interface](#standalone).
 
-Go through the guide below to get started with `courier-react-toast` using Courier as Push Provider
+Below is a step by step setup to use `@trycourier/react-toast` using Courier as Push Provider
 
 <hr>
 
 ## [Courier Integration](#courier-integration)
 
-We will need to install the [Courier Push Provider](https://app.courier.com/integrations/courier) to trigger `courier-react-toast` from an API request.
+We will need to install the [Courier Push Provider](https://app.courier.com/integrations/courier) to trigger `@trycourier/react-toast` from an API request.
 Make sure to copy the Client Key from the integration page
 
 <img src="https://user-images.githubusercontent.com/16184018/109491559-8f8ee600-7a3e-11eb-9aa4-742639274fde.png" width="400">
@@ -64,15 +64,16 @@ Now that you have a notification ready to be sent lets setup the client to liste
 ## [Client Install](#client-install)
 
 ```js
-yarn add courier-react-toast
+yarn add @trycourier/react-toast
 ```
 
 <hr>
 
 ## [Toast Provider](#toast-provider)
 
-In order for the `courier-react-toast` component to be placed in the dom you will need to use the `ToastProvider`. This will handle context and give use access to helper functions.
-Note: The component you want to listen to toasts from must be a child of the `ToastProvider`. Check [here](https://reactjs.org/docs/context.html#contextprovider) for more information on this concept.
+In order for the `@trycourier/react-toast` component to be placed in the dom you will need to use the `ToastProvider`. This will handle context and give use access to helper functions.
+
+> The component you want to listen to toasts from must be a child of the `ToastProvider`. Check [here](https://reactjs.org/docs/context.html#contextprovider) for more information on this concept.
 
 ```js
 //App.js
@@ -92,41 +93,43 @@ function App() {
 Now the toast component is in the dom, but we have to make it listen for something
 
 ```js
-import { Toast, ToastProvider, CourierTransport } from "../src";
+import { ToastProvider, CourierTransport } from "@trycourier/react-toast";
 const courierTransport = new CourierTransport({
   clientKey: "{{CLIENT_KEY}}",
 });
-useEffect(() => {
-  courierTransport.subscribe("YOUR_CHANNEL", "YOUR_EVENT");
-  // It is good practice to unsubscribe on component unmount
-  return () => courierTransport.unsubscribe("YOUR_CHANNEL", "YOUR_EVENT");
-}, []);
-return (
-  <ToastProvider transport={transport}>
-    <MyApp />
-  </ToastProvider>
-);
+function MyComponent() {
+  useEffect(() => {
+    courierTransport.subscribe("YOUR_CHANNEL", "YOUR_EVENT");
+    // It is good practice to unsubscribe on component unmount
+    return () => courierTransport.unsubscribe("YOUR_CHANNEL", "YOUR_EVENT");
+  }, []);
+  return (
+    <ToastProvider transport={transport}>
+      <MyApp />
+    </ToastProvider>
+  );
+}
 ```
 
 That is it! Now are ready to send your notification and see the result on the client
-You can use the library of your choice, but for simplicity sake we will use CURL.
+You can use the library of your choice, but for simplicity sake we will use cURL.
 
 ```bash
 curl --request POST \
 --url https://api.courier.com/send \
 --header 'Authorization: Bearer ******************' \
 --data-urlencode event=NEW_SUBSCRIBER \
---data-urlencode recipient=bc9a6447-2b17-4905-bae8-84823d637358 \
+--data-urlencode recipient=@MY_RECIPIENT \
 --data-urlencode 'data={}' \
 --data-urlencode 'profile={"courier":{"channel":"YOUR_CHANNEL"}}'
 ```
 
 ## [useToast](#standalone)
 
-If you do not want to use Courier Push to trigger a toast notification remotely then you can always invoke the toast locally with the `useToast` hook. Here is an example creating a notification from the same environment. Do not forget to wrap this component with a `ToastProvider` somewhere up the component hierarchy chain.
+If you do not want to use Courier Push to trigger a toast notification then you can always invoke the toast locally with the `useToast` hook. Here is an example creating a notification from the same environment. Do not forget to wrap this component with a `ToastProvider` somewhere up the component hierarchy chain.
 
 ```js
-import { useToast } from "react-courier-toast";
+import { useToast } from "@trycourier/react-toast";
 
 function MyComponent() {
   //We can access this because the parent is a `ToastProvider`
