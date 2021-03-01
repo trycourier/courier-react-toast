@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ToastContext } from "../../providers";
 import {
   Container, Button,
 } from "./styled";
@@ -6,14 +7,16 @@ import {
 function SideBar({
   open, dismiss, href,
 }) {
+  const { config: { theme } } = useContext(ToastContext);
   return (
-    <Container>
+    <Container theme={theme.dismiss}>
       {open && (
         <>
-          <Button href={href} color="#9D3789" onClick={open}>Details</Button>
+          <Button theme={theme.dismissButton} href={href} color="#9D3789"
+            onClick={open}>Details</Button>
         </>
       )}
-      <Button onClick={dismiss}>Dismiss</Button>
+      <Button theme={theme.dismissButton} onClick={dismiss}>Dismiss</Button>
     </Container>
   );
 }

@@ -11,7 +11,7 @@ export const Icon = styled.img`
   align-self: center;
 `;
 
-export const ContentContainer = styled.div`
+export const Body = styled.div`
   width: 139.33px;
   flex-shrink: 0;
   font-family: Nunito Sans, sans-serif;
@@ -28,11 +28,12 @@ export const ContentContainer = styled.div`
   align-self: center;
 `;
 
-export const Title = styled.div`
-  font-weight: 600;
-  color: #344563;
-`;
+export const Title = styled.div(({ theme }) => ({
+  fontWeight: 600,
+  color: "#344563",
+  ...theme,
+}));
 
-export const Body = styled.div`
-
-`;
+export const Content = styled.div(({ theme }) => ({
+  ...theme,
+}));

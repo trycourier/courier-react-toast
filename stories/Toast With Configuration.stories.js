@@ -40,7 +40,20 @@ export default {
 export function WithConfiguration({
   position, hideProgressBar, transition,
 }) {
-  const theme = {};
+  const theme = {
+    toast: {
+      backgroundColor: "#388697",
+    },
+    title: {
+      color: "white",
+    },
+    body: {
+      color: "white",
+    },
+    dismissButton: {
+      color: "black",
+    },
+  };
   const config = {
     position,
     hideProgressBar,

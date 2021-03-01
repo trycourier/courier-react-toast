@@ -29,6 +29,8 @@ export const defaultConfig: IProviderConfig = {
     },
     icon: {
     },
+    content: {
+    },
     progressBar: {
       background: "rgb(157, 55, 137)",
       height: 3,
