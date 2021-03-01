@@ -1,52 +1,42 @@
 import styled from "styled-components";
 
-export const Container = styled.div(() => ({
-  height: "100%",
-  width: "100%",
-  display: "flex",
-  outline: "none",
-  border: "none",
-  color: "inherit",
-  backgroundColor: "inherit",
-}));
+export const Container = styled.div`
+`;
 
-//@ts-ignore
-export const ContentContainer = styled.pre(() => ({
-  display: "flex",
-  width: "100%",
-  alignItems: "flex-start",
-  flexDirection: "column",
-  whiteSpace: "break-spaces",
-  margin: 10,
-}));
-
-export const SideBarContainer = styled.div(() => ({
+export const Icon = styled.img(props => ({
+  flexShrink: "0",
+  marginRight: "12.17px",
+  objectFit: "contain",
   alignSelf: "center",
-  display: "flex",
-  flexDirection: "column",
-  marginLeft: 5,
-  paddingLeft: 5,
-  borderLeft: "1px solid #CBD5E0",
+  padding: "2px",
+  maxHeight: "35px !important",
+  maxWidth: "35px !important",
+  ...props.theme,
 }));
 
-export const Details = styled.a(() => ({
-  backgroundColor: "white",
-  border: "none",
-  borderBottom: "1px solid #CBD5E0",
-  color: "#9D3789",
-  fontFamily: `"Nunito Sans", sans-serif`,
-  fontSize: 12,
-  textAlign: "center",
-  margin: 5,
-  paddingBottom: 10,
+export const Body = styled.div`
+  width: 139.33px;
+  flex-shrink: 0;
+  font-family: Nunito Sans, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  align-self: center;
+`;
+
+export const Title = styled.div(({ theme }) => ({
+  fontWeight: 600,
+  color: "#344563",
+  ...theme,
 }));
 
-export const Dismiss = styled.a(() => ({
-  backgroundColor: "white",
-  border: "none",
-  color: "#73819B",
-  fontFamily: `"Nunito Sans", sans-serif`,
-  fontSize: 12,
-  textAlign: "center",
-  margin: 5,
+export const Content = styled.div(({ theme }) => ({
+  ...theme,
 }));

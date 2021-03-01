@@ -1,7 +1,8 @@
+import React from "react";
 import {
   render, fireEvent, screen, waitFor,
 } from "@testing-library/react";
-import React from "react";
+
 import {
   Toast, ToastProvider, useToast,
 } from "..";
@@ -12,7 +13,6 @@ jest.mock("styled-components", () => ({
   createGlobalStyle: () => () => "Global Style",
 }));
 
-
 describe("<Toast />", () => {
   it("should not render toast component", () => {
     const { container } = renderToastComponent();
@@ -21,12 +21,16 @@ describe("<Toast />", () => {
   });
 });
 
+const title = "Your notification has been sent";
+const body = "Click here to view more details";
+const icon = "https://app.courier.com/static/favicon/favicon-32x32.png";
+
 function Component({ onClick }) {
   const [ toast ] = useToast();
   const notification = {
-    title: "Your notification has been sent",
-    body: "Click here to view more details",
-    icon: "https://app.courier.com/static/favicon/favicon-32x32.png",
+    title,
+    body,
+    icon,
     onClick,
   };
   return <button onClick={() => toast(notification)}>Show Toast</button>;
@@ -39,7 +43,11 @@ describe("<ToastProvider />", () => {
     providerRenderer(<Component onClick={onClick} />, {});
     fireEvent.click(screen.getByText("Show Toast"));
     await waitFor(() => {
-      expect(screen.getByText("Your notification has been sent")).toBeInTheDocument();
+      expect(screen.getByText(title)).toBeInTheDocument();
+      expect(screen.getByText(body)).toBeInTheDocument();
+      expect(screen.getByText("Dismiss")).toBeInTheDocument();
+      expect(screen.getByText("Details")).toBeInTheDocument();
+      expect(screen.getByTestId("toast-icon").getAttribute("src")).toBe(icon);
     });
   });
 });

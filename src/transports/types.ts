@@ -1,8 +1,8 @@
 export interface IMessage {
-  body: string;
-  icon: string;
-  title: string;
-  data: {
+  body?: string;
+  icon?: string;
+  title?: string;
+  data?: {
     clickAction?: string;
     clickedUrl?: string;
     deliveredUrl?: string;
@@ -13,6 +13,6 @@ export interface ICourierEvent {
   data: IMessage,
 }
 
-export type ICourierEventCallback = (params: ICourierEvent) => void
+export type ICourierEventCallback = (params: ICourierEvent) => void;
 
-export type Intercept = (message: IMessage) => IMessage | undefined;
+export type Interceptor = (message: IMessage) => IMessage | undefined | boolean;

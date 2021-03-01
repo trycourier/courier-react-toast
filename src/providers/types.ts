@@ -2,6 +2,7 @@ import {
   CSSProperties, MouseEventHandler,
 } from "react";
 import { ToastPosition } from "react-toastify";
+import { ToastCaller } from "../hooks/types";
 import { Transport } from "../transports";
 
 export interface ToastProviderProps {
@@ -10,9 +11,21 @@ export interface ToastProviderProps {
   transport?: Transport
 }
 
-export interface Theme {
-  [key:string]: CSSProperties | {[key:string]: CSSProperties}
-}
+type ThemeKey = CSSProperties | {[key: string]: CSSProperties};
+
+export type Theme = Partial<{
+  root: ThemeKey;
+  toast: ThemeKey;
+  body: ThemeKey;
+  sidebar: Partial<{
+    dismiss: ThemeKey;
+    details: ThemeKey;
+  }> & ThemeKey;
+  title: ThemeKey;
+  content: ThemeKey;
+  icon: ThemeKey;
+  progressBar: ThemeKey;
+}>;
 
 export interface IProviderConfig {
   hideProgressBar?: boolean;
@@ -20,4 +33,10 @@ export interface IProviderConfig {
   transition?: string;
   position?: ToastPosition;
   theme?: Theme;
+  defaultIcon?: string;
+}
+export interface IToastContext {
+  clientKey?: string;
+  config?: IProviderConfig;
+  toast?: ToastCaller;
 }

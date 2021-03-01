@@ -22,20 +22,5 @@ export function Default({ bodyText }) {
 
 function DefaultComponent({ body }) {
   const [ toast ] = useToast();
-  const onClick = () => {
-    alert("You clicked!");
-  };
-  const notification = {
-    title: "Courier",
-    body,
-    data: {
-      clickAction: "https://app.courier.com",
-      clickedUrl: "https://api.courier.com/something/send",
-    },
-    options:{
-      hideProgressBar: false,
-    },
-    onClick,
-  };
-  return <Button onClick={() => toast(notification)}>Show Toast</Button>;
+  return <Button onClick={() => toast(body)}>Show Toast</Button>;
 }

@@ -1,6 +1,5 @@
 module.exports = {
   "extends": [
-    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
@@ -24,6 +23,7 @@ module.exports = {
     "jest",
     "import",
     "react-hooks",
+    "@typescript-eslint",
   ],
   "rules": {
     "array-callback-return": "error",
@@ -48,7 +48,6 @@ module.exports = {
     "indent": ["error", 2],
     "react/no-find-dom-node": "warn",
     "no-undef": "error",
-    "no-unused-vars": "error",
     "no-debugger": "warn",
     "react/prop-types": 0,
     "curly": "error",
@@ -101,6 +100,13 @@ module.exports = {
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-max-props-per-line": [2, { maximum: 3 }],
     "object-property-newline": ["error"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+    ],
+    "semi": "off",
+    "@typescript-eslint/semi": ["error"],
+    "@typescript-eslint/type-annotation-spacing": ["error"],
   },
   "settings": {
     "react": {

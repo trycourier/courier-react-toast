@@ -4,50 +4,41 @@ export const defaultConfig: IProviderConfig = {
   hideProgressBar: false,
   position: "top-right",
   theme: {
-    container: {
-      a: {
-        textDecoration: "none",
-        backgroundColor: "white",
-      },
-      "*": {
-        fontFamily: `"Nunito Sans", sans-serif`,
-      },
+    root:{
+      fontFamily: `"Nunito Sans", sans-serif`,
     },
     toast: {
-      minHeight: 50,
-      backgroundColor: "white",
-      boxShadow: "rgba(157, 55, 137, 0.2) 0px 4px 12px",
-      borderRadius: 5,
-      color: "black",
-      margin: 10,
-    },
-    title: {
-      color: "#344563",
-      fontSize: 14,
-      fontWeight: "bold",
-      maxHeight: 50,
-      maxWidth: 160,
-      overflow: "hidden",
-      overflowWrap: "break-word",
+      "width": 320,
+      "minHeight": 65,
+      "padding": 0,
+      "borderRadius": 6,
     },
     body: {
-      color: "#8F8F8F",
-      fontSize: 12,
-      marginTop: 4,
-      maxHeight: 40,
-      maxWidth: 160,
-      overflow: "hidden",
-      overflowWrap: "break-word",
-    },
-    icon: {
-      height: 30,
-      width: 60,
-      alignSelf: "center",
+      "margin": 0,
+      "display": "flex",
+      "> :nth-child(1)": {
+        "paddingLeft": 13.3,
+      },
+      "> *" : {
+        "padding": "13.3px 0",
+      },
     },
     progressBar: {
       background: "rgb(157, 55, 137)",
       height: 3,
-      top: 0,
+      bottom: 0,
+    },
+    sidebar: {
+      details: {
+        ":hover": {
+          opacity: .5,
+        },
+      },
+      dismiss: {
+        ":hover": {
+          opacity: .5,
+        },
+      },
     },
   },
   transition: "slide",

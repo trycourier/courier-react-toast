@@ -4,6 +4,7 @@ import {
   Toast, ToastProvider, useToast,
 } from "../src";
 import { Button } from "./styled";
+import WarningIcon from "./warning.svg";
 
 export default {
   title: "Example/Toast",
@@ -32,42 +33,33 @@ export default {
     position: "top-right",
     hideProgressBar: true,
     transition: "slide",
-    bodyText: "Click here to view more details",
   },
 };
 
 
 export function WithConfiguration({
-  position, hideProgressBar, transition, bodyText,
+  position, hideProgressBar, transition,
 }) {
   const theme = {
-    container: {
-      backgroundColor: "black",
-    },
-    toast: {
-      backgroundColor: "black",
-    },
-    title: {
-      color: "white",
-    },
-    body: {
-      color: "white",
+    root: {
+
     },
   };
   const config = {
     position,
     hideProgressBar,
     transition,
+    defaultIcon: WarningIcon,
     theme,
   };
   return (
     <ToastProvider config={config}>
-      <WithConfigurationComponent body={bodyText} />
+      <WithConfigurationComponent />
     </ToastProvider>
   );
 }
 
-function WithConfigurationComponent({ body }) {
+function WithConfigurationComponent() {
   const [ toast ] = useToast();
 
   const onClick = () => {
@@ -75,9 +67,9 @@ function WithConfigurationComponent({ body }) {
   };
 
   const notification = {
-    title: "Your notification has been sent",
-    body,
-    icon: "https://app.courier.com/static/favicon/favicon-32x32.png",
+    title: "Warning",
+    body: "We’ve noticed an elevated number of errors from your Notifications.",
+    // icon: WarningIcon,
     onClick,
   };
 

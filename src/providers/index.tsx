@@ -1,25 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { toast } from "react-toastify";
 //@ts-ignore
 import toastCss from "react-toastify/dist/ReactToastify.css";
 import merge from "lodash.merge";
 import { createGlobalStyle } from "styled-components";
-
 import Body from "../components/Body";
 import { Toast } from "../components";
 import { IToastMessage } from "../components/Toast/types";
-import { Transport } from "../";
 import { defaultConfig } from "./defaults";
-
-import { ToastProviderProps, IProviderConfig } from "./types";
+import {
+  ToastProviderProps, IToastContext,
+} from "./types";
+import { throwOnNoTransport } from "./helpers";
+import { useListenForTransportEvent } from "./hooks";
 
 const GlobalStyle = createGlobalStyle`${toastCss}`;
-
-interface IToastContext {
-  clientKey?: string;
-  config?: IProviderConfig;
-  toast?: (message: IToastMessage) => void;
-}
 
 export const ToastContext = React.createContext<IToastContext>({ config: {} });
 
@@ -29,34 +24,17 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   config: _config,
   transport,
 }) => {
-  if (transport && !(transport instanceof Transport)) {
-    throw new Error("Invalid Transport");
-  }
+  throwOnNoTransport(transport);
 
   const config = merge(defaultConfig, _config);
-  const handleToast = (message: IToastMessage) => toast(<Body {...message} />);
 
-  useEffect(() => {
-    if (!transport) {
-      return;
-    }
-
-    transport.listen(async (courierEvent) => {
-      const courierData = courierEvent?.data?.data;
-
-      if (clientKey && courierData?.deliveredUrl) {
-        fetch(`${courierData?.deliveredUrl}`, {
-          method: "POST",
-          headers: {
-            "x-courier-client-key": clientKey,
-          },
-        });
-      }
-
-      handleToast(courierEvent?.data);
-    });
-  }, [transport]);
-
+  const handleToast = (message: IToastMessage | string) => {
+    let notification: IToastMessage = typeof message === "string" ? {
+      body: message,
+    } : message;
+    toast(<Body {...notification} />);
+  };
+  useListenForTransportEvent(transport, clientKey, handleToast);
   return (
     <ToastContext.Provider
       value={{

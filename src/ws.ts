@@ -13,8 +13,11 @@ export class WS {
   }
   connect(clientKey: string): void {
     const url = `${this.url}/?clientKey=${clientKey}`;
-    this.connection = new WebSocket(url);
-    this.initiateListener();
+
+    if (typeof WebSocket) {
+      this.connection = new WebSocket(url);
+      this.initiateListener();
+    }
   }
   onMessage({ data }: { data: string }): void {
     try {

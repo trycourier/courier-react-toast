@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["es2015", "dom"],
+    "sourceMap": true,
+    "target": "es6",
     "module": "commonjs",
     "declaration": true,
-    "outDir": "./dist",
-    "jsx": "react",
-    "esModuleInterop": true
+    "emitDeclarationOnly": true,
+    "outDir": "./dist/",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "rootDir": "src",
+    "importHelpers": true
   },
-  "include": ["src/**/*", "__tests__"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/__tests__", "**/__mocks__"]
 }
