@@ -21,7 +21,7 @@
     "fix": "eslint \"src/**\" --fix",
     "prepublishOnly": "yarn test && yarn build"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.13.1",
