@@ -12,31 +12,28 @@ export default {
     bodyText: "One API for notifications!",
   },
 };
-export function Default({ bodyText }) {
+/** With Click Action */
+export function ClickAction({ bodyText }) {
   return (
     <ToastProvider clientKey="client-key">
-      <DefaultComponent body={bodyText} />
+      <DefaultComponentWithAction body={bodyText} />
     </ToastProvider>
   );
 }
 
-function DefaultComponent({ body }) {
+function DefaultComponentWithAction({ body }) {
   const [ toast ] = useToast();
-
-  const onClick = () => {
-    alert("You clicked!");
-  };
 
   const notification = {
     title: "Courier",
     body,
     data: {
+      clickAction: "https://app.courier.com",
       clickedUrl: "https://api.courier.com/something/send",
     },
     options:{
       hideProgressBar: false,
     },
-    onClick,
   };
   return <Button onClick={() => toast(notification)}>Show Toast</Button>;
 }

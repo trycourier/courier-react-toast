@@ -5,44 +5,29 @@ export const defaultConfig: IProviderConfig = {
   position: "top-right",
   theme: {
     container: {
-      "a": {
-        textDecoration: "none",
-        backgroundColor: "white",
-      },
+    },
+    toast: {
       "*": {
         fontFamily: `"Nunito Sans", sans-serif`,
       },
-    },
-    toast: {
-      minHeight: 50,
-      backgroundColor: "white",
-      boxShadow: "rgba(157, 55, 137, 0.2) 0px 4px 12px",
-      borderRadius: 5,
-      color: "black",
-      margin: 10,
-    },
-    title: {
-      color: "#344563",
-      fontSize: 14,
-      fontWeight: "bold",
-      maxHeight: 50,
-      maxWidth: 160,
-      overflow: "hidden",
-      overflowWrap: "break-word",
+      "width": 320,
+      "minHeight": 65,
+      "padding": 0,
+      "borderRadius": 6,
     },
     body: {
-      color: "#8F8F8F",
-      fontSize: 12,
-      marginTop: 4,
-      maxHeight: 40,
-      maxWidth: 160,
-      overflow: "hidden",
-      overflowWrap: "break-word",
+      "margin": 0,
+      "display": "flex",
+      "> :nth-child(1)": {
+        "paddingLeft": 13.3,
+      },
+      "> *" : {
+        "padding": "13.3px 0",
+      },
+    },
+    title: {
     },
     icon: {
-      height: 30,
-      width: 60,
-      alignSelf: "center",
     },
     progressBar: {
       background: "rgb(157, 55, 137)",

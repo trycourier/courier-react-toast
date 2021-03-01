@@ -1,52 +1,38 @@
 import styled from "styled-components";
 
-export const Container = styled.div(() => ({
-  height: "100%",
-  width: "100%",
-  display: "flex",
-  outline: "none",
-  border: "none",
-  color: "inherit",
-  backgroundColor: "inherit",
-}));
+export const Container = styled.div`
+`;
 
-//@ts-ignore
-export const ContentContainer = styled.pre(() => ({
-  display: "flex",
-  width: "100%",
-  alignItems: "flex-start",
-  flexDirection: "column",
-  whiteSpace: "break-spaces",
-  margin: 10,
-}));
+export const Icon = styled.img`
+  margin-right: 12.17px;
+  height: 34px;
+  width: 34px;
+  object-fit: contain;
+  align-self: center;
+`;
 
-export const SideBarContainer = styled.div(() => ({
-  alignSelf: "center",
-  display: "flex",
-  flexDirection: "column",
-  marginLeft: 5,
-  paddingLeft: 5,
-  borderLeft: "1px solid #CBD5E0",
-}));
+export const ContentContainer = styled.div`
+  width: 139.33px;
+  flex-shrink: 0;
+  font-family: Nunito Sans, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  align-self: center;
+`;
 
-export const Details = styled.a(() => ({
-  backgroundColor: "white",
-  border: "none",
-  borderBottom: "1px solid #CBD5E0",
-  color: "#9D3789",
-  fontFamily: `"Nunito Sans", sans-serif`,
-  fontSize: 12,
-  textAlign: "center",
-  margin: 5,
-  paddingBottom: 10,
-}));
+export const Title = styled.div`
+  font-weight: 600;
+  color: #344563;
+`;
 
-export const Dismiss = styled.a(() => ({
-  backgroundColor: "white",
-  border: "none",
-  color: "#73819B",
-  fontFamily: `"Nunito Sans", sans-serif`,
-  fontSize: 12,
-  textAlign: "center",
-  margin: 5,
-}));
+export const Body = styled.div`
+
+`;

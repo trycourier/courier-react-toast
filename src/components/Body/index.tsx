@@ -1,17 +1,16 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import { toast } from "react-toastify";
-import { ToastContext } from "../../providers";
 import { IToastMessage } from "../Toast/types";
+import SideBar from "../SideBar";
+import { ToastContext } from "../../providers";
 import {
-  Container,
-  ContentContainer,
-  SideBarContainer,
-  Details,
-  Dismiss,
+  Icon, ContentContainer, Title, Body,
 } from "./styled";
-import CourierIcon from "./courier-icon";
+import { sendClickedRequest } from "./helpers";
+//@ts-ignore
+import CourierIcon from "./courier-icon.svg";
 
-const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
+const ToastBody: React.FunctionComponent<Partial<IToastMessage>> = ({
   title,
   body,
   icon,
@@ -20,79 +19,26 @@ const Body: React.FunctionComponent<Partial<IToastMessage>> = ({
   ...props
 }) => {
   const { toastProps } = props as { toastProps: any };
-  let sideBar;
+  const dismiss = useCallback(() => toast.dismiss(toastProps.toastId), [toastProps.toastId]);
   const { clientKey } = useContext(ToastContext);
-
-  if (data?.clickAction || onClick) {
-    const handleClickAction = (event: React.MouseEvent) => {
-      if (onClick) {
-        onClick(event);
-      }
-
-      if (clientKey && data?.clickedUrl) {
-        fetch(`${data.clickedUrl}`, {
-          method: "POST",
-          headers: {
-            "x-courier-client-key": clientKey,
-          },
-        });
-      }
-    };
-
-    sideBar = (
-      <SideBarContainer className="courier__sidebar-container">
-        <Details
-          className="courier__sidebar-details"
-          onClick={handleClickAction}
-        >
-          Details
-        </Details>
-        <Dismiss
-          className="courier__sidebar-dismiss"
-          onClick={() => {
-            toast.dismiss(toastProps.toastId);
-          }}
-        >
-          Dismiss
-        </Dismiss>
-      </SideBarContainer>
-    );
-  } else {
-    sideBar = (
-      <SideBarContainer className="courier__sidebar-container">
-        <Dismiss
-          className="courier__sidebar-dismiss"
-          onClick={() => {
-            toast.dismiss(toastProps.toastId);
-          }}
-        >
-          Dismiss
-        </Dismiss>
-      </SideBarContainer>
-    );
-  }
+  const hasAction = data?.clickAction || onClick;
+  const open = useCallback((event) => {
+    if (onClick) {
+      onClick(event);
+    }
+    sendClickedRequest(clientKey, data?.clickedUrl);
+  }, [clientKey, data?.clickedUrl, onClick]);
 
   return (
     <>
-      <div className="courier__icon">
-        {icon ? <img src={icon} /> : <CourierIcon />}
-      </div>
-      <ContentContainer className="courier__container">
-        <div className="courier__title">{title}</div>
-        <div className="courier__body">{body}</div>
+      <Icon src={icon || CourierIcon} />
+      <ContentContainer>
+        <Title>{title}</Title>
+        <Body>{body}</Body>
       </ContentContainer>
-      {sideBar}
+      <SideBar href={data?.clickAction} open={hasAction ? open : null} dismiss={dismiss} />
     </>
   );
 };
 
-const BodyWrapper: React.FunctionComponent<IToastMessage> = ({
-  onClick,
-  ...props
-}) => (
-  <Container>
-    <Body {...props} onClick={onClick} />
-  </Container>
-);
-
-export default BodyWrapper;
+export default ToastBody;
