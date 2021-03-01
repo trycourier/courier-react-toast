@@ -34,7 +34,12 @@ var Body = (_ref) => {
     icon,
     data,
     onClick
-  } = _ref;
+  } = _ref,
+      props = _objectWithoutProperties(_ref, ["title", "body", "icon", "data", "onClick"]);
+
+  var {
+    toastProps
+  } = props;
   var sideBar;
   var {
     clientKey
@@ -64,7 +69,7 @@ var Body = (_ref) => {
     }, "Details"), /*#__PURE__*/_react.default.createElement(_styled.Dismiss, {
       className: "courier__sidebar-dismiss",
       onClick: () => {
-        _reactToastify.toast.dismiss();
+        _reactToastify.toast.dismiss(toastProps.toastId);
       }
     }, "Dismiss"));
   } else {
@@ -73,7 +78,7 @@ var Body = (_ref) => {
     }, /*#__PURE__*/_react.default.createElement(_styled.Dismiss, {
       className: "courier__sidebar-dismiss",
       onClick: () => {
-        _reactToastify.toast.dismiss();
+        _reactToastify.toast.dismiss(toastProps.toastId);
       }
     }, "Dismiss"));
   }
