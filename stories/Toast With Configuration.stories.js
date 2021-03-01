@@ -41,17 +41,8 @@ export function WithConfiguration({
   position, hideProgressBar, transition,
 }) {
   const theme = {
-    toast: {
-      backgroundColor: "#388697",
-    },
-    title: {
-      color: "white",
-    },
-    body: {
-      color: "white",
-    },
-    dismissButton: {
-      color: "black",
+    root: {
+      fontFamily: "Arial",
     },
   };
   const config = {

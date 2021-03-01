@@ -17,10 +17,10 @@ export type Theme = Partial<{
   root: ThemeKey;
   toast: ThemeKey;
   body: ThemeKey;
-  sidebar: {
+  sidebar: Partial<{
     dismiss: ThemeKey;
     details: ThemeKey;
-  } & ThemeKey;
+  }> & ThemeKey;
   title: ThemeKey;
   content: ThemeKey;
   icon: ThemeKey;

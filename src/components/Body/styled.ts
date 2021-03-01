@@ -1,6 +1,4 @@
 import styled from "styled-components";
-//@ts-ignore
-import _CourierIcon from "./courier-icon.svg";
 
 export const Container = styled.div`
 `;
