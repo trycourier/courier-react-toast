@@ -3,7 +3,7 @@
 
 # Courier React Toast
 
-<img src="https://user-images.githubusercontent.com/16184018/109372638-6ebc6a00-785f-11eb-876a-e33260566c80.gif" width=300>
+<img src="https://user-images.githubusercontent.com/16184018/109372638-6ebc6a00-785f-11eb-876a-e33260566c80.gif">
 
 # Table of Contents
 
@@ -49,16 +49,16 @@ Below is a step by step setup to use `@trycourier/react-toast` using Courier as 
 We will need to install the [Courier Push Provider](https://app.courier.com/integrations/courier) to trigger a toast from an API request.
 Make sure to copy the Client Key from the integration page after installing.
 
-<img src="https://user-images.githubusercontent.com/16184018/109491559-8f8ee600-7a3e-11eb-9aa4-742639274fde.png" width="500">
+<img src="https://user-images.githubusercontent.com/16184018/109491559-8f8ee600-7a3e-11eb-9aa4-742639274fde.png" />
 
 Next, create your notification on the Courier Push Designer
 
-<img src="https://user-images.githubusercontent.com/16184018/109492317-a41fae00-7a3f-11eb-9368-fd424699d640.png" width="500">
+<img src="https://user-images.githubusercontent.com/16184018/109492317-a41fae00-7a3f-11eb-9368-fd424699d640.png" />
 
 Once your notification is created, you also have the option to map an EVENT_ID to a specific notification. This will allow you to use the Courier Designer for test sending.
 To do this access the settings pane near the top left corner next to the "Notifications" label. Navigate to "Events" and select an event or create a new one to send the toast on.
 
-<img src="https://user-images.githubusercontent.com/16184018/109494158-5d7f8300-7a42-11eb-96e8-078023daa14d.png" width="500">
+<img src="https://user-images.githubusercontent.com/16184018/109494158-5d7f8300-7a42-11eb-96e8-078023daa14d.png">
 
 ## Client Setup
 
@@ -184,7 +184,7 @@ You can use this table and chart to match the style key to the placement on the 
 | progressBar | N/A | The bar that moves across the toast to indicate when it will go away unless interacted by with the user. |
 | sidebar | brown | The side of the toast which will contain the actions for the user |
 
-<img src="https://user-images.githubusercontent.com/16184018/109500964-cae3e180-7a4b-11eb-80ad-1fc18324938b.png" width=300>
+<img src="https://user-images.githubusercontent.com/16184018/109500964-cae3e180-7a4b-11eb-80ad-1fc18324938b.png" />
 
 The style configuration objects should be defined with Style Objects. Style Objects can accept CSS Pseudo selectors for more advanced styling. See [here](https://styled-components.com/docs/advanced#style-objects) for more info or check below for advanced usage examples.
 
@@ -192,7 +192,7 @@ The style configuration objects should be defined with Style Objects. Style Obje
 
 An example usage of custom styling is shown below:
 
-<img src="https://user-images.githubusercontent.com/16184018/109723047-6cf5ed80-7b62-11eb-940a-4f29ddcfe80c.gif" width="500" />
+<img src="https://user-images.githubusercontent.com/16184018/109723047-6cf5ed80-7b62-11eb-940a-4f29ddcfe80c.gif" />
 
 ```js
 //App.js
@@ -230,7 +230,7 @@ function App() {
 
 Custom progress bar, with an on hover:
 
-<img src="https://user-images.githubusercontent.com/16184018/109722086-0f14d600-7b61-11eb-8115-457c6425b175.gif" width="500" />
+<img src="https://user-images.githubusercontent.com/16184018/109722086-0f14d600-7b61-11eb-8115-457c6425b175.gif" />
 
 ```js
 //App.js
@@ -262,7 +262,7 @@ function App() {
 
 Applying a font to the root component (All toasts)
 
-<img src="https://user-images.githubusercontent.com/16184018/109722694-e4774d00-7b61-11eb-8f7d-6217906fd2db.gif" width="500" />
+<img src="https://user-images.githubusercontent.com/16184018/109724944-408fa080-7b65-11eb-8286-c305d7725c27.gif" />
 
 ```js
 //App.js
@@ -286,7 +286,7 @@ function App() {
 
 Using a default icon and overriding all text color
 
-<img src="https://user-images.githubusercontent.com/16184018/109723980-b2ff8100-7b63-11eb-9942-fca94dd31f74.gif" width="500" />
+<img src="https://user-images.githubusercontent.com/16184018/109723980-b2ff8100-7b63-11eb-9942-fca94dd31f74.gif" />
 
 ```js
 //App.js
