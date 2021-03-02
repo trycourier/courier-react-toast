@@ -15,6 +15,7 @@
 6. [Using Hook](#using-hook)
 7. [Options](#options)
 8. [Themeing](#themeing)
+9. [Advanced Usage](#advanced-usage)
 
 ## [Overview](#overview)
 
@@ -48,16 +49,16 @@ Below is a step by step setup to use `@trycourier/react-toast` using Courier as 
 We will need to install the [Courier Push Provider](https://app.courier.com/integrations/courier) to trigger a toast from an API request.
 Make sure to copy the Client Key from the integration page after installing.
 
-<img src="https://user-images.githubusercontent.com/16184018/109491559-8f8ee600-7a3e-11eb-9aa4-742639274fde.png" width="400">
+<img src="https://user-images.githubusercontent.com/16184018/109491559-8f8ee600-7a3e-11eb-9aa4-742639274fde.png" width="500">
 
 Next, create your notification on the Courier Push Designer
 
-<img src="https://user-images.githubusercontent.com/16184018/109492317-a41fae00-7a3f-11eb-9368-fd424699d640.png" width="400">
+<img src="https://user-images.githubusercontent.com/16184018/109492317-a41fae00-7a3f-11eb-9368-fd424699d640.png" width="500">
 
 Once your notification is created, you also have the option to map an EVENT_ID to a specific notification. This will allow you to use the Courier Designer for test sending.
 To do this access the settings pane near the top left corner next to the "Notifications" label. Navigate to "Events" and select an event or create a new one to send the toast on.
 
-<img src="https://user-images.githubusercontent.com/16184018/109494158-5d7f8300-7a42-11eb-96e8-078023daa14d.png" width="400">
+<img src="https://user-images.githubusercontent.com/16184018/109494158-5d7f8300-7a42-11eb-96e8-078023daa14d.png" width="500">
 
 ## Client Setup
 
@@ -164,6 +165,7 @@ All `ToastProvider` configurations are optional.
 | position | string | The location of where the toast component will show |
 | hideProgressBar | boolean | Optionally show or hide the progress bar |
 | transition | boolean | Set the transition effect for the toast coming into the window and going out |
+| defaultIcon | string | Set the default icon being used in the toast without having to pass it from the data parameters |
 | theme | [StyleObject](https://github.com/trycourier/courier-react-toast/blob/main/src/providers/types.ts#L16) | Customize the styles of the toast component with a StyleObject. See below for details. |
 
 ### [Custom Styling](#themeing)
@@ -189,6 +191,8 @@ The style configuration objects should be defined with Style Objects. Style Obje
 > Styles will be merged with defaults so if you do not explicitly override a style it will not be changed.
 
 An example usage of custom styling is shown below:
+
+<img src="https://user-images.githubusercontent.com/16184018/109723047-6cf5ed80-7b62-11eb-940a-4f29ddcfe80c.gif" width="500" />
 
 ```js
 //App.js
@@ -220,7 +224,13 @@ function App() {
 }
 ```
 
+### [Advanced Usage](#advanced-usage)
+
+#### Advanced Themeing:
+
 Custom progress bar, with an on hover:
+
+<img src="https://user-images.githubusercontent.com/16184018/109722086-0f14d600-7b61-11eb-8115-457c6425b175.gif" width="500" />
 
 ```js
 //App.js
@@ -231,15 +241,10 @@ const theme = {
     bottom: 0,
   },
   sidebar: {
-    details: {
-      ":hover": {
-        opacity: 0.5,
-      },
-    },
-    dismiss: {
-      //All normal css pseudo selectors will work here
-      ":hover": {
-        opacity: 0.5,
+    ":hover": {
+      backgroundColor: "black",
+      "*": {
+        color: "white",
       },
     },
   },
@@ -255,18 +260,52 @@ function App() {
 }
 ```
 
-Applying styles to the root component (All toasts)
+Applying a font to the root component (All toasts)
+
+<img src="https://user-images.githubusercontent.com/16184018/109722694-e4774d00-7b61-11eb-8f7d-6217906fd2db.gif" width="500" />
 
 ```js
 //App.js
 const theme = {
   root: {
-    fontFamily: "Arial",
+    "*": {
+      fontFamily: "Courier",
+    },
   },
 };
 
 function App() {
   const config = { theme };
+  return (
+    <ToastProvider config={config}>
+      <App />
+    </ToastProvider>
+  );
+}
+```
+
+Using a default icon and overriding all text color
+
+<img src="https://user-images.githubusercontent.com/16184018/109723980-b2ff8100-7b63-11eb-9942-fca94dd31f74.gif" width="500" />
+
+```js
+//App.js
+const theme = {
+  root: {
+    "*": {
+      color: "black",
+    },
+  },
+  title: {
+    color: "red !important",
+    fontSize: 14,
+  },
+};
+
+const defaultIcon = `https://user-images.githubusercontent.com/16184018/109723772-674cd780-7b63-11eb-98d8-92f3c075ccbe.png`;
+
+function App() {
+  const config = { theme, defaultIcon };
   return (
     <ToastProvider config={config}>
       <App />
