@@ -1,4 +1,5 @@
-[![Tests](https://github.com/trycourier/courier-react-toast/actions/workflows/test.yml/badge.svg)](https://github.com/trycourier/courier-react-toast/actions/workflows/test.yml)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/trycourier/courier-react-toast/Test?label=Unit%20Tests)
+[![stability-beta](https://img.shields.io/badge/stability-beta-33bbff.svg?label=Stability)](https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md#beta)
 
 # Courier React Toast
 
