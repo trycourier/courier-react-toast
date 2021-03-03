@@ -4,6 +4,8 @@ on: push
 
 jobs:
   test:
+    env:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "::set-output name=dir::$(yarn cache dir)"

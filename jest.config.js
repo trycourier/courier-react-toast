@@ -29,4 +29,5 @@ module.exports = {
     "\\.(scss|sass|css)$": "identity-obj-proxy",
   },
   setupFiles: ["<rootDir>/src/__tests__/setup.ts"],
+  collectCoverage: true,
 };
