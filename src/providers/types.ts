@@ -29,9 +29,8 @@ export type Theme = Partial<{
 
 export interface IProviderConfig {
   autoClose?: boolean | number;
-  defaultIcon?: string;
+  defaultIcon?: string | false;
   hideProgressBar?: boolean;
-  icon?: boolean | string;
   onClick?: MouseEventHandler<Element>;
   position?: ToastPosition;
   role?: string;

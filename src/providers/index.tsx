@@ -36,9 +36,12 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
           }
         : message;
 
-    toast(<Body {...notification} icon={notification.icon ?? config.icon} />, {
-      role: config.role ?? "status",
-    });
+    toast(
+      <Body {...notification} icon={notification.icon ?? config.defaultIcon} />,
+      {
+        role: config.role ?? "status",
+      }
+    );
   };
 
   useListenForTransportEvent(transport, clientKey, handleToast);

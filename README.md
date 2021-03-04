@@ -163,11 +163,13 @@ A configuration object is passed to the `ToastProvider` as the `config` prop to 
 All `ToastProvider` configurations are optional.
 | Name | Type | Description |
 |-----------------|-------------|----------------------------------------------------------------------------------------|
-| position | string | The location of where the toast component will show |
-| hideProgressBar | boolean | Optionally show or hide the progress bar |
-| transition | boolean | Set the transition effect for the toast coming into the window and going out |
+| autoClose | false/number | Length of time until we close the toast. Defaults: 5000 |
 | defaultIcon | string | Set the default icon being used in the toast without having to pass it from the data parameters |
+| hideProgressBar | boolean | Optionally show or hide the progress bar |
+| position | string | The location of where the toast component will show |
+| role | string | The alert role can be used to tell the user an element has been dynamically updated. Default: "status" |
 | theme | [StyleObject](https://github.com/trycourier/courier-react-toast/blob/main/src/providers/types.ts#L16) | Customize the styles of the toast component with a StyleObject. See below for details. |
+| transition | boolean | Set the transition effect for the toast coming into the window and going out |
 
 ### [Custom Styling](#themeing)
 
