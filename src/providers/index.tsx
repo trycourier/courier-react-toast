@@ -25,9 +25,6 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   throwOnNoTransport(transport);
 
   const config = merge(defaultConfig, _config);
-
-  console.log(config);
-
   const handleToast = (message: IToastMessage | string) => {
     let notification: IToastMessage =
       typeof message === "string"

@@ -34,8 +34,6 @@ const ToastBody: React.FunctionComponent<Partial<IToastMessage>> = ({
   );
   const Icon = getIcon(icon ?? defaultIcon);
 
-  console.log(icon);
-
   return (
     <>
       {Icon && <Icon theme={theme.icon} data-test-id="toast-icon" />}
