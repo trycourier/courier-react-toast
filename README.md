@@ -164,7 +164,7 @@ All `ToastProvider` configurations are optional.
 | Name | Type | Description |
 |-----------------|-------------|----------------------------------------------------------------------------------------|
 | autoClose | false/number | Length of time until we close the toast. Defaults: 5000 |
-| defaultIcon | string | Set the default icon being used in the toast without having to pass it from the data parameters |
+| defaultIcon | string/false | Set the default icon being used in the toast without having to pass it from the data parameters. Pass `false` to disable. |
 | hideProgressBar | boolean | Optionally show or hide the progress bar |
 | position | string | The location of where the toast component will show |
 | role | string | The alert role can be used to tell the user an element has been dynamically updated. Default: "status" |
