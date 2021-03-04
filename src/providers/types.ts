@@ -31,6 +31,7 @@ export interface IProviderConfig {
   autoClose?: boolean | number;
   defaultIcon?: string;
   hideProgressBar?: boolean;
+  icon?: boolean | string;
   onClick?: MouseEventHandler<Element>;
   position?: ToastPosition;
   role?: string;
