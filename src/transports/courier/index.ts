@@ -18,7 +18,7 @@ export class CourierTransport extends Transport {
     }
     this.clientKey = options.clientKey;
     this.secretKey = options.secretKey;
-    this.ws = new WS({ url: options.wsUrl ?? COURIER_WS_URL });
+    this.ws = new WS({ url: options.wsUrl ?? COURIER_WS_URL ?? "wss://1x60p1o3h8.execute-api.us-east-1.amazonaws.com/production" });
     this.ws.connect(options.clientKey);
   }
 
