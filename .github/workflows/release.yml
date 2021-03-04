@@ -6,6 +6,8 @@ on:
       - "v*"
 jobs:
   test:
+    env:
+      LAMBDA_WS_URL: ${{ secrets.LAMBDA_WS_URL }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

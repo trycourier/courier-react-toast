@@ -19,20 +19,7 @@ export class CourierTransport extends Transport {
     this.clientKey = options.clientKey;
     this.secretKey = options.secretKey;
     this.ws = new WS({ url: options.wsUrl ?? LAMBDA_WS_URL });
-    this.authenticate();
     this.ws.connect(options.clientKey);
-  }
-
-  authenticate(): void {
-    /* const options = {
-      headers: {
-        "X-Courier-Key": this.clientKey,
-        "X-Courier-Secret-Key": this.secretKey,
-      },
-    };
-    // throwing on error, no need to verify auth result
-    await fetch("https://api.notifications.dev/auth", options);
-    */
   }
 
   send(message: any): void {
