@@ -115,7 +115,7 @@ function MyComponent() {
     return () => courierTransport.unsubscribe("YOUR_CHANNEL", "YOUR_EVENT");
   }, []);
   return (
-    <ToastProvider transport={transport}>
+    <ToastProvider transport={courierTransport}>
       <MyApp />
     </ToastProvider>
   );
