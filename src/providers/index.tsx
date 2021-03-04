@@ -26,6 +26,8 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
 
   const config = merge(defaultConfig, _config);
 
+  console.log(config);
+
   const handleToast = (message: IToastMessage | string) => {
     let notification: IToastMessage =
       typeof message === "string"
@@ -33,7 +35,10 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
             body: message,
           }
         : message;
-    toast(<Body {...notification} />);
+
+    toast(<Body {...notification} icon={notification.icon ?? config.icon} />, {
+      role: config.role ?? "status",
+    });
   };
 
   useListenForTransportEvent(transport, clientKey, handleToast);

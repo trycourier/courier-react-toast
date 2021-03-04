@@ -33,6 +33,7 @@ export interface IProviderConfig {
   hideProgressBar?: boolean;
   onClick?: MouseEventHandler<Element>;
   position?: ToastPosition;
+  role?: string;
   theme?: Theme;
   transition?: string;
 }
