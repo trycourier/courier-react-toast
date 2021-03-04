@@ -1,7 +1,7 @@
 import { WS } from "../../ws";
 import { Transport } from "../base";
 import { Interceptor } from "../types";
-import { LAMBDA_WS_URL } from "./constants";
+import { COURIER_WS_URL } from "./constants";
 import { ITransportOptions } from "./types";
 
 export class CourierTransport extends Transport {
@@ -18,7 +18,7 @@ export class CourierTransport extends Transport {
     }
     this.clientKey = options.clientKey;
     this.secretKey = options.secretKey;
-    this.ws = new WS({ url: options.wsUrl ?? LAMBDA_WS_URL });
+    this.ws = new WS({ url: options.wsUrl ?? COURIER_WS_URL });
     this.ws.connect(options.clientKey);
   }
 

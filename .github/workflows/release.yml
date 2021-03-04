@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     env:
-      LAMBDA_WS_URL: ${{ secrets.LAMBDA_WS_URL }}
+      COURIER_WS_URL: ${{ secrets.COURIER_WS_URL }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

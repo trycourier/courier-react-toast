@@ -1,1 +1,1 @@
-export const LAMBDA_WS_URL = process.env.LAMBDA_WS_URL;
+export const COURIER_WS_URL = process.env.COURIER_WS_URL;
