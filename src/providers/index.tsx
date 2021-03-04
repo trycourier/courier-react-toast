@@ -8,9 +8,7 @@ import Body from "../components/Body";
 import { Toast } from "../components";
 import { IToastMessage } from "../components/Toast/types";
 import { defaultConfig } from "./defaults";
-import {
-  ToastProviderProps, IToastContext,
-} from "./types";
+import { ToastProviderProps, IToastContext } from "./types";
 import { throwOnNoTransport } from "./helpers";
 import { useListenForTransportEvent } from "./hooks";
 
@@ -29,11 +27,15 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   const config = merge(defaultConfig, _config);
 
   const handleToast = (message: IToastMessage | string) => {
-    let notification: IToastMessage = typeof message === "string" ? {
-      body: message,
-    } : message;
+    let notification: IToastMessage =
+      typeof message === "string"
+        ? {
+            body: message,
+          }
+        : message;
     toast(<Body {...notification} />);
   };
+
   useListenForTransportEvent(transport, clientKey, handleToast);
   return (
     <ToastContext.Provider

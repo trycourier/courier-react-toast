@@ -1,8 +1,6 @@
 import React from "react";
 
-import {
-  Toast, ToastProvider, useToast,
-} from "../src";
+import { Toast, ToastProvider, useToast } from "../src";
 import { Button } from "./styled";
 
 export default {
@@ -12,6 +10,7 @@ export default {
     bodyText: "One API for notifications!",
   },
 };
+
 export function Default({ bodyText }) {
   return (
     <ToastProvider clientKey="client-key">
@@ -21,6 +20,32 @@ export function Default({ bodyText }) {
 }
 
 function DefaultComponent({ body }) {
-  const [ toast ] = useToast();
+  const [toast] = useToast();
   return <Button onClick={() => toast(body)}>Show Toast</Button>;
+}
+
+export function NoIcon({ bodyText }) {
+  return (
+    <ToastProvider
+      clientKey="client-key"
+      config={{
+        icon: false,
+      }}
+    >
+      <DefaultComponent body={bodyText} />
+    </ToastProvider>
+  );
+}
+
+export function NoTimer({ bodyText }) {
+  return (
+    <ToastProvider
+      clientKey="client-key"
+      config={{
+        autoClose: false,
+      }}
+    >
+      <DefaultComponent body={bodyText} />
+    </ToastProvider>
+  );
 }
