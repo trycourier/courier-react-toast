@@ -69,7 +69,6 @@
   "dependencies": {
     "babel-plugin-inline-react-svg": "^2.0.1",
     "babel-plugin-react-remove-properties": "^0.3.0",
-    "lodash.merge": "^4.6.2",
     "react-toastify": "^6.2.0",
     "rimraf": "^3.0.2",
     "styled-components": "^5.2.1"

@@ -2,7 +2,6 @@ import React from "react";
 import { toast } from "react-toastify";
 //@ts-ignore
 import toastCss from "react-toastify/dist/ReactToastify.css";
-import merge from "lodash.merge";
 import { createGlobalStyle } from "styled-components";
 import Body from "../components/Body";
 import { Toast } from "../components";
@@ -24,7 +23,11 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
 }) => {
   throwOnNoTransport(transport);
 
-  const config = merge(defaultConfig, _config);
+  const config = {
+    ...defaultConfig,
+    ..._config,
+  };
+
   const handleToast = (message: IToastMessage | string) => {
     let notification: IToastMessage =
       typeof message === "string"
