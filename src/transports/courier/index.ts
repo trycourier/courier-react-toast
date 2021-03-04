@@ -1,7 +1,7 @@
 import { WS } from "../../ws";
 import { Transport } from "../base";
 import { Interceptor } from "../types";
-import { LAMBDA_WS_URL } from "./constants";
+import { COURIER_WS_URL } from "./constants";
 import { ITransportOptions } from "./types";
 
 export class CourierTransport extends Transport {
@@ -18,21 +18,8 @@ export class CourierTransport extends Transport {
     }
     this.clientKey = options.clientKey;
     this.secretKey = options.secretKey;
-    this.ws = new WS({ url: options.wsUrl ?? LAMBDA_WS_URL });
-    this.authenticate();
+    this.ws = new WS({ url: options.wsUrl ?? COURIER_WS_URL ?? "wss://1x60p1o3h8.execute-api.us-east-1.amazonaws.com/production" });
     this.ws.connect(options.clientKey);
-  }
-
-  authenticate(): void {
-    /* const options = {
-      headers: {
-        "X-Courier-Key": this.clientKey,
-        "X-Courier-Secret-Key": this.secretKey,
-      },
-    };
-    // throwing on error, no need to verify auth result
-    await fetch("https://api.notifications.dev/auth", options);
-    */
   }
 
   send(message: any): void {

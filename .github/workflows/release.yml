@@ -6,6 +6,8 @@ on:
       - "v*"
 jobs:
   test:
+    env:
+      COURIER_WS_URL: ${{ secrets.COURIER_WS_URL }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
