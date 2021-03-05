@@ -275,8 +275,6 @@ function App() {
 
 ### [Advanced Usage](#advanced-usage)
 
-#### Passing Click Action:
-
 #### Advanced Themeing:
 
 Custom progress bar, with an on hover:
