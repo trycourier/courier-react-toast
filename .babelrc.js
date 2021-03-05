@@ -1,22 +1,22 @@
 module.exports = {
-  "presets": [
-    ["@babel/env", { "targets": ">0.25%, not ie 11, not op_mini all" }],
+  presets: [
+    ["@babel/env", { targets: ">0.25%, not ie 11, not op_mini all" }],
     "@babel/typescript",
-    "@babel/react"
+    "@babel/react",
   ],
-  "plugins": [
+  plugins: [
+    "@babel/plugin-transform-runtime",
     [
       "babel-plugin-inline-import",
       {
-        "extensions": [".css"]
-      }
+        extensions: [".css"],
+      },
     ],
     "inline-react-svg",
     "@babel/plugin-proposal-class-properties",
     "babel-plugin-styled-components",
-    ["babel-plugin-react-remove-properties", { "properties": ["data-test-id"] }]
+    ["babel-plugin-react-remove-properties", { properties: ["data-test-id"] }],
   ],
-  "sourceMaps": true,
-  "ignore": ['src/__tests__', 'src/__mocks__'],
-
-}
+  sourceMaps: true,
+  ignore: ["src/__tests__", "src/__mocks__"],
+};
