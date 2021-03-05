@@ -200,6 +200,30 @@ The `show` function on the toast can optionally accept a configuration object in
 | clickedUrl   | string | A webhook url to send a POST request to when the user clicks on the toast notification                                |
 | deliveredUrl | string | A webhook url to send a POST request to when the user received the toast notification                                 |
 
+Code Example:
+
+```js
+import { useToast } from "@trycourier/react-toast";
+
+function MyComponent() {
+  //We can access this because the parent is a `ToastProvider`
+  const [show] = useToast();
+
+  const notification = {
+    title: "Github",
+    body: "Your pull request has been merged",
+    icon: "https://github.com/favicon.png"
+    data: {
+      clickAction: "https://github.com",
+      clickedUrl: "https://api.github.com/message/clicked/XXXXXXXX",
+      deliveredUrl: "https://api.github.com/message/delivered/XXXXXXXX"
+    },
+  };
+
+  return <Button onClick={() => show(notification)}>Show Toast</Button>;
+}
+```
+
 <hr>
 
 ## [Provider Config Options](#options)
