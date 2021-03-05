@@ -3,6 +3,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -24,6 +25,7 @@ module.exports = {
     "import",
     "react-hooks",
     "@typescript-eslint",
+    "jsx-a11y",
   ],
   "rules": {
     "array-callback-return": "error",
