@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 //@ts-ignore
 import toastCss from "react-toastify/dist/ReactToastify.css";
 import { createGlobalStyle } from "styled-components";
+import ReactDOM from "react-dom";
 import Body from "../components/Body";
 import { Toast } from "../components";
 import { IToastMessage } from "../components/Toast/types";
@@ -21,6 +22,12 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
   config: _config,
   transport,
 }) => {
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "production") {
+      const axe = require("@axe-core/react");
+      axe(React, ReactDOM, 1000);
+    }
+  }, []);
   throwOnNoTransport(transport);
 
   const config = {
@@ -32,15 +39,15 @@ export const ToastProvider: React.FunctionComponent<ToastProviderProps> = ({
     let notification: IToastMessage =
       typeof message === "string"
         ? {
-            body: message,
-          }
+          body: message,
+        }
         : message;
 
     toast(
       <Body {...notification} icon={notification.icon ?? config.defaultIcon} />,
       {
         role: config.role ?? "status",
-      }
+      },
     );
   };
 
