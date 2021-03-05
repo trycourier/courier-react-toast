@@ -13,10 +13,12 @@
 3. [Client Install](#client-install)
 4. [Toast Provider](#toast-provider)
 5. [Using Transport](#using-transport)
-6. [Using Hook](#using-hook)
-7. [Options](#options)
-8. [Themeing](#themeing)
-9. [Advanced Usage](#advanced-usage)
+6. [Send An Action On Click](#sending-an-action-on-click)
+7. [Using Hook](#using-hook)
+8. [Using Hook With Options](#using-hook-with-options)
+9. [Options](#options)
+10. [Themeing](#themeing)
+11. [Advanced Usage](#advanced-usage)
 
 ## [Overview](#overview)
 
@@ -153,6 +155,50 @@ function MyComponent() {
   );
 }
 ```
+
+## [Sending an Action On Click](#sending-an-action-on-click)
+
+You may want to link the user to another page when they click on the toast notification. There are two ways to do this depending on how you are using the library.
+
+1. You are using a transport:
+
+   - In this case you will need to use a data override
+
+2. Invoking the toast locally through the `useToast` hook
+   - In this case you can simply specify the `clickAction` through a prop skip below to [Using Hook With Options](#using-hook-with-options) for more details
+
+If you are using `Courier Push Provider` to send your notification you must use a data override. To do this for the `clickAction` property send the `data` object under the `push` channel. Here is an example snippet below giving the toast a url for the `clickAction`:
+
+```bash
+curl --location --request POST 'https://api.courier.com/send' \
+--header 'Authorization: Bearer XXXXXXXXXXXXXXXXXX' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'event=NEW_SUBSCRIBER' \
+--data-urlencode 'recipient=XXXXXX-XXXX-XXXX-XXXX-XXXXXX' \
+--data-urlencode 'override={"channel":{"push":{"data":{"clickAction":"https://example.com"}}}}' \
+--data-urlencode 'profile={"courier":{"channel":"TEST_CHANNEL"}}'
+```
+
+If you are using the toast locally you can easily send the prop `clickAction` or `onClick` to the `show` function
+
+## [Using Hook With Options](#using-hook-with-options)
+
+The `show` function on the toast can optionally accept a configuration object instead of simply a string for more control over what is shown on the notification. See the available options below
+
+| Option | Type                                       | Description                                          |
+| ------ | ------------------------------------------ | ---------------------------------------------------- |
+| body   | string                                     | The body content of the message                      |
+| icon   | string \| false                            | The link or base64 encoded data for the icon to show |
+| title  | string                                     | The title content the message                        |
+| data   | <a href="#messageobject">MessageObject<a/> | The data properties for the toast                    |
+
+<h4 id="messageobject">MessageObject Options</h4> (<a href="https://github.com/trycourier/courier-react-toast/blob/main/src/transports/types.ts#L1">TypeDefinition</a>)
+
+| Option       | Type   | Description                                                                                                           |
+| ------------ | ------ | --------------------------------------------------------------------------------------------------------------------- |
+| clickAction  | string | Link to the location to send the user on click. Note this changes the look of the toast by adding a "Details" button. |
+| clickedUrl   | string | A webhook url to send a POST request to when the user clicks on the toast notification                                |
+| deliveredUrl | string | A webhook url to send a POST request to when the user received the toast notification                                 |
 
 <hr>
 
