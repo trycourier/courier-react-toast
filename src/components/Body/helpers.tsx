@@ -13,15 +13,19 @@ export function sendClickedRequest(clientKey, clickedUrl) {
         [COURIER_CLIENT_HEADER]: clientKey,
       },
     });
-  };
+  }
 }
 
 export function getIcon(icon) {
+  if (icon === false) {
+    return;
+  }
+
   if (typeof icon === "string") {
     // eslint-disable-next-line react/display-name
     return (props) => <Icon src={icon} {...props} />;
   } else {
-    return styled(icon || courierIcon)(props => ({
+    return styled(icon || courierIcon)((props) => ({
       flexShrink: 0,
       marginRight: "12.17px",
       objectFit: "contain",

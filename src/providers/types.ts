@@ -28,12 +28,14 @@ export type Theme = Partial<{
 }>;
 
 export interface IProviderConfig {
+  autoClose?: boolean | number;
+  defaultIcon?: string | false;
   hideProgressBar?: boolean;
   onClick?: MouseEventHandler<Element>;
-  transition?: string;
   position?: ToastPosition;
+  role?: string;
   theme?: Theme;
-  defaultIcon?: string;
+  transition?: string;
 }
 export interface IToastContext {
   clientKey?: string;

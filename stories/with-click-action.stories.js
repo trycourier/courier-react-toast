@@ -1,8 +1,6 @@
 import React from "react";
 
-import {
-  Toast, ToastProvider, useToast,
-} from "../src";
+import { Toast, ToastProvider, useToast } from "../src";
 import { Button } from "./styled";
 
 export default {
@@ -22,7 +20,7 @@ export function ClickAction({ bodyText }) {
 }
 
 function DefaultComponentWithAction({ body }) {
-  const [ toast ] = useToast();
+  const [toast] = useToast();
 
   const notification = {
     title: "Courier",
@@ -31,7 +29,7 @@ function DefaultComponentWithAction({ body }) {
       clickAction: "https://app.courier.com",
       clickedUrl: "https://api.courier.com/something/send",
     },
-    options:{
+    options: {
       hideProgressBar: false,
     },
   };

@@ -35,6 +35,11 @@ export class CourierTransport extends Transport {
   subscribe(channel: string, event: string): void {
     this.ws.subscribe(channel, event, this.clientKey, ({ data }) => {
       data = this.getDataFromInterceptor(data);
+
+      if (!data) {
+        return;
+      }
+      
       this.emit({ data });
     });
   }
@@ -48,8 +53,6 @@ export class CourierTransport extends Transport {
       data = this.interceptor(data);
     }
 
-    if (typeof data !== "undefined" && data !== false) {
-      return data;
-    }
+    return data;
   };
 }

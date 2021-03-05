@@ -1,6 +1,6 @@
 export interface IMessage {
   body?: string;
-  icon?: string;
+  icon?: string | false;
   title?: string;
   data?: {
     clickAction?: string;
